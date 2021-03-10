@@ -1,0 +1,15 @@
+<p>videoplayer works!</p>
+
+<div class="container">
+    <div class="title">
+        <!-- {{ videos[videoIndex].pageTitle }} -->
+  </div>
+  <br>
+  <video class="video" controls (click)="toggleVideo()"  [src]=src 
+  #videoPlayer width="auto" height="auto" allow="autoplay">
+  Browser not supported
+  </video>
+  <br>
+  <button (click)="onNext(10)">Next</button>
+  <button>Back to Videos</button>
+    </div>

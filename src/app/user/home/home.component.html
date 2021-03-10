@@ -1,0 +1,77 @@
+<div class="container">
+<div class="course">
+  <h2>Popular courses</h2>
+  <hr class="hrstyle"/>
+  <div class="row">
+    <ng-container *ngFor='let pc of popularcourse '>
+    <app-coursecard [mycourse]='pc' class="col-md-4"></app-coursecard>
+  </ng-container> 
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<!-- </div>
+
+
+<div class="courses">
+
+
+  <div *ngFor='let category of categories , index as i' class="container my-4">
+    <br />
+    <h5>
+      <p>{{category.categoryName}}</p>
+    </h5>
+
+  
+    <div
+      id="multi-item-example"
+      class="carousel slide carousel-multi-item"
+      data-ride="carousel"
+    >
+     
+      <div class="carousel-inner px-4" role="listbox">
+        <div class="carousel-item active" *ngFor='let course of category?.courses'>
+        <h1>  {{course?.courseName}}</h1>
+          <app-coursecard [mycourse]="course"></app-coursecard>
+         
+        </div>
+     
+     
+      </div>
+      <a class="btn prev" href="#multi-item-example" data-slide="prev"
+        >&#8249;</a
+      >
+      <a class="btn next" href="#multi-item-example" data-slide="next"
+        >&#8250;</a
+      >
+    </div>
+  </div> -->
+
+
+

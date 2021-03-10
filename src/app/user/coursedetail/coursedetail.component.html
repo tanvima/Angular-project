@@ -1,0 +1,67 @@
+<div class="jumbotron">
+ 
+    <div class="course" *ngIf="course">
+        <h1 class="name">{{course.courseName}}</h1>
+        <p class="desc">{{course.courseDesc}}</p>
+        <h4 class="author">Author: Kavi Harshad</h4>
+        <h6 class="duration">Duration: {{course.noOfVideo}} weeks</h6>
+    </div>
+    <button type="button">Enroll Here</button><br><br><br>
+    <h3>Rating  <ngx-input-star-rating [disabled]="true" [value]=course.rating></ngx-input-star-rating></h3>
+
+</div>
+
+
+<h1 class="text-center">How The Specialization Works</h1><br>
+<div class="main">
+<div>
+  <h2 class="h3a">Take Course</h2>
+  <p class="para">A Course Specialization is a series of topics that helps you master a skill. To begin, enroll in the Specialization directly, or review its topics and choose the one you'd like to start with. When you subscribe to a course that is part of a Specialization, you’re automatically subscribed to the full Specialization. It’s okay to complete just one course — you can pause your learning or end your subscription at any time. Visit your learner dashboard to track your course enrollments and your progress.</p>
+  <h2 class="h3a">Earn a Certificate</h2>
+  <p class="para">When you finish every course and complete the hands-on project, you'll earn a Certificate that you can share with prospective employers and your professional network.</p>
+</div>
+<div>
+  <img src="../../assets/cp.png">
+</div>
+</div>
+<br>
+<div class="media" *ngFor="let c of course.video;let index=index">
+<br>
+<div class="container">
+  <div class="column">
+  <h2 class="h3c">Video</h2>&nbsp;
+  <h1 class="text">{{index+1}}</h1>
+  </div>
+    <div class="media-body">
+      <h3>Title:</h3>
+      <p class="mt-text">{{c.videoName}}</p>
+      <h3>Description:</h3>
+      <p class="mt-text">{{c.videoDesc}}</p>
+      
+    </div>
+   </div>
+  </div>
+  <br>
+  <div class="likecomment">
+    <div class="like">
+      <h3 class="h3b"><i style="font-size:30px" class="fa">&#xf087;</i></h3>&nbsp;&nbsp;
+      <h4 class="ab">{{likes}}   liked by people</h4>
+    </div>
+    
+  <h3 class="a">Comments:</h3>
+  <!-- <div class="column comment" *ngFor="let com of comments">
+    <p><i class="fa fa-comment" aria-hidden="true"></i>     {{com.comment}}</p> <hr> -->
+    <div class="container1">
+    <div class="media-body1">
+      <div class="well well-lg">
+          <h4 class="media-heading text-uppercase reviews">  </h4>
+          <div  *ngFor="let com of course.comment">
+          <p ><i class="fa fa-comment" aria-hidden="true"> </i>   {{com.comment}}
+          </p><hr>
+          <!-- <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+          <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne"><span class="glyphicon glyphicon-comment"></span> 2 comments</a> -->
+      </div>  
+      </div>            
+    
+</div>
+</div>
