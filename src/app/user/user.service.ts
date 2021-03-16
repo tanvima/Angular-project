@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
@@ -36,6 +36,49 @@ export class UserService {
   getString():Observable<any>{
     return this.http.get(environment.baseUserUrl+'/getstring');
   }
+  updateVideoStatus(courseid:any,userid:any,videoid:any): Observable<any>{
+    return this.http.post(environment.baseUserUrl+'/user/nextvideo',null,{params:{courseid:courseid,userid:userid,videoid:videoid}})
+  }
+
+  getVideoStatus(courseid:any,userid:any):Observable<any>{
+    return this.http.get(environment.baseUserUrl+"/user/getVideoStatus/"+userid+"/"+courseid)
+  }
+  addFeedback(userid:any,courseid:any,feedbackdata:any):Observable<any>{
+    return this.http.post<any>(environment.baseUserUrl+"/user/feedback/"+userid+"/"+courseid,feedbackdata)
+  }
+  addToCart(courseid:any,userid:any): Observable<any>{
+    return this.http.post(environment.baseUserUrl+'/user/addtocart',null,{params:{courseid:courseid,userid:userid}})
+  }
+  getCartCourses(userid:any): Observable<any>{
+    return this.http.get(environment.baseUserUrl+"/user/getCartCourses/"+userid)
+  }
+  removeFromCart(courseid:any,userid:any): Observable<any>{
+    return this.http.delete(environment.baseUserUrl+'/user/removecart',{params:{courseid:courseid,userid:userid}})
+  }
+
+  enrollCourse(userid:any):Observable<any>{
+    return this.http.post(environment.baseUserUrl+'/user/enroll',null,{params:{userid:userid}})
+  }
+
+  getEnrollCourse(userid:any):Observable<any>{
+     return this.http.get(environment.baseUserUrl+"/user/mycourses/"+userid)
+  }
+  addComment(courseid:any, userid:any,comments:any): Observable<any>{
+    console.log("COMMNET ",comments)
+    console.log("URL ",environment.baseUserUrl+'/user/addcomment/'+courseid+'/'+userid)
+    return this.http.post<any>(environment.baseUserUrl+'/user/addcomment/'+courseid+'/'+userid,comments)
+  }
+
+  addLike(courseid:any,userid:any):Observable<any>{
+    return this.http.get(environment.baseUserUrl+'/user/addlike/'+userid+'/'+courseid)
+  }
+
+  getLikeStatus(userid:any):Observable<any>{
+    return this.http.get(environment.baseUserUrl+'/user/getlike/'+userid)
+}
+deleteComment(commentid:any):Observable<any>{
+  return this.http.delete(environment.baseUserUrl+'/user/deleteComment/'+commentid)
 }
 
+}
 

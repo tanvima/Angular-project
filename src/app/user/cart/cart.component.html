@@ -1,0 +1,34 @@
+<p>cart works!</p>
+<div class="body">
+<ng-container *ngIf="course != ''; else elseBlock">
+    <div class="media" *ngFor="let c of course">
+        
+        <div class="container">
+            <div class="column">
+                <h2 class="h3c">Course</h2>&nbsp;
+                <img class="img" [src]='c.imageSrc'>
+            </div>
+            <div class="media-body">
+                <h3>Title:</h3>
+                <p class="mt-text">{{c.courseName}}</p>
+                <h3>Description:</h3>
+                <p class="mt-text">{{c.courseDesc}}</p>
+                <h3>Duration:</h3> 
+                <p class="mt-text">{{c.noOfVideo}} weeks</p>  
+           </div>
+           <div class="remove-button">
+                <button class="btn btn-secondary" (click)="removeFromCart(c.courseId)">Remove <i class="fa fa-trash" aria-hidden="true"></i></button>
+           </div>
+        </div>
+    </div>
+    <br>
+    <div class="proceed-button">
+        <button class="button2" (click)="enrollAll()">Proceed to Enroll</button>
+    </div>
+    
+</ng-container>
+<br>
+
+
+<ng-template #elseBlock><h2>Cart is Empty</h2></ng-template>
+   

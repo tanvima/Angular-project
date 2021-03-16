@@ -1,0 +1,64 @@
+<p>mycourse works!</p>
+
+<div class="body">
+  <div class="media"   *ngFor="let c of course;let index=index">
+    <div class="container"  >
+      <div class="column">
+        <h2 class="text-size">Course</h2>
+        &nbsp;
+        <!-- <img [src]="c.courseLogo" /> -->
+      </div>
+      <div class="media-body">
+        <h3>Title:</h3>
+        <p class="mt-text">{{ c.courseName }}</p>
+        <h3>Description:</h3>
+        <p class="mt-text">{{ c.courseDesc }}</p>
+        <h3>Duration:</h3>
+        <p class="mt-text">{{ c.noOfVideo }} weeks</p>
+
+        Comments....<span class="material-icons" (click)="commentFlags()">
+            visibility
+            </span>
+            <ng-container *ngIf="commentFlag">
+            <ng-container *ngFor="let comm of c.comment" >
+                <p>Comment : {{comm.comment}}</p> 
+             <ng-container *ngIf="comm.userId==userid"> 
+              <span class="material-icons" (click)="delComment(comm.id)">
+                delete
+                </span>
+               </ng-container>
+            </ng-container>
+        </ng-container>
+        <form [formGroup]="form" >
+            <input type="text" formControlName="comment" name="comment"/>
+            <button type="submit" ><span class="material-icons" (click)="addComment(c.courseId)">
+                add
+                </span></button>
+          </form>
+
+          <ng-container *ngIf="status!=null">
+          <span class="material-icons" *ngIf="status[index].msg=='Like'" (click)=Like(c.courseId)>
+            thumb_up
+            </span>
+
+            <span class="material-icons" *ngIf="status[index].msg=='Unlike'" (click)=Like(c.courseId)>
+              thumb_up_off_alt
+              </span>
+            </ng-container>
+      </div>
+      <div class="field">
+        <button class="btn start" (click)="gotoVideoList(c.courseId)">Start</button> &nbsp;
+        <button class="btn certificate">Certificate</button>&nbsp;
+        <div class="row">
+          <h4>
+            Status:
+            <p>{{ c.status }}</p>
+          </h4>
+        </div>
+      </div>
+      
+    </div>
+
+ 
+  </div>
+</div>

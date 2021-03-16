@@ -1,5 +1,5 @@
 <p>videoplayer works!</p>
-
+<h1 class="display-1">{{videotitle}}</h1>
 <div class="container">
     <div class="title">
         <!-- {{ videos[videoIndex].pageTitle }} -->
@@ -10,6 +10,8 @@
   Browser not supported
   </video>
   <br>
-  <button (click)="onNext(10)">Next</button>
-  <button>Back to Videos</button>
+  <button *ngIf="nextButton"(click)="onNext(videoid)">{{nextButton}}</button>
+  <button *ngIf="!nextButton"(click)="gotoCertificate()">Go To Certificate Generation</button>
+  
+  <button *ngIf="flagfornext" (click)="onBack()">Back to Videos</button>
     </div>

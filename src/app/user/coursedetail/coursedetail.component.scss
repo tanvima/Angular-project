@@ -1,119 +1,235 @@
-.jumbotron{
-    height: 400px;
-    color: black;  
-    background-image: linear-gradient(rgb(255, 217, 0), grey)
-}
-.course{
-    text-align: left; 
-    
-}
-.name{
-    font-size: 50px;
-}
-.desc{
-    font-size: 15px;
-}
-.author{
-    font-size: 20px;
-}
-.duration{
-    font-size: 18px;
-}
-button{
-    float:left;  
-    background-color: black; 
-    color:white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-   
-}
-.checked {
-    color: orange;
+.jumbotron {
+    height: auto;
+    width: 100%;
+    color: black;
+    background-image: linear-gradient(90deg, #fdf7b3, #ece4e4);
+    display: flex;
+    flex-direction: row;
   }
-
-
-.container{
-    display: flex;
-    box-shadow: 5px 5px 5px 5px lightgrey;
-    margin-top: 20px;
-
-}
-.container1{
-   
-    box-shadow: 5px 5px 5px 5px lightgrey;
-    margin-top: 20px;
- 
-     width: 95%;
-
-}
-.column
-{
-    width: 30%;
-}
-.mt-text{
-    color:grey;
-}
-.text{
-    padding-left: 120px;
-    color:black;
-}
-.media-body{
-    padding-top: 15px;
-    width: 70%;
-}
-.btn-warning{
-float:left;
-
-}
-
-// .fa{
-//     padding-left: 80px;
-// }
-.para {
+  .jumbotron-course {
+    width: 100%;
+    margin-left: 10%;
+  }
+  .container-about-course {
     width: 80%;
-    padding-left: 80px;
-    color: grey;
-}
-.h3a{
-    padding-left: 80px; 
-    font-size: larger;
-    
-}
-.h3c{
-    padding-top: 15px;
-    padding-left: 110px; 
-}
-.h3b
-{
-    padding-left: 68px;
-}
-.main{
+    padding-bottom: 100px;
+  }
+  
+  .course-desc {
+    font-size: 1rem;
+  }
+  .course {
     display: flex;
-}
-img{
-    padding-right: 100px;
-    height: 400px;
-    width: 700px;
-}
-.comment{
-    padding-left: 100px;
-    width:60%
-}
-.well {
-    padding-left: 160px;
-    width:60%;
-    position: relative;
-}
-.like{
-   display: flex;
-   
-}
-.a
-{
-    padding-left: 150px;
-}
-.ab{
-    padding-top: 10px;
-}
+    flex-direction: column;
+  }
+  .course-author {
+    font-size: 1rem;
+  }
+  .course h1 {
+    line-height: 46px;
+    font-size: 2rem;
+  }
+  .icon-person {
+    margin-right: 10px;
+    color: rgb(100, 94, 94);
+  }
+  .enroll-btn {
+    background-color: #6c757d;
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    border-color: transparent;
+    height: auto;
+    width: 60%;
+  }
+  .enroll-btn:hover {
+    background-color: #acb3b9;
+    color: black;
+  }
+  .course h1,
+  p,
+  h4,
+  h6,
+  button,
+  h3 {
+    margin: 2%;
+  }
+  
+  .jumbotron-image {
+    margin-right: 100px;
+    width: 100%;
+  }
+  
+  .rating-like-comment {
+    width: 40%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: space-between;
+    color: rgb(100, 94, 94);
+  }
+  .like-comment-text {
+    margin: 2px;
+    font-size: 1rem;
+  }
+  /* take course */
+  .take-course-section {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #b5b8bb;
+    border-radius: 2%;
+    padding: 2%;
+  }
+  
+  .container-fluid-take-course {
+    padding-top: 50px;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 100px;
+    
+  }
+  .sidebar-icons {
+   // margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+     padding: 20px;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border: 1px solid #b5b8bb;
+    border-radius: 2%;
+  }
+  
+  .icon-wrap {
+    // border: 4px solid rgb(204, 201, 201);
+    padding: 7px;
+    border-radius: 50%;
+    color: rgba(212, 205, 101, 0.616);
+  }
+  .icon-text {
+    margin: 0px 0px 0px 20px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #6c757d;
+  }
+  
+  .card-title {
+    font-size: 1rem;
+  }
+  .card-text {
+    font-size: 1rem;
+  }
+  
+  /* comments */
+  .container-comments {
+    padding-top: 100px;
+    width: 60%;
+    padding-bottom: 100px;
+  }
+  .comment-heading-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .comment-average-rating {
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02rem;
+    font-size: 1.4rem;
+  }
+  .comments-heading {
+    font-family: sf pro display, -apple-system, BlinkMacSystemFont, Roboto,
+      segoe ui, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji,
+      segoe ui symbol;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02rem;
+    font-size: 1.4rem;
+    margin-bottom: 100px;
+  }
+  .commentContainer {
+    padding-bottom: 20px;
+  }
+  .individualReview {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+  }
+  .individualReviewNameAvatar {
+    display: block;
+    padding: 0 2.4rem 0 0;
+  }
+  .individualReviewComment {
+    min-width: 1px;
+  }
+  .avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    object-fit: cover;
+    color: rgb(243, 242, 229);
+    width: 2.8rem;
+    height: 2.8rem;
+    background: #9c467f;
+  }
+  .avatar-heading-md {
+    font-family: sf pro display, -apple-system, BlinkMacSystemFont, Roboto,
+      segoe ui, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji,
+      segoe ui symbol;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02rem;
+    font-size: 1rem;
+  }
+  .individual-review_name-container {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    //margin-bottom: 0.8rem;
+  }
+  .individual-review-name {
+    margin-right: 1.6rem;
+  }
+  .show-more-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .comment {
+    font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto, segoe ui,
+      Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji,
+      segoe ui symbol;
+    line-height: 1.4;
+    font-size: 1rem;
+  }
+  @media all and (min-width: 100px) and(max-width: 700px) {
+    .jumbotron-responsive {
+      flex-direction: column;
+    }
+    .jumbotron-image {
+      margin-right: 60px;
+      width: 100%;
+    }
+    .sidebar-icons-responsive {
+      display: flex;
+      flex-direction: column;
+    }
+    .rating-like-comment {
+      display: flex;
+      flex-direction: column;
+      margin: 2%;
+      padding: 2%;
+      width: 100%;
+    }
+  }
+  
+  @media all and (min-width: 700px) and (max-width: 1200px) {
+    .sidebar-icons-responsive {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  

@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [HeaderComponent, FilterPipe],
@@ -24,6 +24,7 @@ import {MatInputModule} from '@angular/material/input';
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatBadgeModule,
   
   ],
   exports:[HeaderComponent,FilterPipe]

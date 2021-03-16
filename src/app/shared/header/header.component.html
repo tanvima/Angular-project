@@ -80,18 +80,22 @@
         </button>
       </li>
       <li class="mx-2">
-        <button (click)="gotoHome()">
+        <button (click)="gotoMycourse()">
           <mat-icon aria-hidden="false" aria-label="Example home icon"
             >auto_stories</mat-icon
           >
         </button>
       </li>
       <li class="mx-2">
-        <button (click)="gotoHome()">
+        <button (click)="gotoCart()">
           <mat-icon aria-hidden="false" aria-label="Example home icon"
-            >shopping_cart</mat-icon
+          [matBadge]=cartsize matBadgePosition="after" matBadgeColor="accent">shopping_cart</mat-icon
           >
         </button>
+
+   
+
+
       </li>
     </ul>
 

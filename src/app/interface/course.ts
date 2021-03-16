@@ -6,7 +6,7 @@ export interface Course {
     courseDesc:string,
     courseLogo:string,
     coursePrice:number,
-    videos:Array<Video>,
+    video:Array<Video>,
     rating:number,
     noOfVideo:number
 }

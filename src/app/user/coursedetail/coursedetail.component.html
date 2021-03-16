@@ -1,67 +1,182 @@
-<div class="jumbotron">
- 
-    <div class="course" *ngIf="course">
-        <h1 class="name">{{course.courseName}}</h1>
-        <p class="desc">{{course.courseDesc}}</p>
-        <h4 class="author">Author: Kavi Harshad</h4>
-        <h6 class="duration">Duration: {{course.noOfVideo}} weeks</h6>
-    </div>
-    <button type="button">Enroll Here</button><br><br><br>
-    <h3>Rating  <ngx-input-star-rating [disabled]="true" [value]=course.rating></ngx-input-star-rating></h3>
+<div class="container-fluid">
+  <div class="row">
+    <div class="jumbotron jumbotron-responsive">
+      <div class="jumbotron-course">
+        <div class="course">
 
-</div>
+<ng-container *ngIf="course">
 
-
-<h1 class="text-center">How The Specialization Works</h1><br>
-<div class="main">
-<div>
-  <h2 class="h3a">Take Course</h2>
-  <p class="para">A Course Specialization is a series of topics that helps you master a skill. To begin, enroll in the Specialization directly, or review its topics and choose the one you'd like to start with. When you subscribe to a course that is part of a Specialization, you’re automatically subscribed to the full Specialization. It’s okay to complete just one course — you can pause your learning or end your subscription at any time. Visit your learner dashboard to track your course enrollments and your progress.</p>
-  <h2 class="h3a">Earn a Certificate</h2>
-  <p class="para">When you finish every course and complete the hands-on project, you'll earn a Certificate that you can share with prospective employers and your professional network.</p>
-</div>
-<div>
-  <img src="../../assets/cp.png">
-</div>
-</div>
-<br>
-<div class="media" *ngFor="let c of course.video;let index=index">
-<br>
-<div class="container">
-  <div class="column">
-  <h2 class="h3c">Video</h2>&nbsp;
-  <h1 class="text">{{index+1}}</h1>
-  </div>
-    <div class="media-body">
-      <h3>Title:</h3>
-      <p class="mt-text">{{c.videoName}}</p>
-      <h3>Description:</h3>
-      <p class="mt-text">{{c.videoDesc}}</p>
+          <h1>{{course.courseName}}</h1>
+          <p class="course-desc">
+           {{course.courseDesc}} </p>
+          <h4>
+            <span class="icon-person fa-1x"
+              ><i class="fa fa-user" aria-hidden="true"></i
+            ></span>
+            <small class="course-author"> Kavi Harshad </small>
+          </h4>
+          <h4>{{course.noOfVideo}} weeks</h4>
+        </ng-container>
+        </div>
       
+        <div class="rating-like-comment">
+          <ngx-input-star-rating
+            [disabled]="true"
+            [value]=course.rating
+          ></ngx-input-star-rating>
+          <div>
+            <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i
+            ><span class="like-comment-text">400</span>
+          </div>
+
+          <div>
+            <i class="fa fa-commenting fa-2x" aria-hidden="true"></i
+            ><span class="like-comment-text">100</span>
+          </div>
+        </div>
+
+        <button class="btn enroll-btn" type="button" (click)=addtoCart()>Add to Cart</button>
+      </div>
+      <div class="jumbotron-image">
+        <img
+          src="https://images.unsplash.com/photo-1600469984476-c713650f1b1b?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8ZGF0YSUyMHNjaWVuY2V8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+          class="img-fluid rounded float-right"
+          width="700"
+          height="700"
+        />
+      </div>
     </div>
-   </div>
   </div>
-  <br>
-  <div class="likecomment">
-    <div class="like">
-      <h3 class="h3b"><i style="font-size:30px" class="fa">&#xf087;</i></h3>&nbsp;&nbsp;
-      <h4 class="ab">{{likes}}   liked by people</h4>
-    </div>
-    
-  <h3 class="a">Comments:</h3>
-  <!-- <div class="column comment" *ngFor="let com of comments">
-    <p><i class="fa fa-comment" aria-hidden="true"></i>     {{com.comment}}</p> <hr> -->
-    <div class="container1">
-    <div class="media-body1">
-      <div class="well well-lg">
-          <h4 class="media-heading text-uppercase reviews">  </h4>
-          <div  *ngFor="let com of course.comment">
-          <p ><i class="fa fa-comment" aria-hidden="true"> </i>   {{com.comment}}
-          </p><hr>
-          <!-- <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
-          <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne"><span class="glyphicon glyphicon-comment"></span> 2 comments</a> -->
-      </div>  
-      </div>            
-    
 </div>
+
+<div class="container-fluid container-fluid-take-course">
+  <div class="row">
+    <div class="col-lg-9 col-sm-12">
+      <div class="take-course-section">
+        <h4>Take Course</h4>
+        <p >
+          A Course Specialization is a series of topics that helps you master a
+          skill. To begin, enroll in the Specialization directly, or review its
+          topics and choose the one you'd like to start with. When you subscribe
+          to a course that is part of a Specialization, you’re automatically
+          subscribed to the full Specialization. It’s okay to complete just one
+          course — you can pause your learning or end your subscription at any
+          time. Visit your learner dashboard to track your course enrollments
+          and your progress.
+        </p>
+        <h4>Earn a Certificate</h4>
+        <p >
+          When you finish every course and complete the hands-on project, you'll
+          earn a Certificate that you can share with prospective employers and
+          your professional network.
+        </p>
+      </div>
+    </div>
+    <div
+      class="col-lg-3 col-sm-12 col-xs-12 sidebar-icons sidebar-icons-responsive"
+    >
+      <div class="col">
+        <i class="fa fa-certificate fa-2x icon-wrap"></i
+        ><span class="icon-text">Sharable Certificate</span>
+      </div>
+      <div class="col">
+        <i class="fa fa-globe fa-2x icon-wrap" aria-hidden="true"></i
+        ><span class="icon-text">100% online courses</span>
+      </div>
+      <div class="col">
+        <i class="fa fa-clock-o fa-2x icon-wrap" aria-hidden="true"></i>
+        <span class="icon-text">4 months </span>
+      </div>
+      <div class="col">
+        <i class="fa fa-commenting-o fa-2x icon-wrap" aria-hidden="true"></i>
+        <span class="icon-text">English</span>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+<div class="container-fluid container-about-course">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="text-center m-5">
+        Syllabus - What you will learn from this course
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="media" *ngFor="let c of Dummylist; let index = index">
+        <div class="container">
+          <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-3 p-2">
+                <img src="{{ c.imgSrc }}" class="card-img" alt="..." />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <div class="card-title">Introduction</div>
+                  <p class="card-text">
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
+                  </p>
+                  <p class="card-text">
+                    <small class="text-muted">
+                      <i
+                        class="fa fa-clock-o fa-2x icon-wrap"
+                        aria-hidden="true"
+                      ></i
+                      ><span style="margin: 0px">15 minutes long</span></small
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr />
+<div class="container-fluid container-comments">
+  <div class="comment-heading-container">
+    <h2 class="comments-heading ">Students feedback</h2>
+    <div class="comment-average-rating"><i class="fa fa-star" aria-hidden="true" style="color: rgb(175, 175, 68);"></i>
+      4.5</div>
+  </div>
+  
+  <div *ngFor="let c of DummyCommentList;">
+    <div class="commentContainer">
+      <div class="individualReview">
+        <div class="individualReviewNameAvatar">
+          <div
+            data-purpose="avatar"
+            aria-hidden="true"
+            class="avatar avatar-heading-md"
+            
+          >
+            {{ c.nameCredentials }}
+          </div>
+        </div>
+        <div class="individualReviewComment">
+          <div class="individual-review_name-container">
+            <div
+              class="individual-review-name avatar-heading-md"
+              data-purpose="review-detail-user-name"
+            >
+            <!--   {{c.name}} --><!-- Optional Name of reviewers -->
+            </div>
+          </div>
+          <div class="show-more-content-container">
+              <div class="comment">
+                  {{c.comment}}
+              </div>
+          </div>
+        </div>
+      </div>
+      <hr/>
+    </div>
+  </div>
 </div>

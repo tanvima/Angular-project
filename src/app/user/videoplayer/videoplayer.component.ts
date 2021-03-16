@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Course } from 'src/app/interface/course';
 import { Video } from 'src/app/interface/video';
+import { FeedbackformComponent } from '../feedbackform/feedbackform.component';
 import { UserService } from '../user.service';
 
 @Component({
@@ -9,38 +13,48 @@ import { UserService } from '../user.service';
 })
 export class VideoplayerComponent implements OnInit {
 
-  constructor(private us: UserService) { }
+  constructor(private us: UserService, private activatedRoute: ActivatedRoute, private router: Router,public dialog: MatDialog) { }
 
   userid=21
-  courseid=3
-  videoid=8
+  courseid!:any
+  videoid!: number;
   src=""
   videolist!: Array<any>;
-  status:any
+  status!:string
+  nextButton:any = "Next"
+
+  videotitle!:string
+  flagfornext!:boolean
+  
   ngOnInit(): void {
 
-// this.us.getVideoList(this.courseid).subscribe(
-//   (data)=>{
-//     this.videolist=data
-//     console.log("list ",this.videolist)
+    this.activatedRoute.queryParams.subscribe((p) => {
+      this.courseid = p['courseId']
+      this.videoid=p['videoId']
+    
+      
+      })
 
-//     this.videolist.forEach((video,index)=>{
 
-//       if((video.videoId)==this.videoid){
-//         this.src="../../../assets/"+video.videoPath
-//         console.log(this.src)
-//       }
+this.us.getVideoList(this.courseid).subscribe(
+  (data)=>{
+    this.videolist=data
+    
 
-//     })
+    this.videolist.forEach((video,index)=>{
 
-//   }
-// )
-console.log("hellllllo")
-this.us.getString().subscribe((data)=>{
-  this.status=data;
-  console.log(data)
-  console.log("HAHAHA ",this.status)
-})
+      if((video.videoId)==this.videoid){
+        this.src="../../../assets/"+video.videoPath
+        this.videotitle=video.videoName
+        
+      }
+
+    })
+
+  }
+)
+
+
 
   }
 
@@ -51,36 +65,90 @@ this.us.getString().subscribe((data)=>{
     }
     onNext(vid:number)
     {
-      this.videolist.forEach((video,index)=>{
-
-        //api call
-        //complete---videolist
-        //just complete----certificarte
-        //incomplete
-        //if---last video--->  videolist
-        //else ---> next video
-
-
-        if((video.videoId)==vid){
-
-          //api call [next vadi]
-          //if status complete----certificate
-          //else
-
-          if(index+1==this.videolist.length){
-            //LAST VIDEO REDIRECT TO VIDEOLIST
-
-
-              console.log("last video")
-          }
-
-          console.log("Video id: ",this.videolist[index+1].videoId)
-
-          this.src="../../../assets/"+(this.videolist[index+1].videoPath);
-          console.log("Next path "+this.src)
-        }
-
-      })
       
+      this.us.updateVideoStatus(this.courseid,this.userid,vid).subscribe(
+        (data)=>{
+          this.status=data.msg
+          console.log("STATUS",this.status)
+          console.log(typeof(this.status))
+
+          this.videolist.forEach((video,index)=>{
+
+        
+            //api call
+            //complete---videolist
+            //just complete----certificarte
+            //incomplete
+            //if---last video--->  videolist
+            //else ---> next video
+    
+    
+            if((video.videoId)==vid){
+    
+              //api call [next vadi]
+              //if status complete----certificate
+              //else      
+              
+              if(this.status =="complete"){
+                this.nextButton="Back to Video List";
+                this.flagfornext=false
+                alert("videolist")
+               this.router.navigate(['/videolist'],{ queryParams: { courseId: this.courseid}});
+                
+              }
+              else if(this.status == "certificate"){
+
+                //feedback form 
+                const dialogRef = this.dialog.open(FeedbackformComponent, {
+                  width: '650px',
+                 data: {courseid: this.courseid, userid: this.userid}
+                })
+
+                this.nextButton=null
+
+
+                
+              }
+              else if(this.status =="incomplete"){
+
+              
+                console.log("in incomplete")
+                if(index+1==this.videolist.length){
+                  //LAST VIDEO REDIRECT TO VIDEOLIST
+                  this.nextButton="Back to Video List"
+                  this.flagfornext=false
+                  alert("last video...videolist")
+               //  this.router.navigate(['/videolist'],{ queryParams: { courseId: this.courseid}});
+      
+                    console.log("last video")
+                }
+                
+                console.log("Video id: ",this.videolist[index+1].videoId)
+                this.nextButton="Next Video"
+                this.flagfornext=true
+                alert("next video")
+                this.src="../../../assets/"+(this.videolist[index+1].videoPath);
+                this.videotitle=video.videoName
+                this.videoid=this.videolist[index+1].videoId
+                console.log("Next path "+this.src)
+                
+              }
+              else{
+                console.log("here2");
+                alert("dskfhgas")
+              }
+              }
+          })
+
+        }
+      ) 
+    }
+
+    onBack(){
+      this.router.navigate(['/videolist'],{ queryParams: { courseId: this.courseid}});
+    }
+
+    gotoCertificate(){
+      this.router.navigate(['/certificate'],{ queryParams: { courseId: this.courseid}});
     }
 }

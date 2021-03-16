@@ -17,11 +17,11 @@ export class HeaderComponent implements OnInit {
 
   constructor(private us :UserService, private router:Router) { }
   categories:any
-  
+  cartsize!:number
   myControl = new FormControl();
   options: string[] = [];
   filteredOptions?: Observable<string[]>  ;
-
+  userid=21
   ngOnInit(): void {
     
     this.us.getAllCategory().subscribe((data)=>{
@@ -62,6 +62,12 @@ for(let category of this.categories){
 } */
 console.log("OPTIONS",this.options)
 
+if(this.userid){
+  this.us.getCartCourses(this.userid).subscribe((data)=>{
+    this.cartsize=data.length
+  })
+}
+
   }
   private _filter(value: string): string[] {
     console.log(value);
@@ -86,6 +92,13 @@ console.log("OPTIONS",this.options)
   }
   gotoHome(){
     this.router.navigate(['/home']);
+  }
+
+  gotoCart(){
+    this.router.navigate(['/cart']);
+  }
+  gotoMycourse(){
+    this.router.navigate(['/mycourse']);
   }
 
   gotoCourse(coursename:string){
