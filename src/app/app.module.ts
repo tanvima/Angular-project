@@ -6,11 +6,12 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { GlobalErroHandlerService } from './global-erro-handler.service';
 import { CoursepageComponent } from './coursepage/coursepage.component';
 import {MatSelectModule} from '@angular/material/select';
 import { FilterPipe } from './shared/filter.pipe';
+import { AuthInterceptorService } from './utilities/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,12 @@ import { FilterPipe } from './shared/filter.pipe';
     //   provide:ErrorHandler,
     //   useClass:GlobalErroHandlerService
     // }
+
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })

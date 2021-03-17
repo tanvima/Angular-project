@@ -80,5 +80,33 @@ deleteComment(commentid:any):Observable<any>{
   return this.http.delete(environment.baseUserUrl+'/user/deleteComment/'+commentid)
 }
 
+addUser(user:any,type:String):Observable<any>{
+return this.http.post<any>(environment.baseUserUrl+"/user/"+type,user)
+}
+
+sendOTP(email:any):Observable<any>{
+  return this.http.get(environment.baseUserUrl+"/user/sendOTP/"+email)
+}
+activateAccount(username:any):Observable<any>{
+  console.log("here is the username",username)
+  console.log(environment.baseUserUrl+'/user/activateaccount/'+username)
+  return this.http.get(environment.baseUserUrl+'/user/activateaccount/'+username)
+}
+
+resetPassword(email:any,password:any):Observable<any>{
+  return this.http.put(environment.baseUserUrl+'/user/resetPassword/'+email,password)
+}
+
+getAllUser():Observable<any>{
+  return this.http.get(environment.baseUserUrl+"/user")
+}
+
+updateNoOfAttempts(username:any):Observable<any>{
+  return this.http.get(environment.baseUserUrl+'/user/updateNoOfAttempts/'+username)
+}
+
+clearNoOfAttempts(username:any):Observable<any>{
+  return this.http.get(environment.baseUserUrl+'/user/clearNoOfAttempts/'+username)
+}
 }
 

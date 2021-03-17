@@ -1,0 +1,150 @@
+<section>
+    <div class="row mx-0">
+        <h2 mat-dialog-title class="col dialog-title">Welcome To Cybage E-learning!</h2>
+        <mat-icon mat-dialog-close class="">close</mat-icon>
+    </div>
+  <mat-tab-group dynamicHeight  [(selectedIndex)]="currentIndex">
+    <!-- Login  -->
+    <mat-tab label="Login" class="login-title" *ngIf="!forgotPass">
+      <form [formGroup]="loginForm" >
+        Username : <input type="text" formControlName="username"  />
+        <p class="errMsgLongin"><span  *ngIf="errMsgLogin!=''">{{errMsgLogin}}</span></p>
+        Password : <input type="password" formControlName="password" />
+        <br />
+        <input type="submit" value="submit" (click)="loginUser()" />
+        <a (click)=openForgotPass()>Forgot Password</a>
+      </form>
+    </mat-tab>
+
+    <!-- Registration form -->
+    <mat-tab label="Sign Up"  *ngIf="!forgotPass" >
+
+
+            <div *ngIf="!isOTP" class="form-container">
+
+                <form [formGroup]="registrationForm" >
+                <mat-form-field class="form-field col-6" appearance="outline"
+                color="primary">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" required>
+                <mat-error
+                    *ngIf="registrationForm.controls.name.touched && registrationForm.controls.name.invalid">
+                    <span>This field is
+                        mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="form-field col-6 " appearance="outline"
+            color="primary">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required (keyup)="checkEmail()"> 
+            <mat-error
+                *ngIf="registrationForm.controls.email.touched && registrationForm.controls.email.invalid">
+                <span>Enter valid email</span>
+            </mat-error>
+        </mat-form-field>
+        <p class="errMsgLongin"><span  *ngIf="errMsgEmail!=''">{{errMsgEmail}}</span></p>
+
+        <mat-form-field class="form-field col-6" appearance="outline"
+        color="primary">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" required (keyup)="checkUsername()">
+        <mat-error
+            *ngIf="registrationForm.controls.username.touched && registrationForm.controls.username.invalid">
+            <span>This field is
+                mandatory</span>
+        </mat-error>
+    </mat-form-field>
+    <p class="errMsgLongin"><span  *ngIf="errMsgLogin!=''">{{errMsgLogin}}</span></p>
+
+    <mat-form-field class="form-field col-6" appearance="outline"
+        color="primary">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" required>
+        <mat-error
+            *ngIf="registrationForm.controls.password.touched && registrationForm.controls.password.invalid">
+            <span>Enter valid password (min. len=6)</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field col-6" appearance="outline"
+        color="primary">
+        <mat-label>Mobile Number</mat-label>
+        <input matInput type="number" formControlName="mobileNo" required>
+        <mat-error
+            *ngIf="registrationForm.controls.mobileNo.touched && registrationForm.controls.mobileNo.invalid">
+            <span>Enter valid mobile</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox class="example-margin" formControlName="prime">Get Prime membership</mat-checkbox>
+
+    <input type="submit" value="submit" (click)="registerUser()" />
+            </form>
+            </div>
+
+            <div *ngIf="isOTP" class="form-container">
+                <form [formGroup]="otpForm" >
+                    Enter OTP
+                    <mat-form-field class="form-field col-6" appearance="outline"
+                    color="primary">
+                    <mat-label>OTP</mat-label>
+                    <input matInput formControlName="otp" required type="text">
+                    <mat-error >
+                    
+                     <span *ngIf="errMsg !=''">Invalid Otp</span>
+                           
+                    </mat-error>
+                </mat-form-field>
+                
+                <input type="submit" value="submit" (click)="verifyOTP()" />
+                </form>
+            </div>
+
+      
+    </mat-tab>
+
+    <!--Forgot Password-->
+    <mat-tab label="Forgot Password" *ngIf="forgotPass">
+    <!--Form to get email address-->
+        <form [formGroup]="getEmailForm" *ngIf="!forgotPassOTP">
+            <mat-form-field class="form-field col-6 " appearance="outline"
+            color="primary">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+            <mat-error
+                *ngIf="registrationForm.controls.email.touched && registrationForm.controls.email.invalid">
+                <span>Enter valid email</span>
+            </mat-error>
+            </mat-form-field>
+            <input type="submit" value="Get OTP" (click)="generateOTP()" />
+          </form>
+
+    <!--Form that accepts OTP and shows the email entered-->
+          <form [formGroup]="forgotOTPForm" *ngIf="getOTP">
+           
+                        <mat-form-field class="form-field col-6" appearance="outline"
+                        color="primary">
+                        <mat-label>Enter OTP</mat-label>
+                        <input matInput formControlName="otp" required type="text">
+    <!--Dosent show error msg when wrong OTP added-->
+                        <mat-error >
+                         <span *ngIf="errMsg !=''">Invalid Otp</span>     
+                        </mat-error>
+                    </mat-form-field>
+                    <input type="submit" value="Submit" (click)="verifyForgotOTP()" />
+          </form>
+
+    <!--Form to accept the new password-->
+          <form [formGroup]="resetPassForm" *ngIf="resetPass">
+                   
+                       <mat-form-field class="form-field col-6" appearance="outline"
+                       color="primary">
+                       <mat-label> Reset Password</mat-label>
+                       <input matInput formControlName="password" required type="text">
+                   </mat-form-field>
+                   <input type="submit" value="submit" (click)="resetPassword()" />
+         </form>
+    </mat-tab>
+  </mat-tab-group>
+</section>
