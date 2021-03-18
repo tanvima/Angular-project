@@ -6,6 +6,8 @@ import { UserService } from 'src/app/user/user.service';
 import { map, startWith } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
+import { AuthenticationService } from 'src/app/utilities/authentication.service';
+import { EditprofileComponent } from 'src/app/user/editprofile/editprofile.component';
 
 
 @Component({
@@ -14,22 +16,45 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+//userid=null;
+userid!: Observable<any>;
+  constructor(private us: UserService, private router: Router, public dialog: MatDialog, private authservice: AuthenticationService) {
+    //this.userid =this.authservice.userid.value
 
-  constructor(private us: UserService, private router: Router, public dialog: MatDialog) { }
+    this.authservice.useridupdate.subscribe((data)=>{
+      this.userid=data
+    })
+    //this.authservice.updateCartSizeData()
+      this.authservice.cartsizeupdate.subscribe((data)=>{
+        this.cartsize=data
+        this.cartsize1=data
+      })
+
+      // this.cartsize.subscribe((data)=>{
+      //   this.cartsize1=data
+      // })
+    
+   }
   categories: any
-  cartsize!: number
+  cartsize!: Observable<any>
   myControl = new FormControl();
   options: string[] = [];
   filteredOptions?: Observable<string[]>;
-  userid = 21
+  cartsize1!:any
+  
+  // userid = Observable<>;
+  
   ngOnInit(): void {
+  
 
+
+    console.log(this.userid,"sdghdfjkgh")
     this.us.getAllCategory().subscribe((data) => {
       if (data != undefined && data != null) {
         this.categories = data;
-        console.log("category")
+        
         for (let category of this.categories) {
-          console.log("sddddddddddddljknhefoijef")
+          
           for (let course of category.courses) {
             this.options.push(course.courseName)
 
@@ -62,11 +87,12 @@ export class HeaderComponent implements OnInit {
     } */
     console.log("OPTIONS", this.options)
 
-    if (this.userid) {
-      this.us.getCartCourses(this.userid).subscribe((data) => {
-        this.cartsize = data.length
-      })
-    }
+    // if (this.userid) {
+    //   this.us.getCartCourses(this.userid).subscribe((data) => {
+    //     this.cartsize = data.length
+
+    //   })
+    // }
 
   }
   private _filter(value: string): string[] {
@@ -88,7 +114,7 @@ export class HeaderComponent implements OnInit {
 
 
   getCategory(categoryId: any, categoryName: any) {
-    this.router.navigate(['/courselist'], { queryParams: { categoryId: categoryId, categoryName: categoryName } });
+    this.router.navigate(['/courselist'], { queryParams: {categoryId: btoa(categoryId), categoryName: btoa(categoryName) } });
   }
   gotoHome() {
     this.router.navigate(['/home']);
@@ -106,7 +132,7 @@ export class HeaderComponent implements OnInit {
     for (let category of this.categories) {
       for (let course of category.courses) {
         if (course.courseName === coursename) {
-          this.router.navigate(['/course'], { queryParams: { courseId: course.courseId } });
+          this.router.navigate(['/course'], { queryParams: { courseId: btoa(course.courseId) } });
         }
       }
     }
@@ -128,6 +154,18 @@ export class HeaderComponent implements OnInit {
     const dialogRef = this.dialog.open(LoginComponent, {
       // width: '650px',
     })
+  }
+
+  openEditProfileDialog(){
+    const dialogRef = this.dialog.open(EditprofileComponent, {
+      width: '650px',
+      data: {userid: this.userid}
+    })
+  }
+
+  logout(){
+    this.authservice.logout();
+    this.router.navigate(['/home'])
   }
 
 

@@ -18,13 +18,10 @@ export class CourselistComponent implements OnInit {
   ngOnInit(): void {
 
       this.activatedRoute.queryParams.subscribe((p)=>{
-      this.categoryid=p['categoryId']
-      this.categoryname=p['categoryName']
-
-      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ");
+      this.categoryid=atob(p['categoryId'])
+      this.categoryname=atob(p['categoryName'])
       this.us.getCourseByCat(this.categoryid).subscribe((data)=>{
         this.course=data
-        console.log("coursesdfjlghdfhdkfjghkfgjdhdfjghfjghjfgij " ,data);
       })  
     })
     

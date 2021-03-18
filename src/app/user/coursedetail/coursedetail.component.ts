@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { LoginComponent } from 'src/app/shared/login/login.component';
+import { AuthenticationService } from 'src/app/utilities/authentication.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -10,13 +14,17 @@ import { UserService } from '../user.service';
 export class CoursedetailComponent implements OnInit {
   courseid: any
   course: any
-  userid:any=21
-  constructor(private activatedRoute: ActivatedRoute, private us: UserService) { }
+  userid!:Observable<any>
+  constructor(private activatedRoute: ActivatedRoute, private us: UserService,private authservice: AuthenticationService,public dialog: MatDialog) { 
+    this.authservice.useridupdate.subscribe((data)=>{
+      this.userid=data
+    })
+  }
 
   ngOnInit(): void {
 
     this.activatedRoute.queryParams.subscribe((p) => {
-      this.courseid = p['courseId']
+      this.courseid = atob(p['courseId'])
       console.log("course Id ", this.courseid)
       this.us.getCourseById(this.courseid).subscribe((data) => {
         this.course = data
@@ -28,10 +36,22 @@ export class CoursedetailComponent implements OnInit {
   }
 
   addtoCart(){
-    this.us.addToCart(this.courseid, this.userid).subscribe((data)=>{
-      console.log("item added")
-      this.ngOnInit()
-    })
+
+    if(this.authservice.isLoggedIn()){
+
+      console.log(this.userid)
+      this.us.addToCart(this.courseid, this.userid).subscribe((data)=>{
+        this.authservice.updateCartSizeData()
+        console.log("item added")
+        this.ngOnInit()
+      })
+    }else{
+      const dialogRef = this.dialog.open(LoginComponent, {
+        // width: '650px',
+      })
+    }
+
+   
     }
   
 

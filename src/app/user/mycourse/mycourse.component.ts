@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Course } from 'src/app/interface/course';
+import { AuthenticationService } from 'src/app/utilities/authentication.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -12,14 +14,18 @@ import { UserService } from '../user.service';
 export class MycourseComponent implements OnInit {
 
   course:any
-  userid=21
+  userid!:Observable<any>
   commentFlag=false
   isLiked:boolean=false
   status:any=null
   form=new FormGroup({
     comment: new FormControl(''),
   });
-  constructor(private us : UserService, private router:Router) { }
+  constructor(private us : UserService, private router:Router, private authservice: AuthenticationService) { 
+    this.authservice.useridupdate.subscribe((data)=>{
+      this.userid=data
+    })
+  }
 
   ngOnInit(): void {
     this.us.getEnrollCourse(this.userid).subscribe((data)=>{

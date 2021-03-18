@@ -1,42 +1,6 @@
 <p>feedbackform works!</p>
-<h1 mat-dialog-title>Hi</h1>
+<h1 mat-dialog-title>Feedback Form</h1>
 <div mat-dialog-content>
-    <!-- <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-        <h2>Feedback Form</h2>
-          <h3>We would love to hear your thoughts, suggestions, concerns or problems with anything so we can improve!</h3>
-                <div class="cloumn"  *ngFor="let f of feedback">
-                 <div class="label">
-                   <label>{{f.question}}</label>
-                 </div>
-                  <div class="floatlabel">
-                 <mat-radio-group  class="floatLabelControl">
-                 <mat-radio-button value="always">Very satisfied</mat-radio-button>&nbsp;
-                 <mat-radio-button value="always">Satisfied</mat-radio-button>&nbsp;
-                 <mat-radio-button value="always">Unsatisfied</mat-radio-button>&nbsp;
-                 <mat-radio-button value="auto">Very Unsatisfied</mat-radio-button>&nbsp;
-                 <mat-radio-button value="auto">Average</mat-radio-button>&nbsp;
-                 </mat-radio-group>
-                 </div>
-             </div>
-             <hr>
-             <div class="formfields">
-             <div class="fields">
-            
-                 <div class="field">
-                   Feedback: <mat-form-field class="half-width">
-                   <textarea matInput placeholder="Enter your feedback" FormControl="feedbackField"></textarea>
-                   </mat-form-field>
-                 </div>
-                 <div class="btn">
-                 <button type="submit" mat-raised-button color="warning" [disabled]="formGroup.invalid">Submit Feedback</button>
-               
-                 <br><br>
-                 <a routerLink="#">skip</a>
-                 </div>
-              </div>
-                </div>
-     
-               </form> -->
                <form [formGroup]="form" (ngSubmit)="addFeedback()">
                
                         <ngx-input-star-rating formControlName="rating">
@@ -56,5 +20,3 @@
      
 </div>
 
-<!-- 
-[mat-dialog-close]="data.animal"  -->

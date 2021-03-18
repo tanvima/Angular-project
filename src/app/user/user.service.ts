@@ -101,6 +101,10 @@ getAllUser():Observable<any>{
   return this.http.get(environment.baseUserUrl+"/user")
 }
 
+getUserById(userid:any):Observable<any>{
+  return this.http.get(environment.baseUserUrl+'/user/'+userid)
+}
+
 updateNoOfAttempts(username:any):Observable<any>{
   return this.http.get(environment.baseUserUrl+'/user/updateNoOfAttempts/'+username)
 }
@@ -108,5 +112,17 @@ updateNoOfAttempts(username:any):Observable<any>{
 clearNoOfAttempts(username:any):Observable<any>{
   return this.http.get(environment.baseUserUrl+'/user/clearNoOfAttempts/'+username)
 }
+
+blockUser(username:any):Observable<any>{
+  return this.http.get(environment.baseUserUrl+'/user/blockUser/'+username)
+}
+requestAdmin(username:any):Observable<any>{
+  return this.http.get(environment.baseUserUrl+'/user/requestadmin/'+username)
+}
+updateProfile(user:any):Observable<any>{
+  return this.http.put(environment.baseUserUrl+'/user/updateUser',user)
+}
+
+
 }
 

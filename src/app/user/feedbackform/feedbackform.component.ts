@@ -25,16 +25,6 @@ export class FeedbackformComponent implements OnInit {
     this.dialogRef.close();
   }
 
- /*  formGroup = new FormGroup({
-    emailField: new FormControl('', [Validators.required, Validators.email]),
-    nameField: new FormControl('', [Validators.required]),
-    feedbackField: new FormControl('', [
-      Validators.required,
-      Validators.minLength(25),
-      Validators.maxLength(3000)
-    ])
-  }) */
-
   addFeedback() {
     if(this.form.value.rating != null && this.form.value.rating != undefined )
     {

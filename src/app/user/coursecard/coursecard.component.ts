@@ -20,8 +20,8 @@ export class CoursecardComponent implements OnInit {
     
   }
 
-  gotoCourse(courseId:number){
-    this.router.navigate(['/course'],{ queryParams: { courseId: courseId}});
+  gotoCourse(courseId:any){
+    this.router.navigate(['/course'],{ queryParams: { courseId: btoa(courseId)}});
   }
 
 }

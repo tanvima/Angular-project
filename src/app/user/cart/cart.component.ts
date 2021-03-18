@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthenticationService } from 'src/app/utilities/authentication.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,9 +10,13 @@ import { UserService } from '../user.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private us: UserService) { }
+  constructor(private us: UserService, private authservice: AuthenticationService) { 
+    this.authservice.useridupdate.subscribe((data)=>{
+      this.userid=data
+    })
+  }
 
-  userid:any=21
+  userid!:Observable<any>
   course:any
   ngOnInit(): void {
     this.us.getCartCourses(this.userid).subscribe(
@@ -24,6 +30,7 @@ export class CartComponent implements OnInit {
   removeFromCart(courseid:any){
     this.us.removeFromCart(courseid,this.userid).subscribe((data)=>{
       console.log("removed succesfully");
+      this.authservice.updateCartSizeData()
       this.ngOnInit()
       
     })

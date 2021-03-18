@@ -42,22 +42,27 @@
     <div class="nav-item mr-auto">
       <!-- mx-2 my-lg-0 -->
       <div class="form-group mb-0">
-
-        <mat-form-field  appearance="fill" class="example-full-width">
+        <mat-form-field appearance="fill" class="example-full-width">
           <mat-label>Search Courses</mat-label>
-          <input type="text"
-                 placeholder="Pick one"
-                 aria-label="Number"
-                 matInput
-                 [formControl]="myControl"
-                 [matAutocomplete]="auto">
+          <input
+            type="text"
+            placeholder="Pick one"
+            aria-label="Number"
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="auto"
+          />
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="gotoCourse(option)">
-              {{option}} 
+            <mat-option
+              *ngFor="let option of filteredOptions | async"
+              [value]="option"
+              (click)="gotoCourse(option)"
+            >
+              {{ option }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        
+
         <!-- <input
           class="form-control mr-sm-2"
           type="search"
@@ -79,52 +84,66 @@
           >
         </button>
       </li>
-      <li class="mx-2">
-        <button (click)="gotoMycourse()">
-          <mat-icon aria-hidden="false" aria-label="Example home icon"
-            >auto_stories</mat-icon
-          >
-        </button>
-      </li>
-      <li class="mx-2">
-        <button (click)="gotoCart()">
-          <mat-icon aria-hidden="false" aria-label="Example home icon"
-          [matBadge]=cartsize matBadgePosition="after" matBadgeColor="accent">shopping_cart</mat-icon
-          >
-        </button>
-      </li>
-      <button (click)='openLoginDialog()'>Login</button>
+      <ng-container *ngIf="userid != null">
+        <li class="mx-2">
+          <button (click)="gotoMycourse()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon"
+              >auto_stories</mat-icon
+            >
+          </button>
+        </li>
+        <li class="mx-2">
+          <button (click)="gotoCart()">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              [matBadge]="cartsize1"
+              matBadgePosition="after"
+              matBadgeColor="accent"
+              >shopping_cart</mat-icon
+            >
+          </button>
+        </li>
+      </ng-container>
     </ul>
 
-    <div class="dropdown">
-      <button class="menuIcon" id="dropdownMenuButton" data-toggle="dropdown">
-        <mat-icon aria-hidden="false" aria-label="Example home icon">
-          menu</mat-icon
-        >
-      </button>
+    <ng-container *ngIf="userid != null">
+      <div class="dropdown">
+        <button class="menuIcon" id="dropdownMenuButton" data-toggle="dropdown">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">
+            menu</mat-icon
+          >
+        </button>
 
-      <div class="dropdown-menu nav-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item dropText">
-          <mat-icon
-            aria-hidden="false"
-            class="dropText"
-            aria-label="Example home icon"
-          >
-            perm_identity</mat-icon
-          >
-          Edit Profile</a
+        <div
+          class="dropdown-menu nav-menu"
+          aria-labelledby="dropdownMenuButton"
         >
-        <a class="dropdown-item dropText">
-          <mat-icon
-            aria-hidden="false"
-            class="dropText"
-            aria-label="Example home icon"
-            >logout</mat-icon
+          <a class="dropdown-item dropText" (click)="openEditProfileDialog()">
+            <mat-icon
+              aria-hidden="false"
+              class="dropText"
+              aria-label="Example home icon"
+            >
+              perm_identity</mat-icon
+            >
+            Edit Profile</a
           >
-          Logout</a
-        >
+          <a class="dropdown-item dropText" (click)="logout()">
+            <mat-icon
+              aria-hidden="false"
+              class="dropText"
+              aria-label="Example home icon"
+              >logout</mat-icon
+            >
+            Logout</a
+          >
+        </div>
       </div>
-    </div>
+    </ng-container>
+    <ng-container *ngIf="userid == null">
+      <button (click)="openLoginDialog()">Login</button>
+    </ng-container>
   </div>
 </nav>
 

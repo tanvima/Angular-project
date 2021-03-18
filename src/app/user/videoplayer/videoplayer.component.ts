@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Course } from 'src/app/interface/course';
 import { Video } from 'src/app/interface/video';
+import { AuthenticationService } from 'src/app/utilities/authentication.service';
 import { FeedbackformComponent } from '../feedbackform/feedbackform.component';
 import { UserService } from '../user.service';
 
@@ -13,9 +15,13 @@ import { UserService } from '../user.service';
 })
 export class VideoplayerComponent implements OnInit {
 
-  constructor(private us: UserService, private activatedRoute: ActivatedRoute, private router: Router,public dialog: MatDialog) { }
+  constructor(private us: UserService, private activatedRoute: ActivatedRoute, private router: Router,public dialog: MatDialog, private authservice:AuthenticationService) { 
+    this.authservice.useridupdate.subscribe((data)=>{
+      this.userid=data
+    })
+  }
 
-  userid=21
+  userid!:Observable<any>
   courseid!:any
   videoid!: number;
   src=""

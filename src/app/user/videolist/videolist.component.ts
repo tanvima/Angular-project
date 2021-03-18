@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Course } from 'src/app/interface/course';
+import { AuthenticationService } from 'src/app/utilities/authentication.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -13,8 +15,11 @@ export class VideolistComponent implements OnInit {
   courseid!:number
   course!: Course; 
   videostatus:any
-  userid=21
-  constructor(private us: UserService, private router: Router, private activatedRoute : ActivatedRoute) { }
+  userid!:Observable<any>
+  constructor(private us: UserService, private router: Router, private activatedRoute : ActivatedRoute, private authservice:AuthenticationService) {  
+    this.authservice.useridupdate.subscribe((data)=>{
+    this.userid=data
+  })}
 
   ngOnInit(): void {
 

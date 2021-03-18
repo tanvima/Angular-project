@@ -18,9 +18,10 @@ import { CertificateComponent } from './certificate/certificate.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { CartComponent } from './cart/cart.component';
 import { MycourseComponent } from './mycourse/mycourse.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
 
 @NgModule({
-  declarations: [HomeComponent, CoursecardComponent, CourselistComponent, CoursedetailComponent, VideolistComponent, VideoplayerComponent, FeedbackformComponent, CertificateComponent, CartComponent, MycourseComponent],
+  declarations: [HomeComponent, CoursecardComponent, CourselistComponent, CoursedetailComponent, VideolistComponent, VideoplayerComponent, FeedbackformComponent, CertificateComponent, CartComponent, MycourseComponent, EditprofileComponent],
   imports: [
     CommonModule,
     FormsModule,

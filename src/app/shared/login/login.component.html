@@ -5,7 +5,7 @@
     </div>
   <mat-tab-group dynamicHeight  [(selectedIndex)]="currentIndex">
     <!-- Login  -->
-    <mat-tab label="Login" class="login-title" *ngIf="!forgotPass">
+    <mat-tab label="Login" class="login-title" *ngIf="!forgotPass && !requestAdmin">
       <form [formGroup]="loginForm" >
         Username : <input type="text" formControlName="username"  />
         <p class="errMsgLongin"><span  *ngIf="errMsgLogin!=''">{{errMsgLogin}}</span></p>
@@ -17,7 +17,7 @@
     </mat-tab>
 
     <!-- Registration form -->
-    <mat-tab label="Sign Up"  *ngIf="!forgotPass" >
+    <mat-tab label="Sign Up"  *ngIf="!forgotPass&&!requestAdmin" >
 
 
             <div *ngIf="!isOTP" class="form-container">
@@ -105,7 +105,7 @@
     </mat-tab>
 
     <!--Forgot Password-->
-    <mat-tab label="Forgot Password" *ngIf="forgotPass">
+    <mat-tab label="Forgot Password" *ngIf="forgotPass&&!requestAdmin">
     <!--Form to get email address-->
         <form [formGroup]="getEmailForm" *ngIf="!forgotPassOTP">
             <mat-form-field class="form-field col-6 " appearance="outline"
@@ -145,6 +145,13 @@
                    </mat-form-field>
                    <input type="submit" value="submit" (click)="resetPassword()" />
          </form>
+    </mat-tab>
+
+    <!--Request Admin-->
+    <mat-tab label="Account blocked" *ngIf="requestAdmin">
+        <h4>Your Account has been blocked</h4>
+        <h5>To request admin to unblock your account please send request</h5>
+        <button (click)="requestAdminfun()">Request Admin</button>
     </mat-tab>
   </mat-tab-group>
 </section>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { UserService } from 'src/app/user/user.service';
@@ -29,7 +30,12 @@ export class LoginComponent implements OnInit {
   errMsgLogin: String = "";
   errMsgEmail: String = '';
   username = ''
-  constructor(private authservice: AuthenticationService, private router: Router, private us: UserService) { }
+  requestAdmin=false
+  noOfAttempts=0
+  user:any
+  constructor(private authservice: AuthenticationService, private router: Router, private us: UserService,
+    public dialogRef: MatDialogRef<LoginComponent>) { }
+
   // loginForm!: FormGroup;
   loginForm = new FormGroup({
     username: new FormControl(''),
@@ -69,54 +75,49 @@ export class LoginComponent implements OnInit {
     this.us.getAllUser().subscribe(
       (data: any) => {
         this.allUser = data
-        console.log(this.allUser)
       }
     )
-
   }
   loginUser() {
+    this.user=this.allUser.find((user: any) => user.username == this.loginForm.value.username)
+    if (this.user!=null) {
+      if(this.user.status == 'unblock' && (this.user.noOfAttempts<=3 && this.noOfAttempts<3)) {
+        console.log("helllo ",this.noOfAttempts)
+        this.authservice.authneticate(this.loginForm.value.username, this.loginForm.value.password)
+                .subscribe(
+                  (data: any) => {
+                    this.dialogRef.close();
+                    this.us.clearNoOfAttempts(this.loginForm.value.username).subscribe((data) => {
+                      console.log(data);
+                    })
+                    // if (data.roles[0] === 'ROLE_user') {
+                    //   this.router.navigate(['/home'])
+                    // }
+                    if (data.roles[0] === 'ROLE_admin') {
+                      this.router.navigate(['/admin'])
+                    }
+                  }, (err: any) => {
+                    this.us.updateNoOfAttempts(this.loginForm.value.username).subscribe((data) => {
+                      this.errMsgLogin="Invalid password"
+                      this.noOfAttempts=data.msg
+                      console.log("Number of attempts " ,this.noOfAttempts)
+                     // this.loginForm.reset()
+                      if(data.msg ==3){
+                        console.log("Block")
+                        this.us.blockUser((this.loginForm.value.username)).subscribe((data)=>{
+                          this.user.staus='block'
+                        })
+                      }
+                    })
+                  })
+      } else {
+            this.requestAdmin=true;
 
-    if (this.allUser.find((user: any) => user.username == this.loginForm.value.username)) {
-      console.log(this.allUser)
-      this.allUser.forEach((element: any) => {
-        if (element.username == this.loginForm.value.username) {
-        
-          if (element.status == 'unblock' && element.noOfAttempts<3) {
-            this.authservice.authneticate(this.loginForm.value.username, this.loginForm.value.password)
-              .subscribe(
-                (data: any) => {
-                  console.log(data)
-                  alert("correct")
-                  this.us.clearNoOfAttempts(this.loginForm.value.username)
-                  if (data.roles[0] === 'ROLE_user') {
-                    this.router.navigate(['/home'])
-                  }
-  
-                  if (data.roles[0] === 'ROLE_admin') {
-                    this.router.navigate(['/admin'])
-  
-                  }
-                },(err:any)=>{
-                  this.us.updateNoOfAttempts(this.loginForm.value.username)
-                })
           }
-          else{
-            //open dialouge to request admin to unblock
-          }
-        }
-      });
-    }else{
+    } else {
       this.errMsgLogin = "Username does not exist"
       console.log(this.errMsgLogin)
     }
-    // console.log(this.loginForm.value);
-
-    //api
-    // if(this.allUser.find((user:any)=>user.username==this.registrationForm.value.username)){
-    //   if(user.status == 'unblock')
-    // }
-  
-
   }
 
   registerUser() {
@@ -231,5 +232,13 @@ export class LoginComponent implements OnInit {
       this.errMsgEmail = ""
       console.log(this.errMsgEmail)
     }
+  }
+
+  requestAdminfun(){
+   this.us.requestAdmin(this.user.username).subscribe((data)=>{
+     console.log("Admin request sent")
+     this.dialogRef.close();
+   })
+    
   }
 }

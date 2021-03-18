@@ -11,6 +11,7 @@ import { GlobalErroHandlerService } from './global-erro-handler.service';
 import { CoursepageComponent } from './coursepage/coursepage.component';
 import {MatSelectModule} from '@angular/material/select';
 import { FilterPipe } from './shared/filter.pipe';
+import { AuthInterceptorService } from './utilities/auth-interceptor.service';
 
 
 
@@ -36,11 +37,11 @@ import { FilterPipe } from './shared/filter.pipe';
     //   useClass:GlobalErroHandlerService
     // }
 
-    // {
-    //   provide:HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptorService,
-    //   multi:true
-    // }
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })
