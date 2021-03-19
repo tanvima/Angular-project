@@ -1,0 +1,21 @@
+.number{
+    width: 25%;
+    border:solid black 1px;
+    border-radius: 3px
+}
+.row{
+    height: 150px;
+}
+
+.col{
+    margin:5px;
+}
+h1{
+    float: right;
+}
+
+.data:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+   
+  }

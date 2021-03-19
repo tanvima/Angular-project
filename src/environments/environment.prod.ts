@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUserUrl:'http://localhost:8080/elearning'
 };

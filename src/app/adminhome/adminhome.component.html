@@ -1,0 +1,72 @@
+<p>adminhome works!</p>
+<div class="home container">
+<div class="row" >
+
+<div class="number data col">
+    <h4>Number of Categories</h4><br>
+   <h1 class="display-2"> {{no_of_categories}} </h1>
+</div>
+
+<div class="number data col"><h4>Number of Courses</h4><br>
+    <h1 class="display-2"> {{no_of_courses}}</h1> </div>
+
+    <div class="number data  col"><h4>Number of Active Courses</h4>
+    <h1 class="display-2">{{no_of_active_students}}</h1> </div>
+
+    <div class="number data  col"><h4>Number of Courses Completed</h4>
+        <h1 class="display-2">{{no_of_complete_course}}</h1> </div>
+
+
+
+</div>
+
+<br><br>
+<div class="row">
+    <div class="chart-wrapper col"> Popular Courses
+        <canvas baseChart 
+            [datasets]="lineChartData" 
+            [labels]="lineChartLabels" 
+            [options]="lineChartOptions"
+            [colors]="lineChartColors" 
+            [legend]="lineChartLegend" 
+            [chartType]="'line'" 
+            [plugins]="lineChartPlugins">
+        </canvas>
+    </div>
+
+<!-- <div class="chart-wrapper col"> Courses Per Category
+    <canvas baseChart 
+    [data]="doughnutChartData"
+    [labels]="doughnutChartLabels"
+    [chartType]="doughnutChartType">
+  </canvas>
+</div> -->
+
+<!--Course per category-->
+<div class="chart-wrapper col">Course per Category
+    <canvas baseChart
+    [datasets]="radarChartData"
+    [options]="radarChartOptions"
+    [labels]="radarChartLabels"
+    [chartType]="radarChartType">
+  </canvas>
+</div>
+
+</div>
+<br><br><br>
+<div class="row mt-5 ">
+   
+    <div class="chart-wrapper col  mt-5">Student Enrollment
+        <canvas class="h-50" baseChart 
+        [datasets]="enrollBarChartData"
+        [labels]="enrollBarLabels"
+        [options]="enrollBarOptions"
+        [plugins]="enrollBarChartPlugins"
+        [legend]="enrollBarLegend"
+        [chartType]="enrollBar">
+      </canvas>
+    </div>
+</div>
+
+
+
