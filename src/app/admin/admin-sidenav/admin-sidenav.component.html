@@ -1,0 +1,98 @@
+<nav class="navbar navbar-expand-lg d-flex bd-highlight mb-3">
+    <a class="mr-auto p-2 bd-highlight" (click)="showHide()"><i class="fa fa-bars" aria-hidden="true"></i></a>
+  
+    <a class=" p-2 bd-highlight"><i class="fa fa-bell" aria-hidden="true"></i></a>
+    <button class="btn p-2 bd-highlight"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</button>
+    
+  </nav>
+  
+  
+  <div class="container-fluid">
+    <!-- Sidebar -->
+    <div class="row">
+      <nav class="">
+  
+  
+        <div class="list-unstyled components  collapse list-unstyled" *ngIf="isVisible">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>view_list</mat-icon> 
+                  <p>Categories</p>
+                </mat-panel-title>
+  
+              </mat-expansion-panel-header>
+              <a [routerLink]="'/category-list'">All Categories</a>
+              <hr>
+              <span [routerLink]="'/add-category'">Add Category</span>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <hr>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>school</mat-icon>
+                  <p>Courses</p>
+                </mat-panel-title>
+  
+              </mat-expansion-panel-header>
+              <span [routerLink]="'/course-list'">All Courses</span>
+              <hr>
+              <span [routerLink]="'/add-course'">Add Course</span>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <hr>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>video_library</mat-icon>
+                  <p>Videos</p>
+                </mat-panel-title>
+  
+              </mat-expansion-panel-header>
+              <span [routerLink]="'/video-list'">All Videos</span>
+              <hr>
+              <span [routerLink]="'/add-video'">Add Video</span>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <hr>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>account_circle</mat-icon>
+                  <p>User</p>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <span [routerLink]="'/unblock-user'">Unblock User</span>
+              <hr>
+              <span [routerLink]="'/'">User Log activity</span>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <hr>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon> bar_chart</mat-icon>
+                  <p>Statistics</p>
+                </mat-panel-title>
+  
+              </mat-expansion-panel-header>
+              <!-- <span [routerLink]="">charts</span> -->
+  
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </nav>
+      <nav class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 container-fluid">
+        <div class="d-flex justify-content-center align-self-center">
+  
+          <router-outlet></router-outlet>
+        </div>
+      </nav>
+    </div>
+  </div>

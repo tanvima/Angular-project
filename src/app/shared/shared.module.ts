@@ -16,29 +16,15 @@ import { MatRadioModule } from '@angular/material/radio'
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
-
-// let materialComponents = [
-//   CommonModule,
-//   FormsModule,
-//   MatSelectModule,
-//   MatFormFieldModule,
-//   MatIconModule,
-//   NgxInputStarRatingModule,
-//   ReactiveFormsModule,
-//   MatAutocompleteModule,
-//   MatInputModule,
-//   MatBadgeModule,
-//   MatTabsModule,
-//   MatRadioModule,
-//   MatDialogModule,
-  
-
-// ]
+import { LandingComponent } from './landing/landing.component';
+import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
+import { UserModule } from '../user/user.module';
+import { CoursecardComponent } from '../user/coursecard/coursecard.component';
 
 
 @NgModule({
-  declarations: [HeaderComponent, FilterPipe, LoginComponent],
+  declarations: [HeaderComponent, FilterPipe, LoginComponent, LandingComponent, FooterComponent,HomeComponent],
   imports: [
     CommonModule,
   FormsModule,
@@ -53,10 +39,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   MatTabsModule,
   MatRadioModule,
   MatDialogModule,
-  MatCheckboxModule
+  MatCheckboxModule,
   ],
-  exports: [HeaderComponent, FilterPipe,LoginComponent
-  
-  ]
+  exports: [HeaderComponent, FilterPipe,LoginComponent,LandingComponent,FooterComponent]
 })
 export class SharedModule { }

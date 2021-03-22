@@ -24,7 +24,7 @@ userid!: Observable<any>;
     this.authservice.useridupdate.subscribe((data)=>{
       this.userid=data
     })
-    //this.authservice.updateCartSizeData()
+    this.authservice.updateCartSizeData()
       this.authservice.cartsizeupdate.subscribe((data)=>{
         this.cartsize=data
         this.cartsize1=data

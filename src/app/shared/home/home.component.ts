@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { UserService } from '../user.service';
+import { LoginComponent } from 'src/app/shared/login/login.component';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,8 @@ export class HomeComponent implements OnInit {
 
   categories:any
   popularcourse:any
-  constructor(private us: UserService) {
+  slides: any;
+  constructor(private us: UserService,public dialog: MatDialog) {
     // this.courses=this.us.getAllCourse();
 
     this.us.getAllCategory().subscribe((data)=>{
@@ -30,13 +33,26 @@ export class HomeComponent implements OnInit {
 
     this.us.getPopularCourse().subscribe((data)=>{
       this.popularcourse=data;
+      this.slides = this.chunk(this.popularcourse, 3);
     })
-   }
+  }
+   
 
   ngOnInit(): void {
   }
   
+  chunk(arr: any, chunkSize: number) {
+    let R = [];
+    for (let i = 0, len = arr.length; i < len; i += chunkSize) {
+      R.push(arr.slice(i, i + chunkSize));
+    }
+    return R;
+  }
 
-
+  openLoginDialog(){
+    const dialogRef = this.dialog.open(LoginComponent, {
+      // width: '650px',
+    })
+  }
 
 }

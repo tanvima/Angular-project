@@ -27,9 +27,13 @@ li{
    }
 }
 mat-icon{
+  
+   &:hover {
+		transform: scale(1.15);
+		cursor: pointer;
+	}
    color:white;
    font-size:30px
-
 }
 
 .dropText{

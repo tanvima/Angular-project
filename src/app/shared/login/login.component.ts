@@ -33,6 +33,9 @@ export class LoginComponent implements OnInit {
   requestAdmin=false
   noOfAttempts=0
   user:any
+  errMsgPassword=''
+  errMsgLoginReg=''
+  hide = true;
   constructor(private authservice: AuthenticationService, private router: Router, private us: UserService,
     public dialogRef: MatDialogRef<LoginComponent>) { }
 
@@ -71,7 +74,8 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
-
+    console.log("INIT")
+    this.noOfAttempts=0
     this.us.getAllUser().subscribe(
       (data: any) => {
         this.allUser = data
@@ -80,6 +84,7 @@ export class LoginComponent implements OnInit {
   }
   loginUser() {
     this.user=this.allUser.find((user: any) => user.username == this.loginForm.value.username)
+    console.log(this.user)
     if (this.user!=null) {
       if(this.user.status == 'unblock' && (this.user.noOfAttempts<=3 && this.noOfAttempts<3)) {
         console.log("helllo ",this.noOfAttempts)
@@ -98,7 +103,7 @@ export class LoginComponent implements OnInit {
                     }
                   }, (err: any) => {
                     this.us.updateNoOfAttempts(this.loginForm.value.username).subscribe((data) => {
-                      this.errMsgLogin="Invalid password"
+                      this.errMsgPassword="Invalid password"
                       this.noOfAttempts=data.msg
                       console.log("Number of attempts " ,this.noOfAttempts)
                      // this.loginForm.reset()
@@ -121,7 +126,7 @@ export class LoginComponent implements OnInit {
   }
 
   registerUser() {
-    if (this.registrationForm.valid && this.errMsgLogin == '' && this.errMsgEmail == '') {
+    if (this.registrationForm.valid && this.errMsgLoginReg == '' && this.errMsgEmail == '') {
       let user = this.registrationForm.value
       this.username = this.registrationForm.value.username
       if (user.prime) {
@@ -152,10 +157,12 @@ export class LoginComponent implements OnInit {
       console.log(this.username)
       this.us.activateAccount(this.username).subscribe((data) => {
         console.log("Congrats!!!")
+        this.ngOnInit()
       })
       this.registrationForm.reset()
       this.otpForm.reset()
       this.isOTP = false
+      this.ngOnInit()
       this.currentIndex = 0
     } else {
       this.errMsg = "Wrong OTP"
@@ -213,12 +220,12 @@ export class LoginComponent implements OnInit {
 
   checkUsername() {
     if (this.allUser.find((user: any) => user.username == this.registrationForm.value.username)) {
-      this.errMsgLogin = "Username exists"
-      console.log(this.errMsgLogin)
+      this.errMsgLoginReg = "Username exists"
+      console.log(this.errMsgLoginReg)
     }
     else {
-      this.errMsgLogin = ''
-      console.log(this.errMsgLogin)
+      this.errMsgLoginReg = ''
+      console.log(this.errMsgLoginReg)
     }
   }
 

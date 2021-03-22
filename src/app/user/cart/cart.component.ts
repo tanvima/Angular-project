@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/app/utilities/authentication.service';
 import { UserService } from '../user.service';
@@ -10,7 +11,7 @@ import { UserService } from '../user.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private us: UserService, private authservice: AuthenticationService) { 
+  constructor(private us: UserService, private authservice: AuthenticationService,private route:Router) { 
     this.authservice.useridupdate.subscribe((data)=>{
       this.userid=data
     })
@@ -39,7 +40,8 @@ export class CartComponent implements OnInit {
   enrollAll(){
     this.us.enrollCourse(this.userid).subscribe((data)=>{
       console.log("All added")
-      this.ngOnInit()
+      this.authservice.updateCartSizeData()
+      this.route.navigate(['/mycourse'])
     })
   }
 

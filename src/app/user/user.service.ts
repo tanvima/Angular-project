@@ -123,6 +123,13 @@ updateProfile(user:any):Observable<any>{
   return this.http.put(environment.baseUserUrl+'/user/updateUser',user)
 }
 
+// generateCertificate(userid:any,courseid:any):Observable<any>{
+//   return this.http.get(environment.baseUserUrl+"/user/certificate/"+userid+"/"+courseid)
+// }
+
+sendCertificateMail(userid:any,courseid:any):Observable<any>{
+  return this.http.get(environment.baseUserUrl+'/user/mailcerti/'+userid+'/'+courseid)
+}
 
 }
 

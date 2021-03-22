@@ -19,10 +19,31 @@ export class FeedbackformComponent implements OnInit {
   constructor(private dialogRef:MatDialogRef<FeedbackformComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private us: UserService) { }
 
   ngOnInit(): void {
+
+
+
+    // this.us.generateCertificate(this.data.userid,this.data.courseid).subscribe((data)=>{
+    //   console.log("pdf generated") 
+    //   console.log(data);
+      
+    //    //feedback form
+    //   })
+   
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+
+      // alert("Certi generated")
+    // this.us.generateCertificate(this.data.userid,this.data.courseid).subscribe((data)=>{
+    //   console.log("pdf generated") 
+    //   console.log(data);
+    //    //feedback form
+    //   },(err)=>{
+    //     console.log(err);
+        
+    //   })
+    // this._snackBar.open("Click on generate certificate");
   }
 
   addFeedback() {
@@ -36,11 +57,19 @@ export class FeedbackformComponent implements OnInit {
           console.log("*******");
           console.log(data)
           this.dialogRef.close();
-        },(err)=>{
-          console.log("sdfadsfd");
-          console.log(err);
+
+
+        //   this.us.generateCertificate(this.data.userid,this.data.courseid).subscribe((data)=>{
+        //     console.log("pdf generated") 
+        //     console.log(data);
+        //      //feedback form
+        //     })
+        // },(err)=>{
+        //   console.log("sdfadsfd");
+        //   console.log(err);
           
         }
+
       )
 
     }

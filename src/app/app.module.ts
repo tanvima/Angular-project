@@ -12,6 +12,7 @@ import { CoursepageComponent } from './coursepage/coursepage.component';
 import {MatSelectModule} from '@angular/material/select';
 import { FilterPipe } from './shared/filter.pipe';
 import { AuthInterceptorService } from './utilities/auth-interceptor.service';
+import { AdminModule } from './admin/admin.module';
 
 
 
@@ -29,7 +30,9 @@ import { AuthInterceptorService } from './utilities/auth-interceptor.service';
     SharedModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatSelectModule
+    MatSelectModule,
+    AdminModule,
+    
   ],
   providers: [
     // {

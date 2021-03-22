@@ -18,6 +18,7 @@ intialCart!:Observable<any>
   cartsize= new BehaviorSubject<any>(0)
   cartsizeupdate=this.cartsize.asObservable()
   useridupdate = this.userid.asObservable()
+  usertypeupdate=this.usertype.asObservable()
 
   constructor(private http: HttpClient) { 
   this.cartsizeupdate.subscribe((data)=>{

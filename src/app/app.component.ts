@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ui';
+  userrole!:any
+constructor(){
+  this.userrole = sessionStorage.getItem("userrole");
+}
+
 }

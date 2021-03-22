@@ -1,11 +1,10 @@
 
-
+<ng-container *ngIf='userrole!="admin"'>
 <app-header></app-header>
-<!-- <app-certificate></app-certificate> -->
 <router-outlet></router-outlet>  
-
- <!-- <app-videolist></app-videolist> -->
-
+</ng-container>
+<!-- 
+ <app-footer></app-footer> -->
 <!-- <app-videoplayer></app-videoplayer> -->
 
 <!-- <drawer contaienr>
@@ -17,3 +16,8 @@
 
     </router>
 </drawer> -->
+
+<ng-container *ngIf = 'userrole=="admin"'>
+<app-admin-sidenav></app-admin-sidenav>
+ <router-outlet></router-outlet> 
+</ng-container>

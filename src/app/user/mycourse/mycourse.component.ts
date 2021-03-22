@@ -12,12 +12,13 @@ import { UserService } from '../user.service';
   styleUrls: ['./mycourse.component.scss']
 })
 export class MycourseComponent implements OnInit {
-
+  panelOpenState = false;
   course:any
   userid!:Observable<any>
   commentFlag=false
   isLiked:boolean=false
   status:any=null
+  certificateStatus=''
   form=new FormGroup({
     comment: new FormControl(''),
   });
@@ -41,7 +42,11 @@ export class MycourseComponent implements OnInit {
  
      })
 
+     
+
     }
+
+
 
   
 
@@ -80,5 +85,9 @@ export class MycourseComponent implements OnInit {
       console.log("comment deleted")
       this.ngOnInit()
     })
+  }
+
+  watchCertificate(courseid:any){
+    this.router.navigate(['/certificate'],{ queryParams: { courseId: courseid}});
   }
 }

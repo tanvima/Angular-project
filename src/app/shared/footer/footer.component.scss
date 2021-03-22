@@ -1,0 +1,123 @@
+$theme-yellow :lightgray;
+$color-white : #fff;
+$color-black : #000;
+$color-footer-text : #7e7e7e;
+$value-10 : 10%;
+$value-30px : 30px;
+$value-100 : 100%;
+$value-50 : 50% ;
+$value-20px : 20px;
+ul {
+   
+    margin: 0px;
+    padding: 0px;
+}
+.footer-section {
+  background:$theme-yellow ;
+  margin-top: 100px;
+  // position: relative;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+.single-cta i {
+  color: $theme-yellow;
+  font-size: $value-30px;
+  float: left;
+  margin-top: 8px;
+}
+.cta-text {
+  padding-left: 15px;
+  display: inline-block;
+}
+.footer-content {
+  position: relative;
+  z-index: 2;
+}
+.footer-social-icon span {
+  color: $color-black;
+  display: block;
+  font-size:$value-20px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom:$value-20px;
+}
+.footer-social-icon a {
+  color: $color-black;
+  font-size: 16px;
+  margin-right: 15px;
+}
+.footer-social-icon i {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 38px;
+  border-radius: $value-50;
+}
+.facebook-bg{
+    color: #3b5998;
+    border-radius: 15px;
+    height: $value-30px;
+    width: $value-30px;
+}
+.twitter-bg{
+    color: #00acee;
+    border-radius: 15px;
+    height: $value-30px;
+    width: $value-30px;
+}
+.insta-bg{
+    background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+    border-radius: 15px;
+    height: $value-30px;
+    width: $value-30px;
+}
+.linked-bg{
+    color:  #0e76a8 ;
+    border-radius: 15px;
+    height: $value-30px;
+    width: $value-30px;
+}
+.google-bg{
+    color:  #db4a39 ;
+    border-radius: 15px;
+    height: $value-30px;
+    width: $value-30px;
+}
+.dribble-bg{
+    color:  #ea4c89;
+    border-radius: 15px;
+    height: $value-30px;
+    width: $value-30px;
+}
+.footer-widget-heading h3 {
+  color: $color-black;
+  font-size:$value-20px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  position: relative;
+
+}
+.copyright-area{
+  background: $color-black;
+  padding: 25px 0;
+}
+.copyright-text p {
+  margin: 0;
+  font-size: 14px;
+  color: $color-footer-text ;
+}
+.copyright-text p a{
+  color: $theme-yellow;
+}
+
+@media (max-width: 767px) { 
+  .media-hide{
+      display: none;
+  }
+  .footer-logo-text{
+      display: inline;
+  }
+}

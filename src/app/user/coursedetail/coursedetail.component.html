@@ -26,16 +26,17 @@
           ></ngx-input-star-rating>
           <div>
             <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i
-            ><span class="like-comment-text">400</span>
+            ><span class="like-comment-text">{{noOfLike}}</span>
           </div>
 
           <div>
             <i class="fa fa-commenting fa-2x" aria-hidden="true"></i
-            ><span class="like-comment-text">100</span>
+            ><span class="like-comment-text">{{noOfComment}}</span>
           </div>
         </div>
-
-        <button class="btn enroll-btn" type="button" (click)=addtoCart()>Add to Cart</button>
+        <button *ngIf = 'inCart' class="btn enroll-btn" type="button">In Cart</button>
+        <button *ngIf = 'isEnrolled' class="btn enroll-btn" type="button" (click)=gotoMyCourse()>Get Started</button>
+        <button *ngIf='!inCart && !isEnrolled' class="btn enroll-btn" type="button" (click)=addtoCart()>Add to Cart</button>
       </div>
       <div class="jumbotron-image">
         <img
@@ -105,20 +106,21 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      <div class="media" *ngFor="let c of Dummylist; let index = index">
+      <ng-container *ngIf='course.video==null'> No Video Exist</ng-container>
+      <div class="media" *ngFor="let c of course.video; let index = index">
         <div class="container">
           <div class="card mb-3">
             <div class="row no-gutters">
               <div class="col-md-3 p-2">
-                <img src="{{ c.imgSrc }}" class="card-img" alt="..." />
+                <!-- <img src="{{ c.imgSrc }}" class="card-img" alt="..." /> -->
+                
+                <video [src]=src+c.videoPath  class="card-img"></video>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <div class="card-title">Introduction</div>
+                  <div class="card-title">{{c.videoName}}</div>
                   <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
+                    {{c.videoDesc}}
                   </p>
                   <p class="card-text">
                     <small class="text-muted">
@@ -147,7 +149,7 @@
       4.5</div>
   </div>
   
-  <div *ngFor="let c of DummyCommentList;">
+  <div *ngFor="let c of course.comment;let index=index">
     <div class="commentContainer">
       <div class="individualReview">
         <div class="individualReviewNameAvatar">
@@ -157,7 +159,7 @@
             class="avatar avatar-heading-md"
             
           >
-            {{ c.nameCredentials }}
+            {{DummyCommentList[index].nameCredentials }}
           </div>
         </div>
         <div class="individualReviewComment">

@@ -142,7 +142,12 @@
       </div>
     </ng-container>
     <ng-container *ngIf="userid == null">
-      <button (click)="openLoginDialog()">Login</button>
+      <button class="menuIcon"  (click)="openLoginDialog()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">
+          login</mat-icon
+        >
+      </button>
+
     </ng-container>
   </div>
 </nav>

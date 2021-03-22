@@ -1,11 +1,17 @@
 <div class=" card-div"  *ngIf='mycourse!=undefined'>
     <a (click)="gotoCourse(mycourse.courseId)"><div class="card mb-2 "  >
-      <img class="card-img-top"
+      <div class="image-container">
+        <img class="card-img-top"
         src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+      </div>
+     
       <div class="card-body">
         <div class="course-content"> 
         <h3 class="card-title">{{mycourse.courseName}}</h3> 
-          <h3 class="card-title">{{mycourse.coursePrice |currency:'INR'}}</h3>
+          <h3 *ngIf ="!isPrime" class="card-title">{{mycourse.coursePrice |currency:'INR'}}</h3>
+          <h3 *ngIf ="isPrime" class="card-title oldprice">{{mycourse.coursePrice|currency:'INR'}}</h3>
+          <!--30% Off-->
+          <h3 *ngIf ="isPrime" class="card-title">{{mycourse.coursePrice |primeprice|currency:'INR'}}</h3>
         </div>
       
     

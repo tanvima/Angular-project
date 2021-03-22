@@ -1,4 +1,128 @@
-<p>mycourse works!</p>
+<div class="body"  >
+  <div class="media" *ngFor="let c of course;let index=index">
+    <div class="container">
+      <div class="column">
+        <h2 class="text-size">Course</h2>
+        &nbsp;
+        <!-- <img [src]="c.courseLogo" /> -->
+      </div>
+      <div class="media-body">
+        <h3>Title:</h3>
+        <h3>
+          <p class="mt-text">{{ c.courseName }} </p>
+        </h3>
+        <h3>Description:</h3>
+        <p class="mt-text">{{ c.courseDesc }}</p>
+        <h3>Duration:</h3>
+        <p class="mt-text">{{ c.noOfVideo }} weeks</p>
+        <!-- ​<mat-icon svgIcon="thumbs-up" inline="true"></mat-icon> -->
+        <!-- Like -->
+        <!-- <span class="material-icons" (click)=Like(c.courseId)> thumb_up </span> -->
+        <ng-container *ngIf="status!=null">
+          <span class="material-icons" *ngIf="status[index].msg=='Like'" (click)=Like(c.courseId)>
+            thumb_up
+          </span>
+          <span class="material-icons" *ngIf="status[index].msg=='Unlike'" (click)=Like(c.courseId)>
+            thumb_up_off_alt
+          </span>
+        </ng-container> 
+                  <!-- Comments -->
+        <!-- <form [formGroup]="form">
+          <h4>Add Comment:
+            <input type="text" formControlName="comment" class="input" name="comment" /> &nbsp;
+            <span class="material-icons" (click)="addComment(c.courseId)">
+              add_comment
+            </span>
+          </h4>
+        </form>&nbsp; -->
+        <!-- ​Commentsection of user -->
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <form [formGroup]="form">
+              <h4>
+                <input type="text" formControlName="comment" class="input"  placeholder="Add a comment..." /> &nbsp;
+                <mat-icon  (click)="addComment(c.courseId)">add_comment
+                </mat-icon>
+                <!-- <span class="material-icons" (click)="addComment(c.courseId)">
+                  add_comment
+                </span> -->
+              </h4>
+            </form>&nbsp;
+            <mat-expansion-panel-header>
+              <mat-panel-title>Comments</mat-panel-title>
+            </mat-expansion-panel-header>
+            <p *ngFor="let comm of c.comment">
+              {{comm.comment}}
+              <ng-container *ngIf="comm.userId==userid">
+                <mat-icon (click)="delComment(comm.id)">delete</mat-icon>
+                <!-- <mat-icon class="mat" (click)=Like(c.courseId)> thumb_up </mat-icon> -->
+        <!-- <ng-container *ngIf="status!=null">
+          <mat-icon class="mat" *ngIf="status[index].msg=='Like'" (click)=Like(c.courseId)>
+            thumb_up
+          </mat-icon>
+          <mat-icon class="mat" *ngIf="status[index].msg=='Unlike'" (click)=Like(c.courseId)>
+            thumb_up_off_alt
+          </mat-icon>
+        </ng-container> -->
+                <!-- <span class="material-icons"  (click)="delComment(comm.id)"  >delete</span> -->
+              </ng-container>
+            </p>
+          </mat-expansion-panel>
+        </mat-accordion>&nbsp;
+        <!-- <ng-container *ngIf="commentFlag">
+        <ng-container *ngFor="let comm of c.comment">
+          <p>Comment : {{comm.comment}}
+              <ng-container *ngIf="comm.userId==userid">
+                <span class="material-icons" (click)="delComment(comm.id)" >delete_sweep</span>
+              </ng-container>
+          </p>
+        </ng-container>
+      </ng-container> -->
+        <!-- <h4> Comments<span class="material-icons"  (click)="commentFlags()"> 
+          arrow_drop_down</span></h4> 
+       <ng-container *ngIf="commentFlag">
+          <ng-container *ngFor="let comm of c.comment">
+            <p>Comment : {{comm.comment}}
+                <ng-container *ngIf="comm.userId==userid">
+                  <span class="material-icons" (click)="delComment(comm.id)" >delete_sweep</span>
+                </ng-container>
+            </p>
+          </ng-container>
+        </ng-container>
+        <form [formGroup]="form">
+          <input type="text" formControlName="comment" class="input" name="comment" /> &nbsp;
+            <span class="material-icons" (click)="addComment(c.courseId)">
+            add_comment
+            </span>
+        </form> -->
+      </div>
+      <div class="field">
+        <button class="btn start" (click)="gotoVideoList(c.courseId)">Start</button> &nbsp;
+        <button class="btn certificate" *ngIf = "c.status=='completed'" (click)="watchCertificate(c.courseId)">Certificate</button>&nbsp;
+        <div class="row">
+          <h4>
+            Status:
+            <p>{{ c.status }}</p>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <p>mycourse works!</p>
 
 <div class="body">
   <div class="media"   *ngFor="let c of course;let index=index">
@@ -6,7 +130,7 @@
       <div class="column">
         <h2 class="text-size">Course</h2>
         &nbsp;
-        <!-- <img [src]="c.courseLogo" /> -->
+       
       </div>
       <div class="media-body">
         <h3>Title:</h3>
@@ -48,7 +172,7 @@
       </div>
       <div class="field">
         <button class="btn start" (click)="gotoVideoList(c.courseId)">Start</button> &nbsp;
-        <button class="btn certificate">Certificate</button>&nbsp;
+        <button *ngIf = "c.status=='completed'" class="btn certificate" (click)="watchCertificate(c.courseId)">Certificate</button>&nbsp;
         <div class="row">
           <h4>
             Status:
@@ -61,4 +185,4 @@
 
  
   </div>
-</div>
+</div> -->

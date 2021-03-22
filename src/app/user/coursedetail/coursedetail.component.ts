@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginComponent } from 'src/app/shared/login/login.component';
 import { AuthenticationService } from 'src/app/utilities/authentication.service';
@@ -15,11 +15,17 @@ export class CoursedetailComponent implements OnInit {
   courseid: any
   course: any
   userid!:Observable<any>
-  constructor(private activatedRoute: ActivatedRoute, private us: UserService,private authservice: AuthenticationService,public dialog: MatDialog) { 
+  noOfLike=0
+  noOfComment=0
+  src="../../../assets/"
+  constructor(private activatedRoute: ActivatedRoute, private us: UserService,private authservice: AuthenticationService,public dialog: MatDialog,private router:Router) { 
     this.authservice.useridupdate.subscribe((data)=>{
       this.userid=data
     })
   }
+
+  inCart=false
+  isEnrolled=false
 
   ngOnInit(): void {
 
@@ -28,10 +34,25 @@ export class CoursedetailComponent implements OnInit {
       console.log("course Id ", this.courseid)
       this.us.getCourseById(this.courseid).subscribe((data) => {
         this.course = data
-        console.log("COURSE NAME ", this.course.courseName);
+        if(this.authservice.isLoggedIn()){
+          if(this.course.cart.find((cart: any) => cart.userId == this.userid)){
+            this.inCart=true
+          }else if (this.course.enrollment.find((enroll: any) => enroll.user == this.userid)){
+            this.isEnrolled=true
+          }
+        }
+        console.log("COURSE NAME ", this.course);
+        this.course.like.forEach((likes:any) => {
+          if(likes.status=='like'){
+            this.noOfLike++
+          }
+        });
+        this.noOfComment=this.course.comment.length
       })
 
     })
+
+    
 
   }
 
@@ -54,6 +75,9 @@ export class CoursedetailComponent implements OnInit {
    
     }
   
+    gotoMyCourse(){
+      this.router.navigate(['/mycourse'])
+    }
 
   Dummylist = [
     {
@@ -84,34 +108,38 @@ export class CoursedetailComponent implements OnInit {
     {
       id: 1,
       nameCredentials: 'NV',
-      name:'Nirav Verma',
-      comment:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, temporibus.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam mollitia at hic nihil ratione excepturi cum maxime id autem veritatis!',
     },
     {
       id: 1,
       nameCredentials: 'DA',
-      name:'Darshan Ajudiya',
-      comment:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, temporibus.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam mollitia at hic nihil ratione excepturi cum maxime id autem veritatis!',
     },
     {
       id: 1,
       nameCredentials: 'UG',
-      name:'Urvashi Gajjar',
-      comment:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, temporibus.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam mollitia at hic nihil ratione excepturi cum maxime id autem veritatis!',
-    },
+     },
     {
       id: 1,
       nameCredentials: 'VS',
-      name:"Venktesh Soma",
-      comment:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, temporibus.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam mollitia at hic nihil ratione excepturi cum maxime id autem veritatis!',
-    },
+      },
+      {
+        id: 1,
+        nameCredentials: 'NV',
+      },
+      {
+        id: 1,
+        nameCredentials: 'DA',
+      },
+      {
+        id: 1,
+        nameCredentials: 'UG',
+       },
+      {
+        id: 1,
+        nameCredentials: 'VS',
+        },
   ];
 
-  likes: number = 13521
+ 
 
 
 }
