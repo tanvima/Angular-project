@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { LoginComponent } from 'src/app/shared/login/login.component';
@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   popularcourse:any
   slides: any;
   userid!:Observable<any>
+  columnlength: string = 'col-3';
+
   constructor(private us: UserService,public dialog: MatDialog, private authservice:AuthenticationService) {
     // this.courses=this.us.getAllCourse();
     this.authservice.useridupdate.subscribe((data)=>{
@@ -39,9 +41,7 @@ export class HomeComponent implements OnInit {
 
     this.us.getPopularCourse().subscribe((data)=>{
       this.popularcourse=data;
-      this.slides = this.chunk(this.popularcourse, 3);
-    },(err)=>{
-      throw Error("Cannot fetch Popular courses")
+    this.setSlide(window.innerWidth);
     })
   }
    
@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
   
+
   chunk(arr: any, chunkSize: number) {
     let R = [];
     for (let i = 0, len = arr.length; i < len; i += chunkSize) {
@@ -57,10 +58,37 @@ export class HomeComponent implements OnInit {
     return R;
   }
 
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    this.setSlide( event.target.innerWidth);
+  }
+
+
+
+  setSlide(myWidth: number) {
+    console.log();
+    if (myWidth <= 768) {
+      this.columnlength = 'col-12';
+      this.slides = this.chunk(this.popularcourse, 1);
+    } else if (myWidth <= 996) {
+      this.columnlength = 'col-6';
+      this.slides = this.chunk(this.popularcourse, 2);
+    } else {
+      this.columnlength = 'col-4';
+      this.slides = this.chunk(this.popularcourse, 3);
+    }
+  }
+
+
+
   openLoginDialog(){
     const dialogRef = this.dialog.open(LoginComponent, {
       // width: '650px',
     })
   }
+
+
+  
 
 }

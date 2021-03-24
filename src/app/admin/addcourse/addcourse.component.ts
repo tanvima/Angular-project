@@ -33,7 +33,7 @@ courseForm!: FormGroup
         Validators.minLength(10), 
         Validators.maxLength(100)]),
         coursePrice: new FormControl('', [Validators.required]),
-        noOfVideo: new FormControl('',[Validators.required])
+        authorName: new FormControl('',[Validators.required])
      
     })
    

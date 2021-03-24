@@ -46,12 +46,12 @@ export class VideoplayerComponent implements OnInit {
     this.us.getVideoList(this.courseid).subscribe(
       (data) => {
         this.videolist = data
-
-
+        console.log("Video",this.videolist)
         this.videolist.forEach((video, index) => {
 
           if ((video.videoId) == this.videoid) {
-            this.src = "../../../assets/" + video.videoPath
+            this.src = video.videoPath
+            console.log("SRc "+ this.src)
             this.videotitle = video.videoName
 
           }
@@ -136,7 +136,7 @@ export class VideoplayerComponent implements OnInit {
               this.nextButton = "Next Video"
               this.flagfornext = true
              
-              this.src = "../../../assets/" + (this.videolist[index + 1].videoPath);
+              this.src = (this.videolist[index + 1].videoPath);
               this.videotitle = video.videoName
               this.videoid = this.videolist[index + 1].videoId
               console.log("Next path " + this.src)

@@ -24,11 +24,14 @@ userid!: Observable<any>;
     this.authservice.useridupdate.subscribe((data)=>{
       this.userid=data
     })
-    this.authservice.updateCartSizeData()
+   
+      this.authservice.updateCartSizeData()
       this.authservice.cartsizeupdate.subscribe((data)=>{
         this.cartsize=data
         this.cartsize1=data
       })
+    
+    
 
       // this.cartsize.subscribe((data)=>{
       //   this.cartsize1=data
@@ -67,10 +70,6 @@ userid!: Observable<any>;
           })
         }); */
       }
-    }, (err) => {
-      throw Error("Cannot fetch Category")
-      console.log(err);
-
     });
     this.filteredOptions = this.myControl.valueChanges
       .pipe(

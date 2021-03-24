@@ -30,7 +30,7 @@ export class UserService {
     return this.http.get(environment.baseUserUrl+'/courseid/'+id)
   }
   getVideoList(courseid:number): Observable<any>{
-    return this.http.get(environment.baseUserUrl+'/video/'+courseid)
+    return this.http.get(environment.baseUserUrl+'/videolist/'+courseid)
   }
 
   getString():Observable<any>{

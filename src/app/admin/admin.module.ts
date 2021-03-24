@@ -16,9 +16,10 @@ import { RouterModule } from '@angular/router';
 import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { ChartsModule } from 'ng2-charts';
+import { ChartsComponent } from './charts/charts.component';
 
 @NgModule({
-  declarations: [AddcategoryComponent, AddcourseComponent, AddvideoComponent, AdminSidenavComponent, AdmincoursepageComponent, CoursepageComponent, UnblockuserComponent, VideopageComponent, AdminhomeComponent],
+  declarations: [AddcategoryComponent, AddcourseComponent, AddvideoComponent, AdminSidenavComponent, AdmincoursepageComponent, CoursepageComponent, UnblockuserComponent, VideopageComponent, AdminhomeComponent, ChartsComponent],
   imports: [
     AppRoutingModule,
     CommonModule,

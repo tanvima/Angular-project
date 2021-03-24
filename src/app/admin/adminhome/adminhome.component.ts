@@ -122,7 +122,7 @@ lineChartOptions = {
 
 lineChartColors: Color[] = [
   {
-    borderColor: 'black',
+    borderColor: 'grey',
     backgroundColor: 'rgba(255,255,0,0.28)',
   },
 ];
@@ -138,7 +138,6 @@ lineChartType = 'line';
     { data: this.coursePerCategory, label: 'Courses Per Category' }
   ];
   public radarChartType: ChartType = 'radar';
-
 
 }
 

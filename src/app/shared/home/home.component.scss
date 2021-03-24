@@ -119,10 +119,18 @@ p{
 
 
 .seperateRow{
+  margin-left: 0;
+  margin-right: 0;
   background-image: linear-gradient(0deg, #fdfbe4, white);
 }
+.container-goals{
+  padding-right:0;
+            padding-left:0;
+            margin-right:auto;
+            margin-left:auto
+}
 .goals{
-    width: 80%;
+    width: 100%;
 }
 .goaltext{
     display: block;
@@ -150,7 +158,6 @@ p{
 .image-girl{
   flex-grow: 1;
   padding-top: 70px;
-  margin-right: 95px;
     margin-top: -41px;
 }
 .image-girl-desc{
@@ -170,6 +177,7 @@ p{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
 }
 .sub-desc{
   color: rgb(31, 31, 31);

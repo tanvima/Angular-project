@@ -5,7 +5,10 @@
       <div class="column">
         <h2 class="text-size">Course</h2>
         &nbsp;
-        <!-- <img [src]="c.courseLogo" /> -->
+        <img
+        [src]=c.courseLogo
+       
+      />
       </div>
       <div class="media-body">
         <h3>Title:</h3>
@@ -20,9 +23,10 @@
         <!-- Like -->
         <!-- <span class="material-icons" (click)=Like(c.courseId)> thumb_up </span> -->
         <ng-container *ngIf="status!=null">
+          <div *ngIf="status[index].msg=='Like'">
           <span class="material-icons" *ngIf="status[index].msg=='Like'" (click)=Like(c.courseId)>
             thumb_up
-          </span>
+          </span>  Liked</div>
           <span class="material-icons" *ngIf="status[index].msg=='Unlike'" (click)=Like(c.courseId)>
             thumb_up_off_alt
           </span>
@@ -113,13 +117,13 @@
 
 <ng-template #elseBlock>
    
-    <div class="container d-flex justify-content-center align-items-center h-100">
+    <div class="container d-flex justify-content-center align-items-center h-100"  [ngStyle]="{'box-shadow':'none'}">
        
         <div >
             <img src="https://cdn4.vectorstock.com/i/1000x1000/45/78/book-with-sad-face-grey-icon-bad-literature-vector-33374578.jpg"alt="empty mycourse">
         </div> 
     </div>
-    <div class="container d-flex justify-content-center align-items-center">
+    <div class="container d-flex justify-content-center align-items-center"  [ngStyle]="{'box-shadow':'none'}">
         <h1>Currently not enrolled in any Courses</h1>
     </div>
 

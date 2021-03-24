@@ -19,6 +19,7 @@ import { AuthGuard } from './utilities/auth.guard';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 import { CoursepageComponent } from './admin/coursepage/coursepage.component';
 import { ErrorpageComponent } from './shared/errorpage/errorpage.component';
+import { ChartsComponent } from './admin/charts/charts.component';
 
 
 const routes: Routes = [
@@ -102,6 +103,14 @@ canActivate:[AuthGuard],
    canActivate:[AuthGuard],
   
   },
+  {path:"charts",component:ChartsComponent,
+  data:{role:'ROLE_admin'},
+  outlet:'admin',
+  canActivate:[AuthGuard],
+ 
+ },
+
+  
   {path:"**",component:ErrorpageComponent}
                       
 ];

@@ -257,31 +257,53 @@
       <!--Form that accepts OTP and shows the email entered-->
       <form [formGroup]="forgotOTPForm" *ngIf="getOTP">
         <mat-form-field
-          class="form-field col-6"
+        class="form-field col-12 mt-3"
           appearance="outline"
           color="primary"
         >
           <mat-label>Enter OTP</mat-label>
           <input matInput formControlName="otp" required type="text" />
-          <!--Dosent show error msg when wrong OTP added-->
-          <mat-error>
-            <span *ngIf="errMsg != ''">Invalid Otp</span>
-          </mat-error>
+            <span  class="errMsgLongin mt-5" *ngIf="errMsg != ''">Invalid Otp</span>
+        
         </mat-form-field>
-        <input type="submit" value="Submit" (click)="verifyForgotOTP()" />
+
+        <div class="text-center">
+          <button
+          type="button"
+          value="Submit"
+          (click)="verifyForgotOTP()" 
+          class="btn btn-md btn-secondary  w-50 mt-3 "
+        >
+          Submit
+        </button>
+        </div>
       </form>
 
       <!--Form to accept the new password-->
       <form [formGroup]="resetPassForm" *ngIf="resetPass">
         <mat-form-field
-          class="form-field col-6"
+          class="form-field col-11"
           appearance="outline"
           color="primary"
         >
           <mat-label> Reset Password</mat-label>
-          <input matInput formControlName="password" required type="text" />
+          <input matInput formControlName="password" required  [type]="hide ? 'password' : 'text'"/>
         </mat-form-field>
-        <input type="submit" value="submit" (click)="resetPassword()" />
+       
+        <mat-icon matSuffix (click)="hide = !hide" color="deep">
+          {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error
+          *ngIf="
+          resetPassForm.controls.password.touched &&
+          resetPassForm.controls.password.invalid
+          "
+        >
+          <span>This field is mandatory</span>
+        </mat-error>
+        <div class="text-center">
+         <!-- <input type="submit" value="submit" (click)="resetPassword()" /> -->
+          <button (click)="resetPassword()" class="btn btn-md btn-secondary  w-50 mt-3 ">Submit </button>
+        </div>
       </form>
     </mat-tab>
 
@@ -289,7 +311,18 @@
     <mat-tab label="Account blocked" *ngIf="requestAdmin">
       <h4>Your Account has been blocked</h4>
       <h5>To request admin to unblock your account please send request</h5>
-      <button (click)="requestAdminfun()">Request Admin</button>
+     
+
+      <div class="text-center">
+        <button
+        type="button"
+        value="Request Admin"
+        (click)="requestAdminfun()" 
+        class="btn btn-md btn-secondary  w-50 mt-3 "
+      >
+      Request Admin
+      </button>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </section>

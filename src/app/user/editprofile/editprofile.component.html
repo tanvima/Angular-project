@@ -39,9 +39,13 @@
         rows="3"
       ></textarea>
     </div>
-    <div mat-dialog-actions>
-      <button mat-button cdkFocusInitial type="submit">Save Changes</button>
-      <button mat-button cdkFocusInitial (click)="closeForm()">Close</button>
+    <div mat-dialog-actions class="row">
+        <div class=" col-lg-6 form-group">
+        <button mat-button cdkFocusInitial type="submit" class="btn btn-md btn-secondary">Save Changes</button>
+      </div>
+      <div class=" col-lg-6 form-group">
+        <button mat-button cdkFocusInitial (click)="closeForm()" class="btn btn-md btn-secondary float-right">Close</button>
+      </div>
     </div>
   </form>
 

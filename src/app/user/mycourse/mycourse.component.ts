@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Course } from 'src/app/interface/course';
 import { AuthenticationService } from 'src/app/utilities/authentication.service';
 import { UserService } from '../user.service';
 
@@ -31,6 +30,7 @@ export class MycourseComponent implements OnInit {
   ngOnInit(): void {
     this.us.getEnrollCourse(this.userid).subscribe((data)=>{
       this.course=data
+      console.log(this.course)
    
        this.us.getLikeStatus(this.userid).subscribe((data1)=>{
          this.status=data1

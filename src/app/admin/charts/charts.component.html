@@ -1,0 +1,45 @@
+<p>charts works!</p>
+
+<div class="chart-wrapper">
+    <canvas baseChart 
+    [data]="doughnutChartData"
+    [labels]="doughnutChartLabels"
+    [chartType]="doughnutChartType">
+  </canvas>
+</div>
+ <div class="chart-wrapper col  mt-5">Student Enrollment
+        <canvas class="h-50" baseChart 
+        [datasets]="enrollBarChartData"
+        [labels]="enrollBarLabels"
+        [options]="enrollBarOptions"
+        [plugins]="enrollBarChartPlugins"
+        [legend]="enrollBarLegend"
+        [colors]="enrollBarColor" 
+        [chartType]="enrollBar">
+      </canvas>
+    </div>
+
+    <div class="chart-wrapper col mt-5 justify-content-center">
+        Likes of Courses 
+        <canvas baseChart 
+            [datasets]="lineChartData" 
+            [labels]="lineChartLabels" 
+            [options]="lineChartOptions"
+            [colors]="lineChartColors" 
+            [legend]="lineChartLegend" 
+            [chartType]="'line'" 
+            [plugins]="lineChartPlugins">
+        </canvas>
+    </div>
+
+    <div class="chart-wrapper col  mt-5">Course Rating
+        <canvas class="h-50" baseChart 
+        [datasets]="ratingBarChartData"
+        [labels]="ratingBarLabels"
+        [options]="ratingOptions"
+        [plugins]="ratingBarChartPlugins"
+        [legend]="ratingLegend"
+        [colors]="ratingColor" 
+        [chartType]="ratingBar">
+      </canvas>
+    </div>

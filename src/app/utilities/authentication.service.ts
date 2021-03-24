@@ -33,6 +33,9 @@ intialCart!:Observable<any>
       this.getCartCourses(data).subscribe((data1) => {
         console.log("The cart data ",data1)
         this.cartsize.next(data1.length)
+      },
+      (err)=>{
+        //throw Error("cannot fetch cart")
       })
     })
   }

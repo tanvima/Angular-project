@@ -21,14 +21,14 @@
 
 
 <!--GOALS-->
-<div class="container-fluid ">
-  <div class="row seperateRow py-5 justify-content-center">
-      <div class="row mt-4 mb-4">
+<div class="container-fluid container-goals  d-sm-none d-lg-block d-xl-block d-xs-none">
+  <div class="row seperateRow py-5 mx-0 justify-content-center">
+      <div class="row mt-4 mb-4 mx-0">
           <div class="col-lg-12">
                <p class="text-center h2">Achieve your goals with Cybage e-Learning</p>
           </div>
       </div>
-      <div class="row mt-5">
+      <div class="row mt-5 mx-0">
           <div class="col-lg-3">
           </div>
           <div class="col-lg-1 col-md-4 col-sm-4 col-xs-4 col-3 text-center me-4 ms-5">
@@ -76,12 +76,13 @@
       <div class="carousel-inner">
   
         <div class="carousel-item " *ngFor="let item of slides; let i = index" [ngClass]="{'active' : i == 0}"
-          data-bs-interval="3000">
+          data-bs-interval="100000000000000">
       <div class="container">
           <div class="row">
             <!-- <div class="col-lg-1"></div> -->
-            <div class="col-lg-4" *ngFor="let card of item; let cardIndex = index">
-              <app-coursecard [mycourse]='card' class="col-md-4"></app-coursecard>
+            <div [ngClass]="columnlength" *ngFor="let card of item; let cardIndex = index">
+              <!-- <app-coursecard [mycourse]='card' class="col-md-4"></app-coursecard> -->
+              <app-coursecard [mycourse]='card' class="w-100"></app-coursecard>
             </div>
             <!-- <div class="col-lg-1"></div> -->
           </div>
@@ -98,15 +99,15 @@
       </div>
   </div>
 <!-- XYZ -->
-<div class="container-fluid image-description-girl">
-  <div class="row">
+<div class="container-fluid image-description-girl d-sm-none d-lg-block d-xl-block d-xs-none">
+  <div class="row mx-0">
     <div class="col-lg-3"></div>
-    <div class="col-lg-6">
+    <div class="col-lg-9">
       <div class="inner-row">
        <div class="image-girl">
          <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera_assets/front-page-rebrand/secondary-consumer-cta/Image-Next-Step.png?auto=format%2Ccompress&dpr=1&w=471&h=330&q=40" alt="">
        </div>
-       <div class="image-right-desc">
+       <div class="image-right-desc pl-5">
         <div class="image-girl-desc">Take the next step toward your personal and professional goals with Us.</div>
         <div class="sub-desc">
           Join now to receive personalized recommendations from the full Coursera catalog.
@@ -116,7 +117,6 @@
        
       </div>
     </div>
-    <div class="col-lg-3"></div>
   </div>
 </div>
 

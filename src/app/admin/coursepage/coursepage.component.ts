@@ -55,7 +55,7 @@ export class CoursepageComponent implements OnInit {
         Validators.maxLength(3000)
       ]),
       coursePrice: new FormControl('', [Validators.required]),
-      noOfVideo: new FormControl('', [Validators.required]),
+      authorName: new FormControl('', [Validators.required]),
     })
   }
   updateCourseId(upId: any) {
@@ -72,7 +72,7 @@ export class CoursepageComponent implements OnInit {
           Validators.maxLength(3000)
         ]),
         coursePrice: new FormControl(res.coursePrice, [Validators.required]),
-        noOfVideo: new FormControl(res.noOfVideo, [Validators.required]),
+        authorName: new FormControl(res.authorName, [Validators.required]),
       })
 
     })

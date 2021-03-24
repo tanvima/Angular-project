@@ -12,10 +12,13 @@ export class GlobalErrorHandlerService implements ErrorHandler{
   handleError(error: Error): void {
     //throw new Error('Method not implemented.');
 
-    // alert("message "+error.message)
-    this.dialog.open(ErrormessageComponent, {
-      width: '550px',
-      data: { errorMessage:"Message "+error.message}
-    })
+    //alert("message "+error.message)
+    if(error.message!=''){
+      alert("message "+error.message)
+    }
+    // this.dialog.open(ErrormessageComponent, {
+    //   width: '550px',
+    //   data: { errorMessage:"Message "+error.message}
+    // })
   }
 }
