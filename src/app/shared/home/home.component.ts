@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { LoginComponent } from 'src/app/shared/login/login.component';
+import { AuthenticationService } from 'src/app/utilities/authentication.service';
 import { UserService } from '../../user/user.service';
 
 @Component({
@@ -15,13 +16,18 @@ export class HomeComponent implements OnInit {
   categories:any
   popularcourse:any
   slides: any;
-  constructor(private us: UserService,public dialog: MatDialog) {
+  userid!:Observable<any>
+  constructor(private us: UserService,public dialog: MatDialog, private authservice:AuthenticationService) {
     // this.courses=this.us.getAllCourse();
+    this.authservice.useridupdate.subscribe((data)=>{
+      this.userid=data
+    })
 
     this.us.getAllCategory().subscribe((data)=>{
       this.categories=data;
       console.log(this.categories);
     },(err)=>{
+      throw Error("Cannot fetch Category")
       console.log(err);
       
     });
@@ -34,6 +40,8 @@ export class HomeComponent implements OnInit {
     this.us.getPopularCourse().subscribe((data)=>{
       this.popularcourse=data;
       this.slides = this.chunk(this.popularcourse, 3);
+    },(err)=>{
+      throw Error("Cannot fetch Popular courses")
     })
   }
    

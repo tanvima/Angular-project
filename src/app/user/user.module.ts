@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from '../shared/home/home.component';
-import { CoursecardComponent } from './coursecard/coursecard.component';
+import { CoursecardComponent } from '../shared/coursecard/coursecard.component';
 import { FormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,14 +19,17 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { CartComponent } from './cart/cart.component';
 import { MycourseComponent } from './mycourse/mycourse.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
-import { PrimepricePipe } from './primeprice.pipe';
+import { PrimepricePipe } from '../shared/primeprice.pipe';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
  import {MatExpansionModule} from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from '../shared/shared.module';
+import { AppRoutingModule } from '../app-routing.module';
 @NgModule({
-  declarations: [CoursecardComponent, CourselistComponent, CoursedetailComponent, VideolistComponent, VideoplayerComponent, FeedbackformComponent, CertificateComponent, CartComponent, MycourseComponent, EditprofileComponent,PrimepricePipe, SnackbarComponent],
+  declarations: [CourselistComponent, CoursedetailComponent, VideolistComponent, VideoplayerComponent, FeedbackformComponent, CertificateComponent, CartComponent, MycourseComponent, EditprofileComponent, SnackbarComponent],
   imports: [
+    AppRoutingModule,
     CommonModule,
     FormsModule,
     MatSelectModule,
@@ -39,7 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSnackBarModule,
     MatExpansionModule,
     MatIconModule,
-  ],
-  exports:[CoursecardComponent]
+    SharedModule,
+  ]
 })
 export class UserModule { }

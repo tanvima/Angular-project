@@ -19,13 +19,17 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { LandingComponent } from './landing/landing.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import { UserModule } from '../user/user.module';
-import { CoursecardComponent } from '../user/coursecard/coursecard.component';
-
+import { CoursecardComponent } from './coursecard/coursecard.component';
+import { PrimepricePipe } from './primeprice.pipe';
+import { AppRoutingModule } from '../app-routing.module';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { ErrormessageComponent } from './errormessage/errormessage.component';
+import { ErrorpageComponent } from './errorpage/errorpage.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FilterPipe, LoginComponent, LandingComponent, FooterComponent,HomeComponent],
+  declarations: [HeaderComponent, FilterPipe, LoginComponent, LandingComponent, FooterComponent,HomeComponent,CoursecardComponent,PrimepricePipe, ErrormessageComponent, ErrorpageComponent],
   imports: [
+    AppRoutingModule,
     CommonModule,
   FormsModule,
   MatSelectModule,
@@ -40,7 +44,9 @@ import { CoursecardComponent } from '../user/coursecard/coursecard.component';
   MatRadioModule,
   MatDialogModule,
   MatCheckboxModule,
+  MatIconModule,
+  MatTooltipModule,
   ],
-  exports: [HeaderComponent, FilterPipe,LoginComponent,LandingComponent,FooterComponent]
+  exports: [HeaderComponent, FilterPipe,LoginComponent,LandingComponent,FooterComponent,HomeComponent,CoursecardComponent]
 })
 export class SharedModule { }

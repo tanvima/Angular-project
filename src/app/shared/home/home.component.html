@@ -6,7 +6,7 @@
           degrees online from world-class universities and companies.Real-world experts teaching real-world skills.</p>
       <br>
       <div class="row justify-content-start highlight">
-           <button id="button2" class="col-lg-2 lead highlight" (click)="openLoginDialog()">Join for Free</button>
+           <button id="button2" class="col-lg-2 lead highlight" (click)="openLoginDialog()"  *ngIf="userid == null">Join for Free</button>
       </div>
   </div>
   </div>
@@ -111,7 +111,7 @@
         <div class="sub-desc">
           Join now to receive personalized recommendations from the full Coursera catalog.
         </div>
-        <button id="button2" class="col-lg-2 lead highlight" (click)="openLoginDialog()">Join for Free</button>
+        <button id="button2" class="col-lg-2 lead highlight" (click)="openLoginDialog()"  *ngIf="userid == null">Join for Free</button>
        </div>
        
       </div>

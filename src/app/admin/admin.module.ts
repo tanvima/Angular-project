@@ -13,17 +13,21 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterModule } from '@angular/router';
-
+import { AdminhomeComponent } from './adminhome/adminhome.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
-  declarations: [AddcategoryComponent, AddcourseComponent, AddvideoComponent, AdminSidenavComponent, AdmincoursepageComponent, CoursepageComponent, UnblockuserComponent, VideopageComponent],
+  declarations: [AddcategoryComponent, AddcourseComponent, AddvideoComponent, AdminSidenavComponent, AdmincoursepageComponent, CoursepageComponent, UnblockuserComponent, VideopageComponent, AdminhomeComponent],
   imports: [
+    AppRoutingModule,
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
     MatIconModule,
     MatExpansionModule,
     RouterModule,
+    ChartsModule
   ],
   exports:[AdminSidenavComponent]
 })

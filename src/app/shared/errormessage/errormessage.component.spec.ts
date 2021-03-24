@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CoursepageComponent } from './coursepage.component';
+import { ErrormessageComponent } from './errormessage.component';
 
-describe('CoursepageComponent', () => {
-  let component: CoursepageComponent;
-  let fixture: ComponentFixture<CoursepageComponent>;
+describe('ErrormessageComponent', () => {
+  let component: ErrormessageComponent;
+  let fixture: ComponentFixture<ErrormessageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoursepageComponent ]
+      declarations: [ ErrormessageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CoursepageComponent);
+    fixture = TestBed.createComponent(ErrormessageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -76,9 +77,16 @@ getVideoByCourseId(cId:any):Observable<any>{
   console.log(cId)
   return  this.http.get('http://localhost:8080/elearning/videolist/'+cId);
 }
-getAllBlockUser():Observable<any>{
+
+getPopularCourse(){
+  return  this.http.get(environment.baseUserUrl+'/popularCourse')
+ }
+ getAllBlockUser():Observable<any>{
   return this.http.get('http://localhost:8080/elearning/blockuser/');
 }
-
+unblockUser(id:any):Observable<any>{
+  console.log(id)
+  return this.http.get('http://localhost:8080/elearning/blockuser/'+id);
+}
 
 }

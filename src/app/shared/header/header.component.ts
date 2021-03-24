@@ -68,6 +68,7 @@ userid!: Observable<any>;
         }); */
       }
     }, (err) => {
+      throw Error("Cannot fetch Category")
       console.log(err);
 
     });
@@ -165,7 +166,7 @@ userid!: Observable<any>;
 
   logout(){
     this.authservice.logout();
-    this.router.navigate(['/home'])
+    // this.router.navigate(['/home'])
   }
 
 

@@ -24,6 +24,10 @@ export class CartComponent implements OnInit {
       (data)=>{
         this.course = data
         console.log("course",this.course)
+        // throw Error("msg")
+      },
+      (err)=>{
+        // throw Error("msg")
       }
     )
   }

@@ -7,19 +7,18 @@ import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { GlobalErroHandlerService } from './global-erro-handler.service';
-import { CoursepageComponent } from './coursepage/coursepage.component';
 import {MatSelectModule} from '@angular/material/select';
 import { FilterPipe } from './shared/filter.pipe';
 import { AuthInterceptorService } from './utilities/auth-interceptor.service';
 import { AdminModule } from './admin/admin.module';
+import { GlobalErrorHandlerService } from './utilities/global-error-handler.service';
+import { HttpErrorInterceptorService } from './utilities/http-error-interceptor.service';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CoursepageComponent
     
    
   ],
@@ -32,7 +31,6 @@ import { AdminModule } from './admin/admin.module';
     HttpClientModule,
     MatSelectModule,
     AdminModule,
-    
   ],
   providers: [
     // {
@@ -44,7 +42,15 @@ import { AdminModule } from './admin/admin.module';
       provide:HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi:true
-    }
+    }, {
+      provide:ErrorHandler,
+    useClass:GlobalErrorHandlerService
+  },
+  {
+    provide:HTTP_INTERCEPTORS,
+    useClass:HttpErrorInterceptorService,
+    multi:true
+  }
   ],
   bootstrap: [AppComponent]
 })

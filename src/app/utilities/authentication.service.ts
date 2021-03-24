@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.prod';
@@ -12,6 +13,7 @@ export class AuthenticationService {
   loginStatus = new BehaviorSubject<boolean>(false)
   username = new BehaviorSubject<any>(sessionStorage.getItem('username'))
   userrole= new BehaviorSubject<any>(sessionStorage.getItem('userrole'))
+  userroleupdate= this.userrole.asObservable()
   userid= new BehaviorSubject<any>(sessionStorage.getItem('userid'))
   usertype= new BehaviorSubject<any>(sessionStorage.getItem('usertype'))
 intialCart!:Observable<any>
@@ -20,7 +22,7 @@ intialCart!:Observable<any>
   useridupdate = this.userid.asObservable()
   usertypeupdate=this.usertype.asObservable()
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private router: Router) { 
   this.cartsizeupdate.subscribe((data)=>{
     this.intialCart=data
   })
@@ -35,6 +37,11 @@ intialCart!:Observable<any>
     })
   }
 
+  updateUserRole(data:any){
+    console.log("In logout admin",data);
+    
+    this.userrole.next(data)
+  }
 
   authneticate(username:string,password:string){
     return this.http.post("http://localhost:8080/auth/authenticate",{username,password})
@@ -76,13 +83,13 @@ intialCart!:Observable<any>
         sessionStorage.removeItem("userrole")
         sessionStorage.removeItem("token")
         sessionStorage.removeItem("userid")
-        sessionStorage.removeItem("usertype")
-    
+        sessionStorage.removeItem("usertype")  
         this.username.next(null)
         this.userrole.next(null)
         this.loginStatus.next(false)
         this.userid.next(null)
         this.usertype.next(null)
-        
+        console.log("in logout>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        this.router.navigate(['/home'])
       }
 }

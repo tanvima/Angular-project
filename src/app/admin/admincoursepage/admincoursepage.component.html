@@ -63,3 +63,57 @@
       </div>
     </div>
   </div>
+
+  <!--MODALS FOR NOTIFICATION-->
+  <!--confirmation-->
+  <button data-toggle="modal"  [hidden]="true" #confirmation data-target="#modalDialogconfirmation">Confirmation</button>
+  
+    <div class="modal" id="modalDialogconfirmation">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-body">
+                  <p>Are you sure?</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" 
+                          data-dismiss="modal" (click)="confirmdel()">OK</button>
+              </div>
+          </div>
+      </div>
+      </div>
+  
+  <!--category not null-->
+  <button data-toggle="modal" [hidden]="true" #categorynotnull data-target="#modalDialog">Category Not Null</button>
+  
+  <div class="modal" id="modalDialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Category is not empty! Please delete courses before.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" 
+                        data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+  <!--notification-->
+  <button data-toggle="modal" [hidden]="true" #notification data-target="#modalDialogNotification">Category Not Null</button>
+  
+  <div class="modal" id="modalDialogNotification">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Category deleted!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" 
+                        data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+  

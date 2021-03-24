@@ -1,4 +1,4 @@
-import { PrimepricePipe } from './primeprice.pipe';
+import { PrimepricePipe } from '../shared/primeprice.pipe';
 
 describe('PrimepricePipe', () => {
   it('create an instance', () => {

@@ -78,7 +78,8 @@
     </div>
     <ul class="navbar-nav mr-sm-2">
       <li class="mx-2">
-        <button (click)="gotoHome()">
+        <button (click)="gotoHome()"  matTooltip="Home">
+          
           <mat-icon aria-hidden="false" aria-label="Example home icon"
             >home</mat-icon
           >
@@ -86,14 +87,14 @@
       </li>
       <ng-container *ngIf="userid != null">
         <li class="mx-2">
-          <button (click)="gotoMycourse()">
+          <button (click)="gotoMycourse()" matTooltip="My Courses">
             <mat-icon aria-hidden="false" aria-label="Example home icon"
               >auto_stories</mat-icon
             >
           </button>
         </li>
         <li class="mx-2">
-          <button (click)="gotoCart()">
+          <button (click)="gotoCart()" matTooltip="Course Cart">
             <mat-icon
               aria-hidden="false"
               aria-label="Example home icon"
@@ -151,7 +152,7 @@
     </ng-container>
   </div>
 </nav>
-
+<!-- <router-outlet></router-outlet> -->
 <!-- <h1 *ngIf = 'searchText'>Searched Results</h1>
 <ul class="list-group list-group-flush">
   <div class="course row">

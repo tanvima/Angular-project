@@ -20,6 +20,8 @@ export class CourselistComponent implements OnInit {
       this.activatedRoute.queryParams.subscribe((p)=>{
       this.categoryid=atob(p['categoryId'])
       this.categoryname=atob(p['categoryName'])
+      console.log("in couresList", this.categoryid);
+      
       this.us.getCourseByCat(this.categoryid).subscribe((data)=>{
         this.course=data
       })  

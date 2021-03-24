@@ -95,11 +95,22 @@ export class LoginComponent implements OnInit {
                     this.us.clearNoOfAttempts(this.loginForm.value.username).subscribe((data) => {
                       console.log(data);
                     })
+
+                    this.authservice.updateUserRole(data.roles[0])
+                    // this.router.navigate(['/app'])
                     // if (data.roles[0] === 'ROLE_user') {
                     //   this.router.navigate(['/home'])
                     // }
                     if (data.roles[0] === 'ROLE_admin') {
-                      this.router.navigate(['/admin'])
+                      // alert("admin")
+                      console.log("adminq11232");
+                      
+                      this.router.navigate([{outlets: {admin: 'adminhome'}}])
+                      
+                    }
+                    if (data.roles[0] === 'ROLE_user') {
+                      alert("user")
+                      this.router.navigate(['/home'])
                     }
                   }, (err: any) => {
                     this.us.updateNoOfAttempts(this.loginForm.value.username).subscribe((data) => {

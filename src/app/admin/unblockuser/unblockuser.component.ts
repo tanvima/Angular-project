@@ -9,7 +9,10 @@ import { AdminService } from '../admin.service';
   styleUrls: ['./unblockuser.component.scss']
 })
 export class UnblockuserComponent implements OnInit {
+
   blockedUsers:any;
+  headers=["Sr. No","Name", "Email"];
+  no_of_attempts:number=0;
   constructor(private as:AdminService,private router:Router) { }
 
   ngOnInit(): void {
@@ -22,9 +25,26 @@ export class UnblockuserComponent implements OnInit {
   getAllBlockUser(){
     this.as.getAllBlockUser().subscribe(res => {
       this.blockedUsers = res;
-      console.log(this.blockedUsers)
+      //console.log(this.blockedUsers);
+      //console.log(this.blockedUsers[0]["id"]);
     })
 
   }
+
+  onUnblock(id:number)
+  {
+    console.log(id);
+   
+    this.as.unblockUser(id)
+    .subscribe({
+      next: () => {
+        console.log('update');
+        this.blockedUsers=this.no_of_attempts     
+       
+      }
+    })
+  //  window.location.reload();
+  }
+
 
 }

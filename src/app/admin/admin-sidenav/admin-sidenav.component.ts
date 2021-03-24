@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+import { AuthenticationService } from 'src/app/utilities/authentication.service';
 
 @Component({
   selector: 'app-admin-sidenav',
@@ -8,11 +10,27 @@ import { Component, OnInit } from '@angular/core';
 export class AdminSidenavComponent implements OnInit {
   isVisible: boolean=false;
   
-  constructor() { }
+  constructor(private authservice:AuthenticationService, private router: Router) { }
+
+
+// @ViewChild(RouterOutlet) outlet!:RouterOutlet;
+
 
   ngOnInit(): void {
   }
    showHide(){
      this.isVisible=!this.isVisible
+   }
+
+   logout(){
+     alert("sdhgjskdh")
+    //  this.outlet.deactivate();
+     this.authservice.logout()
+
+    //  this.authservice.updateUserRole(null)
+    
+    //this.router.navigate(['/app'])
+
+
    }
 }

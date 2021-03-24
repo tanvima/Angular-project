@@ -6,7 +6,6 @@ import { AddvideoComponent } from './admin/addvideo/addvideo.component';
 import { AdmincoursepageComponent } from './admin/admincoursepage/admincoursepage.component';
 import { UnblockuserComponent } from './admin/unblockuser/unblockuser.component';
 import { VideopageComponent } from './admin/videopage/videopage.component';
-import { CoursepageComponent } from './coursepage/coursepage.component';
 import { LoginComponent } from './shared/login/login.component';
 import { CartComponent } from './user/cart/cart.component';
 import { CertificateComponent } from './user/certificate/certificate.component';
@@ -17,12 +16,17 @@ import { MycourseComponent } from './user/mycourse/mycourse.component';
 import { VideolistComponent } from './user/videolist/videolist.component';
 import { VideoplayerComponent } from './user/videoplayer/videoplayer.component';
 import { AuthGuard } from './utilities/auth.guard';
+import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
+import { CoursepageComponent } from './admin/coursepage/coursepage.component';
+import { ErrorpageComponent } from './shared/errorpage/errorpage.component';
+
 
 const routes: Routes = [
   {path:"home",component:HomeComponent},
-  {path:"",component:HomeComponent},
-// {path:"courselist/:categoryId",component:CourselistComponent},
+  {path:"",redirectTo: '/home', pathMatch: 'full' },
+
   {path:"courselist",component:CourselistComponent},
+
   {path:"course",component:CoursedetailComponent},
 
 
@@ -47,13 +51,59 @@ const routes: Routes = [
   canActivate:[AuthGuard]
 },
 {path:"login",component:LoginComponent},
-{path:'category-list',component:AdmincoursepageComponent},
-                        {path:"add-category",component:AddcategoryComponent},     
-                        {path:"add-course",component:AddcourseComponent},
-                        {path:"course-list",component:CoursepageComponent},
-                        {path:"add-video",component:AddvideoComponent},
-                        {path:"video-list",component:VideopageComponent},
-                        {path:"unblock-user",component:UnblockuserComponent}
+
+{path:'category-list',component:AdmincoursepageComponent,
+data:{role:'ROLE_admin'},
+outlet:'admin',
+canActivate:[AuthGuard]  
+},
+ {path:"add-category",component:AddcategoryComponent,
+ data:{role:'ROLE_admin'},
+ outlet:'admin',
+ canActivate:[AuthGuard]
+},  
+
+ {path:"add-course",component:AddcourseComponent,
+ data:{role:'ROLE_admin'},
+ outlet:'admin',
+ canActivate:[AuthGuard]
+},
+
+{path:"course-list",component:CoursepageComponent,
+data:{role:'ROLE_admin'},
+outlet:'admin',
+canActivate:[AuthGuard],
+
+},
+
+{path:"add-video",component:AddvideoComponent,
+data:{role:'ROLE_admin'},
+outlet:'admin',
+canActivate:[AuthGuard],
+
+},
+
+ {path:"video-list",component:VideopageComponent,
+ data:{role:'ROLE_admin'},
+ outlet:'admin',
+ canActivate:[AuthGuard],
+
+},
+
+ {path:"unblock-user",component:UnblockuserComponent,
+ data:{role:'ROLE_admin'},
+ outlet:'admin',
+ canActivate:[AuthGuard],
+
+},
+   {path:"adminhome",component:AdminhomeComponent,
+   data:{role:'ROLE_admin'},
+   outlet:'admin',
+   canActivate:[AuthGuard],
+  
+  },
+  {path:"**",component:ErrorpageComponent}
+                      
 ];
 
 @NgModule({
