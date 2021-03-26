@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-videopage',
@@ -25,14 +26,14 @@ export class VideopageComponent implements OnInit {
   @ViewChild('notification')
   notification!:ElementRef;
 
-  constructor(private as: AdminService,private router: Router) {
+  constructor(private as: AdminService,private router: Router, private _snackBar: MatSnackBar) {
     this.video = this.as.getVideoList()
     console.log(this.video)
 
   }
   
   videoUpdateForm = new FormGroup({
-    videoName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    videoName: new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(50)]),
     videoPath: new FormControl(''),
     videoDesc: new FormControl('', [
       Validators.required,
@@ -53,7 +54,7 @@ export class VideopageComponent implements OnInit {
     this.videoById = this.as.getVideoById(this.updateId).subscribe(res => {
       this.videoById = res;
       this.videoUpdateForm = new FormGroup({
-        videoName: new FormControl(res.videoName, [Validators.required, Validators.maxLength(30)]),
+        videoName: new FormControl(res.videoName, [Validators.required,Validators.minLength(3),Validators.maxLength(50)]),
         videoPath: new FormControl(''),
         videoDesc: new FormControl(res.videoDesc, [
           Validators.required,
@@ -72,21 +73,24 @@ export class VideopageComponent implements OnInit {
   updateVideo(id: number) {
     
     this.path = this.videoUpdateForm.value.videoPath
-    console.log('-----------',this.path)
-    if(this.path=''){
+    
+    if(this.path==''){
       this.videoUpdateForm.value.videoPath=this.videoById.videoPath
     }else{
-      this.videoUpdateForm.value.videoPath = this.path.replace(/^.*\\/, "../../../assets/")   
-}
+      this.videoUpdateForm.value.videoPath = this.path.replace(/^.*\\/, "../../../assets/") 
+    }
     this.as.updateVideo(this.updateId, this.videoUpdateForm.value)
       .subscribe({
         next: () => {
-          console.log('update');
-          this.video = this.videoUpdateForm.value
+          
+          this._snackBar.open("Video updated","Dismiss", {
+            duration: 7000,
+            verticalPosition: 'top'
+          });
+          this.video = this.as.getVideoList()
         }
       })
-     // window.location.reload();
-    alert('Video Updated Sucessfully!!')
+     
   }
   getCourseId(cId: any) {
     this.cId = cId;

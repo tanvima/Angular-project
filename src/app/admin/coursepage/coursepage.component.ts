@@ -47,7 +47,7 @@ export class CoursepageComponent implements OnInit {
       
     })
     this.courseUpdateForm = new FormGroup({
-      courseName: new FormControl('', [Validators.required, Validators.maxLength(3)]),
+      courseName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
       courseLogo: new FormControl('', [Validators.required]),
       courseDesc: new FormControl('', [
         Validators.required,
@@ -64,7 +64,7 @@ export class CoursepageComponent implements OnInit {
       this.courseBYId = res;
       console.log("-----------------",this.courseBYId);
       this.courseUpdateForm = new FormGroup({
-        courseName: new FormControl(res.courseName, [Validators.required, Validators.maxLength(3)]),
+        courseName: new FormControl(res.courseName, [Validators.required,Validators.minLength(3), Validators.maxLength(50)]),
         courseLogo: new FormControl('', [Validators.required]),
         courseDesc: new FormControl(res.courseDesc, [
           Validators.required,
@@ -106,7 +106,7 @@ export class CoursepageComponent implements OnInit {
       console.log("path",this.courseUpdateForm.value.courseLogo)
       console.log(this.path)
       this.courseUpdateForm.value.courseLogo = this.path.replace(/^.*\\/, "../../../assets/")
-      console.log(",,,,,,,,,,,",this.courseUpdateForm.value.courseLogo) 
+      
     }
     this.as.updateCourse(this.updateId, this.courseUpdateForm.value)
       .subscribe((data)=>{
