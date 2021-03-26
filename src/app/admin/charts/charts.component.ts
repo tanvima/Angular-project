@@ -57,7 +57,8 @@ export class ChartsComponent implements OnInit {
 
     })
 
-    console.log("Enroll",this.enrollment)
+    console.log("Enroll",this.likes)
+    console.log("Coursename",this.coursename)
   }
 //Course per category
   doughnutChartLabels: Label[] = this.categoryname;
@@ -75,18 +76,29 @@ export class ChartsComponent implements OnInit {
   enrollBarLegend=true;
   enrollBarChartPlugins=[];
   enrollBarChartData:ChartDataSets[]=[{data:this.enrollment,label:'Student enrollment'}];
-  coursePerCatOptions:ChartOptions={
-    responsive:true
-  };
   enrollBarColor:Color[] = [
     {
       borderColor: 'grey',
       backgroundColor: '#c8a951',
     },
   ];
+
+
+  barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  barChartLabels: Label[] = ['Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes'];
+  barChartType: ChartType = 'bar';
+  barChartLegend = true;
+  barChartPlugins = [];
+
+  barChartData: ChartDataSets[] = [
+    { data: [45, 37, 60, 70, 46, 33], label: 'Best Fruits' }
+  ];
+  
 //Likes of courses
 lineChartData: ChartDataSets[] = [
-  { data: this.popularCourseRating, label: 'Likes of courses' },
+  { data: this.likes, label: 'Likes of courses' },
 ];
 
 lineChartLabels: Label[] =this.coursename

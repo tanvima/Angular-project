@@ -6,7 +6,7 @@
     [chartType]="doughnutChartType">
   </canvas>
 </div>
- <div class="chart-wrapper col  mt-5"><h4>Student Enrollment</h4>
+ <div class="chart-wrapper   mt-5"> <h4>Student Enrollment </h4>
         <canvas class="h-50" baseChart 
         [datasets]="enrollBarChartData"
         [labels]="enrollBarLabels"
@@ -17,8 +17,9 @@
         [chartType]="enrollBar">
       </canvas>
     </div>
+   
 
-    <div class="chart-wrapper col mt-5 justify-content-center">
+    <div class="chart-wrapper  mt-5 justify-content-center">
         <h4>Likes of Courses </h4>
         <canvas baseChart 
             [datasets]="lineChartData" 
@@ -31,7 +32,7 @@
         </canvas>
     </div>
 
-    <div class="chart-wrapper col  mt-5"><h4>Course Rating</h4>
+    <div class="chart-wrapper   mt-5"><h4>Course Rating</h4>
         <canvas class="h-50" baseChart 
         [datasets]="ratingBarChartData"
         [labels]="ratingBarLabels"

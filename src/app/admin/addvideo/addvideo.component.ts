@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 
@@ -17,7 +18,7 @@ export class AddvideoComponent implements OnInit {
  videoForm!: FormGroup
   path!: string;
   constructor(private as:AdminService,private route:ActivatedRoute,
-    private router:Router) {
+    private router:Router,private _snackBar: MatSnackBar) {
      // this.cId = this.route.snapshot.paramMap.get("v"); 
     }
 ngOnInit(){
@@ -30,12 +31,12 @@ ngOnInit(){
   //   console.log(this.course)
   // }) 
   this.videoForm = new FormGroup({
-  videoName: new FormControl('', [Validators.required,Validators.minLength(3),Validators.maxLength(15)]),
+  videoName: new FormControl('', [Validators.required,Validators.minLength(3),Validators.maxLength(50)]),
  
    videoDesc: new FormControl('', [
        Validators.required, 
        Validators.minLength(10), 
-       Validators.maxLength(100),
+       Validators.maxLength(3000),
        
      ]),
      videoPath: new FormControl('',[Validators.required])
@@ -62,7 +63,11 @@ getCourseId(cId:any){
     console.log(this.data)
     this.as.addVideo(this.cId,this.data)
     .subscribe({next:() => 
-    {
+    { this._snackBar.open("Video added","Dismiss", {
+      duration: 7000,
+      verticalPosition: 'top'
+    });
+      this.router.navigate([{outlets: {admin: 'video-list'}}])
       console.log('');
     }})
   }

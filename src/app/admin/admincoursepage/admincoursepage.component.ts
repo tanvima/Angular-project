@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-admincoursepage',
   templateUrl: './admincoursepage.component.html',
@@ -27,7 +28,7 @@ export class AdmincoursepageComponent implements OnInit {
   storingImageUrl: any;
 
   constructor(private as: AdminService,
-    private router: Router) {
+    private router: Router,private _snackBar: MatSnackBar) {
     this.as.getCategoryList().subscribe(res => {
       this.category = res;
       console.log(this.category)
@@ -114,13 +115,17 @@ export class AdmincoursepageComponent implements OnInit {
       .subscribe({
         next: () => {
           console.log('update');
-          this.ngOnInit()
+          this._snackBar.open("Category updated","Dismiss", {
+            duration: 7000,
+            verticalPosition: 'top'
+          });
+          this.as.getCategoryList().subscribe(res => {
+            this.category = res;
+            console.log(this.category)
+          })
         }
       })
-    this.as.getCategoryList().subscribe(res => {
-      this.category = res;
-      console.log(this.category)
-    })
+    
   }
 
   confirmdel(){

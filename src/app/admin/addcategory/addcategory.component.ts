@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 
@@ -13,19 +14,23 @@ export class AddcategoryComponent implements OnInit {
 categoryForm!: FormGroup
   path!: string;
   category: any;
-   constructor(private as:AdminService,private router:Router) {}
+
+  // @ViewChild('okbutton')
+  // okbutton!:ElementRef
+
+   constructor(private as:AdminService,private router:Router,private _snackBar: MatSnackBar) {}
  ngOnInit(){
   this.as.getCategoryList().subscribe(res=>{
     this.category=res;
     console.log(this.category)
   })
    this.categoryForm = new FormGroup({
-    categoryName: new FormControl('', [Validators.required,Validators.minLength(3),Validators.maxLength(15)]),
+    categoryName: new FormControl('', [Validators.required,Validators.minLength(3),Validators.maxLength(50)]),
     categoryLogo: new FormControl('',[Validators.required]),
      categoryDesc: new FormControl('', [
         Validators.required, 
         Validators.minLength(10), 
-        Validators.maxLength(100)
+        Validators.maxLength(3000)
       ])
     })
   }
@@ -36,6 +41,12 @@ categoryForm!: FormGroup
     this.as.addCategory(this.categoryForm.value)
     .subscribe((data)=>{
       console.log("added")
+      this._snackBar.open("Category added","Dismiss", {
+        duration: 7000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate([{outlets: {admin: 'category-list'}}])
+      //  this.router.navigate(["category-list"])
     },
     (err)=>{
       console.log("error", err)

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TooltipPosition } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { UserService } from 'src/app/user/user.service';
@@ -73,6 +74,8 @@ export class LoginComponent implements OnInit {
     password: new FormControl('')
   });
 
+  positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
+  position = new FormControl(this.positionOptions[2]);
   ngOnInit(): void {
     console.log("INIT")
     this.noOfAttempts=0
@@ -172,6 +175,7 @@ export class LoginComponent implements OnInit {
         this.ngOnInit()
       })
       this.registrationForm.reset()
+      this.loginForm.reset()
       this.otpForm.reset()
       this.isOTP = false
       this.ngOnInit()

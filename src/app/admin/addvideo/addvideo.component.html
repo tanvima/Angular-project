@@ -77,7 +77,14 @@
         </div>
         <div class="form-group">
           <label for="videoDesc">Video Description </label>
-          <input type="text" name="videoDesc" class="form-control" formControlName="videoDesc">
+          <!-- <input type="text" name="videoDesc" class="form-control" formControlName="videoDesc"> -->
+          <textarea
+          type="text"
+          class="form-control"
+          formControlName="videoDesc"
+          placeholder="Video Description"
+          rows="3"
+        ></textarea>
           <div *ngIf="videoForm.controls.videoDesc?.invalid && videoForm.controls.videoDesc?.touched" [ngStyle]="{'color':'red'}">Please Enter Characters Between 10 to 100</div>  
         </div>
         <div class="form-group">
@@ -85,11 +92,11 @@
           <input type="file" name="videoPath" class="form-control" formControlName="videoPath">
         </div>
         <div class="form-group">
-          <button  [disabled]="!videoForm.valid" class="btn" type="submit" data-toggle="modal" id="modalDialog" >Add Video</button>
+          <button  [disabled]="!videoForm.valid" class="btn" type="submit"  >Add Video</button>
         </div>
       </form>
     </div>
-    <div class="modal" id="modalDialog">
+    <!-- <div class="modal" id="modalDialog">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-body">
@@ -101,5 +108,5 @@
               </div>
           </div>
       </div>
-    </div>
+    </div> -->
     </div>

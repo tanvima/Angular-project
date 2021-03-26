@@ -22,7 +22,8 @@ button{
 li{
    button{
       background-color:  #6c757d;
-      font-size:20px
+      font-size:20px;
+      outline: none;
     
    }
 }
@@ -38,6 +39,7 @@ mat-icon{
 
 .dropText{
    color: #6c757d;
+   cursor: pointer;
 }
 .menuIcon{
    background-color:#6c757d;

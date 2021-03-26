@@ -43,8 +43,15 @@
 
               <div class="form-group">
                 <label for="categoryDesc">Category Desc</label>
-                <input type="text" formControlName="categoryDesc" class="form-control" name="categoryDesc"
-                  >
+                <!-- <input type="text" formControlName="categoryDesc" class="form-control" name="categoryDesc"
+                  > -->
+                  <textarea
+                  type="text"
+                  class="form-control"
+                  formControlName="categoryDesc"
+                  placeholder="Category Description"
+                  rows="3"
+                ></textarea>
                   <div *ngIf="categoryUpdateForm.controls.categoryDesc?.invalid && categoryUpdateForm.controls.categoryDesc?.touched" [ngStyle]="{'color':'red'}">Please Enter Characters Between 10 to 100 </div>
                 </div>
               <div>
@@ -52,12 +59,13 @@
                 <img [src]=categoryById.categoryLogo alt="">
                 <input type="file" name="categoryLogo" formControlName="categoryLogo" class="form-control"
                   name="categoryLogo">
-
+                  
+                
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" (click)="updateCategory(c.categoryId)" class="btn btn-info"
-                data-dismiss="modal" data-toggle="modal" data-target="#modalDialogUpdated">Save</button>
+                data-dismiss="modal" >Save</button>
               <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
             </div>
           </form>
@@ -65,7 +73,7 @@
         </div>
       </div>
     </div>
-    <div class="modal" id="modalDialogUpdated">
+    <!-- <div class="modal" id="modalDialogUpdated">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-body">
@@ -78,7 +86,7 @@
               </div>
           </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 

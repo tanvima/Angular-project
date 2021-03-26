@@ -30,7 +30,7 @@
               >
                 <span>This field is mandatory</span>
               </mat-error>
-                <span  class="errMsgLongin mt-5" *ngIf="errMsgLogin != ''">{{ errMsgLogin }}</span>
+                <span  class="errMsgLongin mt-5" *ngIf="errMsgLogin != ''&& loginForm.controls.username.touched">{{ errMsgLogin }}</span>
             </mat-form-field>
             <mat-form-field
               class="form-field col-12"
@@ -181,7 +181,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-checkbox class="example-margin col-9 mt-3" formControlName="prime"
+          <mat-checkbox class="example-margin col-9 mt-3" formControlName="prime" matTooltip="Get 30% Off"  [matTooltipPosition]="position.value"
             >Get Prime membership</mat-checkbox
           >
           <button
@@ -198,23 +198,25 @@
       </div>
 
       <div *ngIf="isOTP" class="form-container">
+
         <form [formGroup]="otpForm">
-          Enter OTP
+       
           <mat-form-field
-            class="form-field col-6"
+            class="form-field col-12 mt-2"
             appearance="outline"
             color="primary"
           >
-            <mat-label>OTP</mat-label>
+            <mat-label>Enter OTP</mat-label>
             <input matInput formControlName="otp" required type="text" />
-            <mat-error>
-              <span *ngIf="errMsg != ''">Invalid Otp</span>
-            </mat-error>
+           
+              <span *ngIf="errMsg != ''" class="errMsgLongin mt-5">Invalid Otp</span>
+           
           </mat-form-field>
 
-          <input type="submit" value="submit" (click)="verifyOTP()" />
+          <input type="submit" value="submit"   class="btn btn-md btn-secondary w-25" (click)="verifyOTP()" />
         </form>
       </div>
+
     </mat-tab>
 
     <!--Forgot Password-->

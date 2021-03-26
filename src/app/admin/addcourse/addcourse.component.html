@@ -73,14 +73,25 @@
       </div>
       <div class="form-group">
         <label for="courseDesc">Course Description </label>
-        <input type="text" name="courseDesc" class="form-control" formControlName="courseDesc">
+        <!-- <input type="text" name="courseDesc" class="form-control" formControlName="courseDesc"> -->
+        <textarea
+        type="text"
+        class="form-control"
+        formControlName="courseDesc"
+        placeholder="Course Description"
+        rows="3"
+      ></textarea>
         <div *ngIf="courseForm.controls.courseDesc?.invalid && courseForm.controls.courseDesc?.touched"
           [ngStyle]="{'color':'red'}">Please Enter Characters Between 10 to 100 </div>
       </div>
+
       <div class="form-group">
         <label for="coursePrice">Course Price </label>
         <input type="number" name="coursePrice" class="form-control" formControlName="coursePrice">
+        <div *ngIf="courseForm.controls.coursePrice?.invalid && courseForm.controls.coursePrice?.touched"
+          [ngStyle]="{'color':'red'}">Please value below 99999</div>
       </div>
+
       <div class="form-group">
         <label for="authorName">Author Name </label>
         <input type="text" name="authorName" class="form-control" formControlName="authorName">
@@ -90,20 +101,8 @@
         <input type="file" name="courseLogo" class="form-control" formControlName="courseLogo">
       </div>
       <div class="form-group">
-        <button [disabled]="!courseForm.valid" type="submit" class="btn" data-toggle="modal"
-          data-target="#modalDialog">Add course</button>
+        <button [disabled]="!courseForm.valid" type="submit" class="btn" >Add course</button>
       </div>
     </form>
-  <div class="modal" id="modalDialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <p>Course Added Successfully!!</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  
   </div>

@@ -99,7 +99,7 @@
 <div class="container-fluid container-about-course">
   <div class="row">
     <div class="col-12">
-      <h3 class="text-center m-5">
+      <h3 class="text-center m-5 comments-heading ">
         Syllabus - What you will learn from this course
       </h3>
     </div>
@@ -119,7 +119,7 @@
               <div class="col-md-3 p-2">
                 <!-- <img src="{{ c.imgSrc }}" class="card-img" alt="..." /> -->
                 
-                <video [src]=src+c.videoPath  class="card-img"></video>
+                <video [src]=c.videoPath  class="card-img"></video>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
@@ -155,7 +155,7 @@
     <div class="comment-average-rating"><i class="fa fa-star" aria-hidden="true" style="color: rgb(175, 175, 68);"></i>
      {{course.rating}}</div>
   </div>
-  
+  <ng-container *ngIf="course.comment.length !=0 ; else elseCommentBlock">
   <div *ngFor="let c of course.comment;let index=index">
     <div class="commentContainer">
       <div class="individualReview">
@@ -188,4 +188,10 @@
       <hr/>
     </div>
   </div>
+</ng-container>
+<ng-template #elseCommentBlock>
+  <div class="text-center">
+  <h2>No feedbacks yet...</h2>
+</div>
+</ng-template>
 </div>
