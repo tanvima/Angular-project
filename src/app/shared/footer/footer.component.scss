@@ -1,12 +1,18 @@
+
 .context-dark, .bg-gray-dark, .bg-primary {
   color:black;
 }
 
 .section  {
-  position: relative;
-  width: 100%;
-  bottom: 0;
+   position: relative;
+   width: 100%;
+   bottom: 0;
   margin-top: 120px;
+  background-color: #6c757d;
+  color: rgb(223, 219, 219);
+}
+.a-href{
+  color: white;
 }
 
 .footer-classic a, .footer-classic a:focus, .footer-classic a:active {

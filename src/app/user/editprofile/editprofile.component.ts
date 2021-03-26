@@ -12,6 +12,7 @@ import { UserService } from '../user.service';
 })
 export class EditprofileComponent implements OnInit {
   user!: any
+  currentIndex=0
   // editForm!:FormGroup
   editForm = new FormGroup({
     name: new FormControl(''),

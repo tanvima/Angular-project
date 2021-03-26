@@ -15,18 +15,18 @@
   <button *ngIf="flagfornext" (click)="onBack()">Back to Videos</button>
     </div> -->
 
-<div class="container-fluid">
+<div class="container-fluid ">
   <div class="row buttons1 d-flex mt-5 pl-5">
-    <a href="#"><div class="course-title">Course Title &nbsp; ></div></a>
+    <a ><div class="course-title">{{coursename}}&nbsp; ></div></a>
     <div class="course-title ml-2">{{ videotitle }}</div>
     <div class="ml-auto pr-5">
-      <button *ngIf="flagfornext" class="btn btn-secondary" (click)="onBack()">
+      <button class="btn btn-secondary" (click)="onBack()">
         Back to Videos
       </button>
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container video-player">
   <div class="row">
     <!-- <div class="row title">
         Compute Engine
@@ -50,9 +50,9 @@
       </video>
     </div>
     <div class="row buttons d-flex mt-2">
-      <div>
+      <!-- <div>
         <button class="btn btn-lg pl-5 pr-5 btn-secondary">Prev</button>
-      </div>
+      </div> -->
       <div class="ml-auto">
         <button
           *ngIf="nextButton"
@@ -75,10 +75,7 @@
         <h4>Description:</h4>
       </div>
       <div class="col-8">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt, nisi
-        quod dicta ad voluptate blanditiis deserunt similique accusamus
-        perferendis veritatis, quia odit nulla sed animi, vero corrupti fugit
-        possimus aspernatur!
+        {{videodesc}}
       </div>
     </div>
   </div>

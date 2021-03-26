@@ -17,9 +17,12 @@ import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { ChartsModule } from 'ng2-charts';
 import { ChartsComponent } from './charts/charts.component';
+import { AdmincoursedetailComponent } from './admincoursedetail/admincoursedetail.component';
+import { NgxInputStarRatingModule } from 'ngx-input-star-rating';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
-  declarations: [AddcategoryComponent, AddcourseComponent, AddvideoComponent, AdminSidenavComponent, AdmincoursepageComponent, CoursepageComponent, UnblockuserComponent, VideopageComponent, AdminhomeComponent, ChartsComponent],
+  declarations: [AddcategoryComponent, AddcourseComponent, AddvideoComponent, AdminSidenavComponent, AdmincoursepageComponent, CoursepageComponent, UnblockuserComponent, VideopageComponent, AdminhomeComponent, ChartsComponent, AdmincoursedetailComponent],
   imports: [
     AppRoutingModule,
     CommonModule,
@@ -28,7 +31,9 @@ import { ChartsComponent } from './charts/charts.component';
     MatIconModule,
     MatExpansionModule,
     RouterModule,
-    ChartsModule
+    ChartsModule,
+    NgxInputStarRatingModule,
+    MatCardModule
   ],
   exports:[AdminSidenavComponent]
 })

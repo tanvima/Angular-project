@@ -1,3 +1,6 @@
+.router-outlet{
+  min-height: 65vh;
+}
 .navbar{
     background-color: #777777;
     width:100%;
@@ -53,7 +56,10 @@
     cursor: pointer;
   }
   
-  
+  .fa{
+    color:white;
+    font-size: 30px;
+  }
   
   
   

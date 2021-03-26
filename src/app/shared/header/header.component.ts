@@ -19,24 +19,16 @@ export class HeaderComponent implements OnInit {
 //userid=null;
 userid!: Observable<any>;
   constructor(private us: UserService, private router: Router, public dialog: MatDialog, private authservice: AuthenticationService) {
-    //this.userid =this.authservice.userid.value
-
+   
     this.authservice.useridupdate.subscribe((data)=>{
       this.userid=data
-    })
-   
-      this.authservice.updateCartSizeData()
       this.authservice.cartsizeupdate.subscribe((data)=>{
         this.cartsize=data
         this.cartsize1=data
       })
     
-    
-
-      // this.cartsize.subscribe((data)=>{
-      //   this.cartsize1=data
-      // })
-    
+    })
+  
    }
   categories: any
   cartsize!: Observable<any>
@@ -51,7 +43,7 @@ userid!: Observable<any>;
   
 
 
-    console.log(this.userid,"sdghdfjkgh")
+   
     this.us.getAllCategory().subscribe((data) => {
       if (data != undefined && data != null) {
         this.categories = data;
@@ -63,12 +55,7 @@ userid!: Observable<any>;
 
           }
         }
-        /* this.categories.forEach(function (value: Category) {
-          value.courses.forEach(function(course:Course){
-           console.log("Courses " ,course.courseName)
-           
-          })
-        }); */
+       
       }
     });
     this.filteredOptions = this.myControl.valueChanges
@@ -76,27 +63,10 @@ userid!: Observable<any>;
         startWith(''),
         map(value => this._filter(value))
       );
-    /* 
-       
-    for(let category of this.categories){
-      console.log("sddddddddddddljknhefoijef")
-      for(let course of category.courses){
-        this.options.push(course.courseName)
-        
-      }
-    } */
-    console.log("OPTIONS", this.options)
-
-    // if (this.userid) {
-    //   this.us.getCartCourses(this.userid).subscribe((data) => {
-    //     this.cartsize = data.length
-
-    //   })
-    // }
-
+   
   }
   private _filter(value: string): string[] {
-    console.log(value);
+   
     if (value == '') {
       return [];
     }

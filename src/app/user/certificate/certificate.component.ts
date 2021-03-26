@@ -30,7 +30,7 @@ export class CertificateComponent implements OnInit {
   ngOnInit(): void {
 
     this.activatedRoute.queryParams.subscribe((p) => {
-      this.courseid = p['courseId']
+      this.courseid = Number(atob(p['courseId']))
       })
 
       this.us.getCourseById(this.courseid).subscribe((data)=>{

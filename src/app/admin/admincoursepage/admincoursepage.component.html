@@ -3,7 +3,7 @@
     <div class="card text-center">
       <h3>
         <div class="card-header">
-          {{c.categoryName}}
+          {{c.categoryName|uppercase}}
         </div>
       </h3>
       <div class="card-body">
@@ -37,25 +37,27 @@
               <div class="form-group">
                 <label for="categoryName">Category Name</label>
                 <input type="text" formControlName="categoryName" class="form-control" name="categoryName"
-                  value={{categoryById.categoryName}}>
+                  >
                   <div *ngIf="categoryUpdateForm.controls.categoryName?.invalid && categoryUpdateForm.controls.categoryName?.touched" [ngStyle]="{'color':'red'}">Please Enter Characters Between 3 to 15 </div> 
               </div>
 
               <div class="form-group">
                 <label for="categoryDesc">Category Desc</label>
                 <input type="text" formControlName="categoryDesc" class="form-control" name="categoryDesc"
-                  value={{categoryById.categoryDesc}}>
+                  >
                   <div *ngIf="categoryUpdateForm.controls.categoryDesc?.invalid && categoryUpdateForm.controls.categoryDesc?.touched" [ngStyle]="{'color':'red'}">Please Enter Characters Between 10 to 100 </div>
                 </div>
               <div>
                 <label for="categoryLogo">Category Logo </label>
+                <img [src]=categoryById.categoryLogo alt="">
                 <input type="file" name="categoryLogo" formControlName="categoryLogo" class="form-control"
                   name="categoryLogo">
+
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" (click)="updateCategory(c.categoryId)" class="btn btn-info"
-                data-dismiss="modal" data-toggle="modal" data-target="#modalDialog">Save</button>
+                data-dismiss="modal" data-toggle="modal" data-target="#modalDialogUpdated">Save</button>
               <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
             </div>
           </form>
@@ -63,7 +65,7 @@
         </div>
       </div>
     </div>
-    <div class="modal" id="modalDialog">
+    <div class="modal" id="modalDialogUpdated">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-body">

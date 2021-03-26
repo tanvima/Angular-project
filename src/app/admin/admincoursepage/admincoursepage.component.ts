@@ -56,7 +56,7 @@ export class AdmincoursepageComponent implements OnInit {
       this.categoryById = res;
       this.categoryUpdateForm = new FormGroup({
         categoryName: new FormControl(res.categoryName, [Validators.required, Validators.maxLength(50)]),
-        categoryLogo: new FormControl(res.categoryLogo, [Validators.required]),
+        categoryLogo: new FormControl('', [Validators.required]),
         categoryDesc: new FormControl(res.categoryDesc, [
           Validators.required,
           Validators.minLength(25),
@@ -78,7 +78,6 @@ export class AdmincoursepageComponent implements OnInit {
       console.log("DEle")
       this.confirmation.nativeElement.click()
       //code for delete category
-    
   
   }else{
     //courses present in category so you cannot delete category
@@ -103,21 +102,25 @@ export class AdmincoursepageComponent implements OnInit {
     // alert('Category Updated Sucessfully!!')
 
     console.log(this.categoryUpdateForm.value.categoryLogo)
-    if(this.categoryUpdateForm.value.categoryLogo==''){
+    this.path = this.categoryUpdateForm.value.categoryLogo
+    if(this.path==''){
       console.log(this.categoryUpdateForm.value.categoryLogo)   
-    this.categoryUpdateForm.value.categoryLogo=this.storingImageUrl;     
+    this.categoryUpdateForm.value.categoryLogo=this.categoryById.categoryLogo;     
     }
    else{
-    this.path = this.categoryUpdateForm.value.categoryLogo
     this.categoryUpdateForm.value.categoryLogo = this.path.replace(/^.*\\/, "../../../assets/")
    }
     this.as.updateCategory(this.updateId, this.categoryUpdateForm.value)
       .subscribe({
         next: () => {
           console.log('update');
+          this.ngOnInit()
         }
       })
-    window.location.reload();
+    this.as.getCategoryList().subscribe(res => {
+      this.category = res;
+      console.log(this.category)
+    })
   }
 
   confirmdel(){
@@ -126,7 +129,7 @@ export class AdmincoursepageComponent implements OnInit {
       next: () => {
         console.log('delete')
         this.notification.nativeElement.click()
-         window.location.reload();
+         this.ngOnInit()
       }
     })
   }

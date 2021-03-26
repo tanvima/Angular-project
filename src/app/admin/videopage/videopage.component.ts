@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,17 +17,23 @@ export class VideopageComponent implements OnInit {
   path!: string;
   cId: any;
   course:any;
+  deleteId:any;
 
-  constructor(private as: AdminService,
-    private router: Router) {
+  @ViewChild('confirmation')
+  confirmation!: ElementRef;
+
+  @ViewChild('notification')
+  notification!:ElementRef;
+
+  constructor(private as: AdminService,private router: Router) {
     this.video = this.as.getVideoList()
     console.log(this.video)
 
   }
   
   videoUpdateForm = new FormGroup({
-    videoName: new FormControl('', [Validators.required, Validators.maxLength(3)]),
-    videoPath: new FormControl('', [Validators.required]),
+    videoName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    videoPath: new FormControl(''),
     videoDesc: new FormControl('', [
       Validators.required,
       Validators.minLength(25),
@@ -47,8 +53,8 @@ export class VideopageComponent implements OnInit {
     this.videoById = this.as.getVideoById(this.updateId).subscribe(res => {
       this.videoById = res;
       this.videoUpdateForm = new FormGroup({
-        videoName: new FormControl(res.videoName, [Validators.required, Validators.maxLength(3)]),
-        videoPath: new FormControl(res.videoPath, [Validators.required]),
+        videoName: new FormControl(res.videoName, [Validators.required, Validators.maxLength(30)]),
+        videoPath: new FormControl(''),
         videoDesc: new FormControl(res.videoDesc, [
           Validators.required,
           Validators.minLength(25),
@@ -59,17 +65,19 @@ export class VideopageComponent implements OnInit {
     })
     console.log(this.updateId)
   }
-  deleteVideo(id: number) {
-    let ob = this.as.deleteVideo(id);
-    ob.subscribe({
-      next: () => { console.log('delete') }
-    })
-    window.location.reload();
-    alert('Video Deleted Sucessfully!!')
+  deleteVideos(id: number) {
+    this.deleteId=id
+    this.confirmation.nativeElement.click()
   }
   updateVideo(id: number) {
+    
     this.path = this.videoUpdateForm.value.videoPath
-    this.videoUpdateForm.value.videoPath = this.path.replace(/^.*\\/, "../../../assets/")
+    console.log('-----------',this.path)
+    if(this.path=''){
+      this.videoUpdateForm.value.videoPath=this.videoById.videoPath
+    }else{
+      this.videoUpdateForm.value.videoPath = this.path.replace(/^.*\\/, "../../../assets/")   
+}
     this.as.updateVideo(this.updateId, this.videoUpdateForm.value)
       .subscribe({
         next: () => {
@@ -77,14 +85,31 @@ export class VideopageComponent implements OnInit {
           this.video = this.videoUpdateForm.value
         }
       })
-      window.location.reload();
+     // window.location.reload();
     alert('Video Updated Sucessfully!!')
   }
   getCourseId(cId: any) {
     this.cId = cId;
     console.log(this.cId);
     console.log(cId)
-    this.video=this.as.getVideoByCourseId(this.cId);
+    if(cId=="null"||cId==null||cId=="undefined"){
+      console.log("helllo")
+      this.video = this.as.getVideoList()
+    }else{
+      this.video=this.as.getVideoByCourseId(this.cId);
+    }
+    
+  }
+
+  confirmDelete(){
+    let ob = this.as.deleteVideo(this.deleteId);
+    ob.subscribe({
+      next: () => { console.log('delete') 
+      this.notification.nativeElement.click()
+      this.video=this.as.getVideoList();
+    }
+    })
+    
   }
 }
 

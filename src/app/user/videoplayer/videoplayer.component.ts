@@ -32,13 +32,15 @@ export class VideoplayerComponent implements OnInit {
   durationInSeconds = 5;
   videotitle!: string
   flagfornext!: boolean
-
+  videodesc=''
+  coursename=''
   ngOnInit(): void {
 
     this.activatedRoute.queryParams.subscribe((p) => {
-      this.courseid = p['courseId']
-      this.videoid = p['videoId']
-
+      this.courseid = atob(p['courseId'])
+      this.videoid = Number(atob(p['videoId']))
+      this.coursename = atob(p['courseName'])
+          
 
     })
 
@@ -53,6 +55,7 @@ export class VideoplayerComponent implements OnInit {
             this.src = video.videoPath
             console.log("SRc "+ this.src)
             this.videotitle = video.videoName
+            this.videodesc = video.videoDesc
 
           }
 
@@ -154,13 +157,13 @@ export class VideoplayerComponent implements OnInit {
   }
 
   onBack() {
-    this.router.navigate(['/videolist'], { queryParams: { courseId: this.courseid } });
+    this.router.navigate(['/videolist'], { queryParams: { courseId: btoa(this.courseid) } });
   }
 
   gotoCertificate() {
 
     //certificate pdf generation api
-    this.router.navigate(['/certificate'], { queryParams: { courseId: this.courseid } });
+    this.router.navigate(['/certificate'], { queryParams: { courseId: btoa(this.courseid) } });
 
   }
 

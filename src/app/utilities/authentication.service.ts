@@ -30,13 +30,21 @@ intialCart!:Observable<any>
 
   updateCartSizeData(){
     this.useridupdate.subscribe((data)=>{
-      this.getCartCourses(data).subscribe((data1) => {
-        console.log("The cart data ",data1)
-        this.cartsize.next(data1.length)
-      },
-      (err)=>{
-        //throw Error("cannot fetch cart")
-      })
+      if(data== null||data=='undefined'){
+        
+      }
+      else{
+      
+        console.log("logout" , data)
+        this.getCartCourses(data).subscribe((data1) => {
+          console.log("The cart data ",data1)
+          this.cartsize.next(data1.length)
+        },
+        (err)=>{
+          throw Error("cannot fetch cart")
+        })
+      }
+      
     })
   }
 

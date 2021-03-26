@@ -31,9 +31,10 @@ export class CoursedetailComponent implements OnInit {
 
     this.activatedRoute.queryParams.subscribe((p) => {
       this.courseid = atob(p['courseId'])
-      console.log("course Id ", this.courseid)
+     
       this.us.getCourseById(this.courseid).subscribe((data) => {
         this.course = data
+        console.log("course -----", this.course)
         if(this.authservice.isLoggedIn()){
           if(this.course.cart.find((cart: any) => cart.userId == this.userid)){
             this.inCart=true

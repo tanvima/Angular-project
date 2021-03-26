@@ -1,7 +1,7 @@
-<p>videolist works!</p>
 
 <ng-container *ngIf="course !=undefined && course != null">
   <h1>{{course.courseName}}</h1>
+<ng-container *ngIf="course.video.length!=0 ; else elseBlock">
 <div class="media" *ngFor="let v of course.video, let index=index">
     
     <br>
@@ -12,7 +12,7 @@
     </div>
         <div class="media-body col-8">
           <h4>Title:</h4>
-         <a class="mt-text" href="#">{{v.videoName}}</a>
+         <a class="mt-text">{{v.videoName}}</a>
           <h4>Description:</h4>
           <p class="mt-text">{{v.videoDesc}}</p>
           <h4>Duration:</h4>
@@ -25,3 +25,10 @@
     
  </div>
  </ng-container>
+ <ng-template #elseBlock>
+   
+  <div class="text-center">
+    <h2>No Videos present...</h2>
+  </div>
+
+</ng-template>

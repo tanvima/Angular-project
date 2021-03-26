@@ -1,7 +1,7 @@
 <div class="cont">
   <label for="course">Course List</label>
      <select #cId (change)="getCourseId(cId.value)" class="form-control">
-      <option >All Courses</option>
+      <option value="null" >All Courses</option>
          <option  *ngFor="let c of course" value={{c.courseId}}>{{c.courseName}}</option>
      </select>
 </div>
@@ -23,7 +23,7 @@
       <div class="card-footer text-muted">
         <button type="button" class="btn2" data-toggle="modal" data-target="#myModal"
           (click)="dataForUpdateVideo(v.videoId)">Update</button>&nbsp;&nbsp;&nbsp;
-        <button class="btn1" (click)="deleteVideo(v.videoId)">Delete</button>
+        <button class="btn1" (click)="deleteVideos(v.videoId)">Delete</button>
 
       </div>
     </div>
@@ -41,18 +41,19 @@
             <div class="modal-body" *ngIf="videoById">
               <div class="form-group">
                 <label for="videoName">video Name</label>
-                <input type="text" class="form-control" formControlName="videoName" value={{videoById.videoName}}>
+                <input type="text" class="form-control" formControlName="videoName" >
                 <div *ngIf="videoUpdateForm.controls.videoName?.invalid && videoUpdateForm.controls.videoName?.touched" [ngStyle]="{'color':'red'}">Please Enter Characters Between 3 to 15</div>  
 
               </div>
 
               <div class="form-group">
                 <label for="videoDesc">video Desc</label>
-                <input type="text" class="form-control" formControlName="videoDesc" value={{videoById.videoDesc}}>
+                <input type="text" class="form-control" formControlName="videoDesc" >
                 <div *ngIf="videoUpdateForm.controls.videoDesc?.invalid && videoUpdateForm.controls.videoDesc?.touched" [ngStyle]="{'color':'red'}">Please Enter Characters Between 10 to 100</div>  
               </div>
               <div>
-                <label for="videoPath">video </label>
+                <label for="videoPath">video </label> <br>
+                <!-- <video controls [src]=videoById.videoPath height="300px" width="300px"></video> -->
                 <input type="file" class="form-control" name="videoPath" formControlName="videoPath">
               </div>
             </div>
@@ -68,3 +69,38 @@
     </div>
   </div>
 </div>
+
+ <!--confirmation-->
+ <button data-toggle="modal"  [hidden]="true" #confirmation data-target="#modalDialogconfirmation">Confirmation</button>
+  
+ <div class="modal" id="modalDialogconfirmation">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-body">
+               <p>Are you sure?</p>
+           </div>
+           <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" 
+                       data-dismiss="modal" (click)="confirmDelete()">OK</button>
+           </div>
+       </div>
+   </div>
+   </div>
+
+   <!--notification-->
+ <button data-toggle="modal" [hidden]="true" #notification data-target="#modalDialogNotification">Category Not Null</button>
+ 
+ <div class="modal" id="modalDialogNotification">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-body">
+               <p>Video deleted!</p>
+           </div>
+           <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" 
+                       data-dismiss="modal">OK</button>
+           </div>
+       </div>
+   </div>
+   </div>
+

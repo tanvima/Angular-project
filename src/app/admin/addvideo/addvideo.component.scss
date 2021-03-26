@@ -1,4 +1,15 @@
-.container
+.card
 {
     width: 800px;
+    margin-top: 50px;
+    box-shadow: 3px 3px 3px 3px lightgray;
+}
+.form-group,label{
+    padding: 10px;
+}
+.btn{
+    border-radius: 5px;
+    border: none;
+    color: black;
+    background-color:  rgb(233, 208, 17);
 }

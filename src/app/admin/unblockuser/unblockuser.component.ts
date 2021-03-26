@@ -19,6 +19,9 @@ export class UnblockuserComponent implements OnInit {
     this.as.getAllBlockUser().subscribe(res => {
       this.blockedUsers = res;
       console.log(this.blockedUsers)
+      if(this.blockedUsers==null){
+        throw Error("No users found")
+      }
     })
 
   }

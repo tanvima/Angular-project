@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit {
                     })
 
                     this.authservice.updateUserRole(data.roles[0])
+                    this.authservice.updateCartSizeData()
                     // this.router.navigate(['/app'])
                     // if (data.roles[0] === 'ROLE_user') {
                     //   this.router.navigate(['/home'])
@@ -109,7 +110,7 @@ export class LoginComponent implements OnInit {
                       
                     }
                     if (data.roles[0] === 'ROLE_user') {
-                      alert("user")
+                      // alert("user")
                       this.router.navigate(['/home'])
                     }
                   }, (err: any) => {

@@ -51,7 +51,11 @@ export class MycourseComponent implements OnInit {
   
 
   gotoVideoList(courseid:any){
-    this.router.navigate(['/videolist'],{ queryParams: {courseId:courseid}});
+    this.router.navigate(['/videolist'],{ queryParams: {courseId:btoa(courseid)}});
+  }
+
+  gotoCourse(courseid:any){
+    this.router.navigate(['/course'],{ queryParams: { courseId: btoa(courseid)}});
   }
 
   addComment(courseid:any){
@@ -88,6 +92,6 @@ export class MycourseComponent implements OnInit {
   }
 
   watchCertificate(courseid:any){
-    this.router.navigate(['/certificate'],{ queryParams: { courseId: courseid}});
+    this.router.navigate(['/certificate'],{ queryParams: { courseId: btoa(courseid)}});
   }
 }

@@ -50,13 +50,14 @@ export class ChartsComponent implements OnInit {
         this.coursename[index]=cat.courseName;
         this.enrollment.push(cat.enrollment.length);
         this.avgrating[index] = cat.rating;
+        
         this.interaction[index] = cat.feedback;
         this.likes[index] = cat.like.length;
       })
 
     })
 
-
+    console.log("Enroll",this.enrollment)
   }
 //Course per category
   doughnutChartLabels: Label[] = this.categoryname;
@@ -85,10 +86,10 @@ export class ChartsComponent implements OnInit {
   ];
 //Likes of courses
 lineChartData: ChartDataSets[] = [
-  { data: this.popularCourseRating, label: 'Popular courses' },
+  { data: this.popularCourseRating, label: 'Likes of courses' },
 ];
 
-lineChartLabels: Label[] =this.popularCourseName
+lineChartLabels: Label[] =this.coursename
 
 lineChartOptions = {
   responsive: true,

@@ -4,9 +4,12 @@
     box-shadow: 3px 3px 3px 3px lightgrey;
     margin-top:20px;  
 }
+.mycourse{
+   // position: relative;
+}
 .column
 {
-    width: 30%;
+    width: 40%;
 }
 .mt-text{
     color:grey;
@@ -52,11 +55,12 @@ padding-top: 20px;
 //   }
   h3{
       color:black;
+      cursor: pointer;
   }
   img{
-      width:250px;
-      height: 200px;
-      padding: 20px;
+      width:300px;
+      height: 300px;
+      padding: 10px;
   }
   .certificate{
       background-color: #777777;
@@ -70,7 +74,7 @@ padding-top: 20px;
          font-weight: normal;
   }
 .body{
-    height: 700px;
+    height: auto;
 }
 .material-icons{
     font-size: 25px;
@@ -78,23 +82,37 @@ padding-top: 20px;
     padding-top: 0px;
    height: 18px;
    width: 20px;
-   padding-top: 10px;
+  // padding-top: 10px;
 }
 .input
 {
     height: 35px;
-    width: 520px;
+    width: 430px;
   padding-top: 10px;
+  border-radius: 6px;
+  border:grey solid 1px;
 }
 .mat, .mat-icon{
     font-size: 25px;  
-    padding-bottom: 20px;
-  padding-left: 1.25em;
+    padding-bottom: 2%;
+ // padding-left: 1.25em;
     float: right;
     padding-right: .25em;
 }
 .mat-expansion-panel-header{
     font-weight:500 ;
+  }
+  .subtextLike{
+      color:grey;
+      margin:10px
+  }
+  .comment-delete-section{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+  .del-content{
+      margin-bottom: -2%;
   }
 // .add
 // {

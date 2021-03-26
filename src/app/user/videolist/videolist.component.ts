@@ -25,7 +25,7 @@ export class VideolistComponent implements OnInit {
 
 
     this.activatedRoute.queryParams.subscribe((p) => {
-      this.courseid = p['courseId']
+      this.courseid =Number( atob(p['courseId']))
       console.log("course Id ", this.courseid)
     }) 
 
@@ -44,8 +44,9 @@ export class VideolistComponent implements OnInit {
 
   }
 
-  gotoVideoPlayer(videoId:number,courseId:number){
-    this.router.navigate(['/videoplayer'],{ queryParams: { courseId: courseId,videoId:videoId}});
+  gotoVideoPlayer(videoId:any,courseId:any){
+    console.log("--------",this.course.courseName)
+    this.router.navigate(['/videoplayer'],{ queryParams: { courseId: btoa(courseId),videoId:btoa(videoId),courseName:btoa(this.course.courseName)}});
   }
 
   

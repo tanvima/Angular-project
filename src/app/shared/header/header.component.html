@@ -162,7 +162,7 @@
                 >
                   perm_identity</mat-icon
                 >
-                Edit Profile</a
+                My Profile</a
               >
               <a class="dropdown-item dropText" (click)="logout()">
                 <mat-icon
@@ -177,7 +177,7 @@
           </div>
         </ng-container>
         <ng-container *ngIf="userid == null">
-          <button class="menuIcon" (click)="openLoginDialog()">
+          <button class="menuIcon" matTooltip="login" (click)="openLoginDialog()">
             <mat-icon aria-hidden="false" aria-label="Example home icon">
               login</mat-icon
             >

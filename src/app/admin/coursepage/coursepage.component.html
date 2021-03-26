@@ -1,16 +1,16 @@
 <div class="cont">
   <label for="category">Category List</label>
      <select #cId (change)="getCategoryId(cId.value)" class="form-control">
-       <option >All Categories</option>
+       <option value='null'>All Categories </option>
          <option  *ngFor="let c of category" value={{c.categoryId}}>{{c.categoryName}}</option>
      </select>
 </div>
 <!-- (click)="courseListFromCategory(cId.value)" -->
 <div class="row">
-  <div class="col-sm-4" *ngFor="let c of course|async">
+  <div class="col-sm-4 " *ngFor="let c of course|async" >
 <div class="card text-center">
-  <h3><div class="card-header">
-    {{c.courseName}}
+  <h3><div class="card-header"(click)="gotocourse(c.courseId)">
+    {{c.courseName |uppercase}}
   </div></h3>
   <div class="card-body">
     <img class="img-fluid" [src]="c.courseLogo" class="card-img-top">
@@ -24,7 +24,7 @@
     <button type="button" class="btn2" data-toggle="modal" (click)="updateCourseId(c.courseId)"
         data-target="#myModal">
         Update
-      </button>&nbsp;&nbsp;&nbsp;
+      </button> &nbsp;&nbsp;&nbsp;
       <button class="btn1" (click)="deleteCourse(c.courseId)">Delete</button>
   </div>
 
@@ -43,40 +43,41 @@
         <div class="modal-body" *ngIf="courseBYId">
           <div class="form-group">
             <label for="courseName">Course Name</label>
-            <input type="text" class="form-control" formControlName="courseName" value={{courseBYId.courseName}}>
+            <input type="text" class="form-control" formControlName="courseName" >
             <div *ngIf="courseUpdateForm.controls.courseName?.invalid && courseUpdateForm.controls.courseName?.touched"
             [ngStyle]="{'color':'red'}">Please Enter Characters Between 3 to 15 </div>
           </div>
 
           <div class="form-group">
             <label for="courseDesc">Course Desc</label>
-            <input type="text" class="form-control" formControlName="courseDesc" value={{courseBYId.courseDesc}}>
+            <input type="text" class="form-control" formControlName="courseDesc" >
             <div *ngIf="courseUpdateForm.controls.courseDesc?.invalid && courseUpdateForm.controls.courseDesc?.touched"
             [ngStyle]="{'color':'red'}">Please Enter Characters Between 10 to 100 </div>
           </div>
           <div>
             <label for="courseLogo">Course Logo </label>
-            <input type="file" class="form-control" name="courseLogo" formControlName="courseLogo" value={{courseBYId.courseLogo}}>
+            <input type="file" class="form-control" name="courseLogo" formControlName="courseLogo" >
+            <img [src]=courseBYId.courseLogo>
           </div>
           <div>
             <label for="coursePrice">Course Price </label>
-            <input type="number" class="form-control" name="coursePrice" formControlName="coursePrice" value={{courseBYId.coursePrice}}>
+            <input type="number" class="form-control" name="coursePrice" formControlName="coursePrice" >
           </div>
           <div>
-            <label for="noOfVideo">Author Name</label>
-            <input type="number" class="form-control" name="authorName" formControlName="authorName" value={{courseBYId.authorName}}>
+            <label for="authorName">Author Name</label>
+            <input type="text" class="form-control" name="authorName" formControlName="authorName" >
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" (click)="updateCourse(c.courseId)" class="btn btn-info"
-            data-dismiss="modal"  data-target="#modalDialog"  data-toggle="modal">Save</button>
+            data-dismiss="modal"  data-target="#modalDialogUpdated"  data-toggle="modal">Save</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </form>
     </div>
   </div>
 </div>
-<div class="modal" id="modalDialog">
+<div class="modal" id="modalDialogUpdated">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body">

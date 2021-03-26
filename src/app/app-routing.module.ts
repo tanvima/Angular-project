@@ -20,6 +20,7 @@ import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 import { CoursepageComponent } from './admin/coursepage/coursepage.component';
 import { ErrorpageComponent } from './shared/errorpage/errorpage.component';
 import { ChartsComponent } from './admin/charts/charts.component';
+import { AdmincoursedetailComponent } from './admin/admincoursedetail/admincoursedetail.component';
 
 
 const routes: Routes = [
@@ -109,6 +110,12 @@ canActivate:[AuthGuard],
   canActivate:[AuthGuard],
  
  },
+ {path:"admincoursedetail",component:AdmincoursedetailComponent,
+   data:{role:'ROLE_admin'},
+   outlet:'admin',
+   canActivate:[AuthGuard],
+  
+  },
 
   
   {path:"**",component:ErrorpageComponent}

@@ -25,10 +25,10 @@ ngOnInit(){
     this.category=res;
     console.log(this.category)
   }) 
-  this.as.getCourseList().subscribe(res=>{
-    this.course=res;
-    console.log(this.course)
-  }) 
+  // this.as.getCourseList().subscribe(res=>{
+  //   this.course=res;
+  //   console.log(this.course)
+  // }) 
   this.videoForm = new FormGroup({
   videoName: new FormControl('', [Validators.required,Validators.minLength(3),Validators.maxLength(15)]),
  

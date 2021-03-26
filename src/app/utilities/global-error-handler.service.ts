@@ -1,24 +1,25 @@
-import { ErrorHandler } from '@angular/core';
+import { ErrorHandler, NgZone } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ErrormessageComponent } from '../shared/errormessage/errormessage.component';
+import { ErrorMessageComponent } from '../shared/error-message/error-message.component';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GlobalErrorHandlerService implements ErrorHandler{
+export class GlobalErrorHandlerService implements ErrorHandler {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private ngZone: NgZone) { }
   handleError(error: Error): void {
-    //throw new Error('Method not implemented.');
 
-    //alert("message "+error.message)
-    if(error.message!=''){
-      alert("message "+error.message)
-    }
-    // this.dialog.open(ErrormessageComponent, {
-    //   width: '550px',
-    //   data: { errorMessage:"Message "+error.message}
-    // })
+  
+
+    this.ngZone.run(() => {
+      // if(error!=null && error.name!="TypeError" &&(error.message!=''||error.message!=null)){
+      //   this.dialog.open(ErrorMessageComponent, {
+      //     width: '550px',
+      //     data: { errorMessage: error }
+      //   })
+      // }
+    })
   }
 }

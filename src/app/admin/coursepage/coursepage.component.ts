@@ -60,12 +60,12 @@ export class CoursepageComponent implements OnInit {
   }
   updateCourseId(upId: any) {
     this.updateId = upId;
-    this.courseBYId = this.as.getCourseBYId(this.updateId).subscribe(res => {
+    this.as.getCourseBYId(this.updateId).subscribe(res => {
       this.courseBYId = res;
-      console.log(this.courseBYId);
+      console.log("-----------------",this.courseBYId);
       this.courseUpdateForm = new FormGroup({
         courseName: new FormControl(res.courseName, [Validators.required, Validators.maxLength(3)]),
-        courseLogo: new FormControl(res.courseLogo, [Validators.required]),
+        courseLogo: new FormControl('', [Validators.required]),
         courseDesc: new FormControl(res.courseDesc, [
           Validators.required,
           Validators.minLength(25),
@@ -81,6 +81,7 @@ export class CoursepageComponent implements OnInit {
   deleteCourse(id: number) {
 
     this.selectedCourse=this.courseList.find((c: any) => c.courseId == id)
+    console.log(",,,,,,,,",this.selectedCourse)
     if(this.selectedCourse.enrollment.length == 0){
       //confirmation
       this.confirmation.nativeElement.click()
@@ -97,26 +98,34 @@ export class CoursepageComponent implements OnInit {
     // alert('Course Deleted Sucessfully!!')
   }
   updateCourse(id: number) {
+    console.log(this.courseUpdateForm)
     this.path = this.courseUpdateForm.value.courseLogo
-    this.courseUpdateForm.value.courseLogo = this.path.replace(/^.*\\/, "../../../assets/")
+    if(this.path==""){
+      this.courseUpdateForm.value.courseLogo=this.courseBYId.courseLogo
+    }else{
+      console.log("path",this.courseUpdateForm.value.courseLogo)
+      console.log(this.path)
+      this.courseUpdateForm.value.courseLogo = this.path.replace(/^.*\\/, "../../../assets/")
+      console.log(",,,,,,,,,,,",this.courseUpdateForm.value.courseLogo) 
+    }
     this.as.updateCourse(this.updateId, this.courseUpdateForm.value)
-      .subscribe({
-        next: () => {
-          console.log('update');
-          this.course = this.courseUpdateForm.value
-         
-        }
+      .subscribe((data)=>{
+        this.course = this.as.getCourseList()
       })
-     
+      this.course = this.as.getCourseList()
   }
   addVideo() {
     this.router.navigate(['add-video']);
   }
   getCategoryId(cId: any) {
     this.cId = cId;
-    console.log(this.cId);
+    console.log("Course List",this.cId);
     console.log(cId)
-    this.course=this.as.getCourseByCatId(this.cId);
+    if(cId=='null'){
+      this.course=this.as.getCourseList()
+    }else{
+      this.course=this.as.getCourseByCatId(this.cId);
+    }
   }
 
   confirmDelete(){
@@ -125,9 +134,13 @@ export class CoursepageComponent implements OnInit {
       next: () => {
         console.log('delete');  
         this.notification.nativeElement.click()
-        window.location.reload();
-        alert('Course Updated Sucessfully!!')
+        this.course = this.as.getCourseList()
       }
     })
   }
+
+  gotocourse(courseid:any){
+    this.router.navigate([{outlets: {admin: 'admincoursedetail'}}],{ queryParams: { courseId: btoa(courseid)}})
+  }
+
 }

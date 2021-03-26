@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg d-flex bd-highlight mb-3">
   <img class="img-fluid" src="../../../assets/logo.png" height="150px" width="150px">
-  <a class="mr-auto p-2 bd-highlight" (click)="showHide()"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+  <a class="mr-auto p-2 bd-highlight" (click)="showHide()"><i class="fa fa-bars fa-lg ml-3" aria-hidden="true"></i></a>
   <a class=" p-2 bd-highlight" [routerLink]= "[{outlets: {admin: 'adminhome'}}]"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a>
-  <a class=" p-2 bd-highlight"><i class="fa fa-bell fa-lg" aria-hidden="true"></i></a>
+  <!-- <a class=" p-2 bd-highlight"><i class="fa fa-bell fa-lg" aria-hidden="true"></i></a> -->
   <a class="p-2 bd-highlight" (click)="logout()"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a>
   
 </nav>
@@ -89,8 +89,10 @@
     </nav>
     <nav class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 container-fluid">
       <div class="d-flex justify-content-center align-self-center">
+        <div class="router-outlet">
 
-        <router-outlet name="admin"></router-outlet>
+          <router-outlet name="admin"></router-outlet>
+        </div>
       </div>
     </nav>
   </div>

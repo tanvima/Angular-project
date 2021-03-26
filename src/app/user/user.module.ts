@@ -26,6 +26,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
+
 @NgModule({
   declarations: [CourselistComponent, CoursedetailComponent, VideolistComponent, VideoplayerComponent, FeedbackformComponent, CertificateComponent, CartComponent, MycourseComponent, EditprofileComponent, SnackbarComponent],
   imports: [
@@ -43,6 +46,8 @@ import { AppRoutingModule } from '../app-routing.module';
     MatExpansionModule,
     MatIconModule,
     SharedModule,
+    MatTooltipModule,
+    MatTabsModule,
   ]
 })
 export class UserModule { }

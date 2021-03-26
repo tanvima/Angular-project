@@ -8,5 +8,6 @@ export interface Course {
     coursePrice:number,
     video:Array<Video>,
     rating:number,
-    noOfVideo:number
+    noOfVideo:number,
+    authorName:string
 }

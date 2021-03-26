@@ -34,11 +34,13 @@ categoryForm!: FormGroup
     this.path = this.categoryForm.value.categoryLogo
     this.categoryForm.value.categoryLogo = this.path.replace(/^.*\\/, "../../../assets/")
     this.as.addCategory(this.categoryForm.value)
-    
-    .subscribe({next:() => 
-    {
-      console.log('');
-    }})
+    .subscribe((data)=>{
+      console.log("added")
+    },
+    (err)=>{
+      console.log("error", err)
+    },
+    )
   
   }
   

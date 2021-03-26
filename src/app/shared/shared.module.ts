@@ -23,11 +23,11 @@ import { CoursecardComponent } from './coursecard/coursecard.component';
 import { PrimepricePipe } from './primeprice.pipe';
 import { AppRoutingModule } from '../app-routing.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { ErrormessageComponent } from './errormessage/errormessage.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FilterPipe, LoginComponent, LandingComponent, FooterComponent,HomeComponent,CoursecardComponent,PrimepricePipe, ErrormessageComponent, ErrorpageComponent],
+  declarations: [HeaderComponent, FilterPipe, LoginComponent, LandingComponent, FooterComponent,HomeComponent,CoursecardComponent,PrimepricePipe, ErrorpageComponent, ErrorMessageComponent],
   imports: [
     AppRoutingModule,
     CommonModule,

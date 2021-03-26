@@ -11,19 +11,19 @@ export class AdminService {
  constructor(private http:HttpClient) { }
   addCategory(category:any):Observable<any>{
     console.log(category)
-    return  this.http.post('http://localhost:8080/elearning/category',category)
+    return  this.http.post('http://localhost:8080/elearning/category',category,{responseType:"text"})
   }
   getCategoryList():Observable<any>{
      return  this.http.get('http://localhost:8080/elearning/category')
   }
   deleteCategory(id:number):Observable<any>{
-    return  this.http.delete('http://localhost:8080/elearning/category/'+id)
+    return  this.http.delete('http://localhost:8080/elearning/category/'+id,{responseType:"text"})
   }
   getCategory(id: number): Observable<Object> {  
         return this.http.get('http://localhost:8080/elearning/category/'+id);  
   }  
   updateCategory(id: number, category:any): Observable<Object> {  
-      return this.http.put('http://localhost:8080/elearning/category/'+ id, category)
+      return this.http.put('http://localhost:8080/elearning/category/'+ id, category,{responseType:"text"})
   }   
   getCategoryById(id:number):Observable<any>{
     return  this.http.get('http://localhost:8080/elearning/category/'+id);
@@ -40,13 +40,13 @@ export class AdminService {
   addCourse(id:any,course:any):Observable<any>{
      console.log(id)
      console.log(course)
-    return  this.http.post('http://localhost:8080/elearning/course/'+id,course)
+    return  this.http.post('http://localhost:8080/elearning/course/'+id,course,{responseType:"text"})
   }
   deleteCourse(id:number):Observable<any>{
-    return  this.http.delete('http://localhost:8080/elearning/course/'+id)
+    return  this.http.delete('http://localhost:8080/elearning/course/'+id,{responseType:"text"})
   }
   updateCourse(id: number, course:any): Observable<Object> {  
-    return this.http.put('http://localhost:8080/elearning/course/'+ id, course)
+    return this.http.put('http://localhost:8080/elearning/course/'+ id, course,{responseType:"text"})
   }
   
   
@@ -57,13 +57,13 @@ export class AdminService {
   addVideo(id:any,video:any):Observable<any>{
     console.log(id)
     console.log("VIDEO=="+video)
-   return  this.http.post('http://localhost:8080/elearning/video/'+id,video)
+   return  this.http.post('http://localhost:8080/elearning/video/'+id,video,{responseType:"text"})
  }
  deleteVideo(id:number):Observable<any>{
-   return  this.http.delete('http://localhost:8080/elearning/video/'+id)
+   return  this.http.delete('http://localhost:8080/elearning/video/'+id,{responseType:"text"})
  }
  updateVideo(id: number, video:any): Observable<Object> {  
-   return this.http.put('http://localhost:8080/elearning/video/'+ id, video)
+   return this.http.put('http://localhost:8080/elearning/video/'+ id, video,{responseType:"text"})
  } 
  getVideoById(id:number):Observable<any>{
   return  this.http.get('http://localhost:8080/elearning/video/'+id);
@@ -82,7 +82,7 @@ getPopularCourse(){
   return  this.http.get(environment.baseUserUrl+'/popularCourse')
  }
  getAllBlockUser():Observable<any>{
-  return this.http.get('http://localhost:8080/elearning/blockuser/');
+  return this.http.get('http://localhost:8080/elearning/blockuser');
 }
 unblockUser(id:any):Observable<any>{
   console.log(id)
