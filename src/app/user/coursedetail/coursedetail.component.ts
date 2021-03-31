@@ -80,7 +80,7 @@ export class CoursedetailComponent implements OnInit {
 
     onMetadata(e:any, video:any) {
       this.duration[this.duration.length]=video.duration
-      console.log(this.duration)
+    
      // this.duration = video.duration
     }
 

@@ -95,14 +95,14 @@ export class LoginComponent implements OnInit {
                     })
 
                     this.authservice.updateUserRole(data.roles[0])
-                  
+                 
                     if (data.roles[0] === 'ROLE_admin') {
                      
                       
                       this.router.navigate([{outlets: {admin: 'adminhome'}}])
                       
                     }
-                    if (data.roles[0] === 'ROLE_user') {
+                   else if (data.roles[0] === 'ROLE_user') {
                      
                       this.authservice.updateCartSizeData()
                       this.router.navigate(['/home'])
