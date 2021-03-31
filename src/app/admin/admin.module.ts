@@ -20,9 +20,10 @@ import { ChartsComponent } from './charts/charts.component';
 import { AdmincoursedetailComponent } from './admincoursedetail/admincoursedetail.component';
 import { NgxInputStarRatingModule } from 'ngx-input-star-rating';
 import {MatCardModule} from '@angular/material/card';
+import { UserlogComponent } from './userlog/userlog.component';
 
 @NgModule({
-  declarations: [AddcategoryComponent, AddcourseComponent, AddvideoComponent, AdminSidenavComponent, AdmincoursepageComponent, CoursepageComponent, UnblockuserComponent, VideopageComponent, AdminhomeComponent, ChartsComponent, AdmincoursedetailComponent],
+  declarations: [AddcategoryComponent, AddcourseComponent, AddvideoComponent, AdminSidenavComponent, AdmincoursepageComponent, CoursepageComponent, UnblockuserComponent, VideopageComponent, AdminhomeComponent, ChartsComponent, AdmincoursedetailComponent, UserlogComponent],
   imports: [
     AppRoutingModule,
     CommonModule,

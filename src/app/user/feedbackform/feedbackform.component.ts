@@ -50,12 +50,8 @@ export class FeedbackformComponent implements OnInit {
     if(this.form.value.rating != null && this.form.value.rating != undefined )
     {
 
-      console.log(this.form.value)
-      console.log(",,,,,,,,,,",this.data.userid)
       this.us.addFeedback(this.data.userid,this.data.courseid,this.form.value).subscribe(
         (data)=>{
-          console.log("*******");
-          console.log(data)
           this.dialogRef.close();
 
 

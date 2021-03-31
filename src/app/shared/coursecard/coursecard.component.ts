@@ -14,12 +14,9 @@ export class CoursecardComponent implements OnInit {
   type!:Observable<any>
   isPrime=false
   constructor(private router:Router, private authservice: AuthenticationService) { 
-    console.log("Hello")
     this.authservice.usertypeupdate.subscribe((data)=>{
       this.type=data
-      console.log(this.type)
       if(data =='prime'){
-        console.log("in if")
         this.isPrime=true
       }
       else{
@@ -32,8 +29,6 @@ export class CoursecardComponent implements OnInit {
 @Input() mycourse:Course | undefined;
 
   ngOnInit(): void {
-    console.log(this.mycourse);
-   console.log("Helllo", this.mycourse?.rating)
     
   }
 

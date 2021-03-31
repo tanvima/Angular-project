@@ -16,7 +16,6 @@ import { EditprofileComponent } from 'src/app/user/editprofile/editprofile.compo
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-//userid=null;
 userid!: Observable<any>;
   constructor(private us: UserService, private router: Router, public dialog: MatDialog, private authservice: AuthenticationService) {
    
@@ -37,7 +36,6 @@ userid!: Observable<any>;
   filteredOptions?: Observable<string[]>;
   cartsize1!:any
   
-  // userid = Observable<>;
   
   ngOnInit(): void {
   
@@ -109,20 +107,10 @@ userid!: Observable<any>;
 
 
 
-    // let course
-    //    for(let category of this.categories){
-    //    course = category.courses.find((x:Course)=>{return x.courseName==coursename});
-
-
-    // } 
-    // this.router.navigate(['/course'],{ queryParams: { courseId: course.courseId}});
-
-
   }
 
   openLoginDialog(){
     const dialogRef = this.dialog.open(LoginComponent, {
-      // width: '650px',
     })
   }
 
@@ -135,7 +123,6 @@ userid!: Observable<any>;
 
   logout(){
     this.authservice.logout();
-    // this.router.navigate(['/home'])
   }
 
 

@@ -35,9 +35,7 @@ intialCart!:Observable<any>
       }
       else{
       
-        console.log("logout" , data)
         this.getCartCourses(data).subscribe((data1) => {
-          console.log("The cart data ",data1)
           this.cartsize.next(data1.length)
         },
         (err)=>{
@@ -49,7 +47,6 @@ intialCart!:Observable<any>
   }
 
   updateUserRole(data:any){
-    console.log("In logout admin",data);
     
     this.userrole.next(data)
   }
@@ -100,7 +97,6 @@ intialCart!:Observable<any>
         this.loginStatus.next(false)
         this.userid.next(null)
         this.usertype.next(null)
-        console.log("in logout>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         this.router.navigate(['/home'])
       }
 }

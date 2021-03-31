@@ -1,5 +1,8 @@
+<div class="container-fluid text-center"> 
+  <h1>Categories</h1>
+  <hr class="hrstyle" />
+</div>
 <div class="container">
-
   <div class="row">
     <div class="col-sm-12 col-lg-4 col-xs-12 col-md-4" *ngFor="let c of category">
       <div class="card text-center">
@@ -9,7 +12,7 @@
           </div>
         </h3>
         <div class="card-body">
-          <img class="img-fluid" [src]="c.categoryLogo" class="card-img-top">
+          <img class="img-fluid" [src]="c.categoryLogo" class="card-img-top" alt="Media not supported">
           <h3> Category Description: </h3>
           <p class="card-text">{{c.categoryDesc}}</p>
         </div>
@@ -45,8 +48,7 @@
   
                 <div class="form-group">
                   <label for="categoryDesc">Category Desc</label>
-                  <!-- <input type="text" formControlName="categoryDesc" class="form-control" name="categoryDesc"
-                    > -->
+                  
                     <textarea
                     type="text"
                     class="form-control"
@@ -58,7 +60,7 @@
                   </div>
                 <div>
                   <label for="categoryLogo">Category Logo </label>
-                  <img [src]=categoryById.categoryLogo alt="">
+                  <img [src]=categoryById.categoryLogo alt="Media not supported">
                   <input type="file" name="categoryLogo" formControlName="categoryLogo" class="form-control"
                     name="categoryLogo">
                     
@@ -75,20 +77,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="modal" id="modalDialogUpdated">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p>Category Updated Successfully!!</p>
-                </div>
-                <div class="modal-footer">
-                    
-                    <button type="button" class="btn btn-secondary" 
-                            data-dismiss="modal">Ok</button>
-                </div>
-            </div>
-        </div>
-      </div> -->
+      
     </div>
   </div>
 </div>
@@ -128,21 +117,6 @@
     </div>
     </div>
 
-  <!--notification-->
-  <button data-toggle="modal" [hidden]="true" #notification data-target="#modalDialogNotification">Category Not Null</button>
   
-  <div class="modal" id="modalDialogNotification">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p>Category deleted!</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" 
-                        data-dismiss="modal">OK</button>
-            </div>
-        </div>
-    </div>
-    </div>
 
   

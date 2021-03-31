@@ -3,9 +3,7 @@
     border:solid black 1px;
     border-radius: 3px
 }
-.row{
-    //height: 200px;
-}
+
 
 .col{
     margin:5px;
@@ -17,8 +15,6 @@ span{
 }
 
 .data {
-    /* -webkit-box-shadow: 38px 54px 74px -32px rgba(212,176,32,1);
--moz-box-shadow: 38px 54px 74px -32px rgba(212,176,32,1); */
 box-shadow:3px 7px 17px 0px rgba(149, 150, 148, 0.75);
     &:hover{
         transform: scale(1.02);
@@ -44,13 +40,13 @@ box-shadow:3px 7px 17px 0px rgba(149, 150, 148, 0.75);
       background-color: #f7ecbf;
   }
   .data3{
-    background-color: #ffffc7;
+    background-color: #fbe798;
 }
 .data1{
     background-color: #fff195;
 }
 .data4{
-    background-color: #fff6cc;
+    background-color: #fae3ab;
 }
 canvas{
     border: solid grey 1px;

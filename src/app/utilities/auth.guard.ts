@@ -21,17 +21,13 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
       if(this.auths.isLoggedIn()){
-        console.log("IN AUTH LOGGED IN")
         if(route.data.role && route.data.role!=(this.userrole)){
-          console.log("IN AUTH LOGGED IN ADN ROLE NOT MATCH")
           this.router.navigate(['/home'])
           return false
         }
         return true
       }else{
-        console.log("NOT LOGGED IN ")
           const dialogRef = this.dialog.open(LoginComponent, {
-            // width: '650px',
           })
         return false
       }

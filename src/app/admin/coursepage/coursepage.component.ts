@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 import { ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class CoursepageComponent implements OnInit {
   @ViewChild('notification')
   notification!:ElementRef;
 
-  constructor(private as: AdminService, private router: Router) {
+  constructor(private as: AdminService, private router: Router,private _snackBar: MatSnackBar) {
     this.course = this.as.getCourseList()
     this.course.subscribe(
       (data)=>{
@@ -43,7 +44,6 @@ export class CoursepageComponent implements OnInit {
   ngOnInit() {
     this.as.getCategoryList().subscribe(res => {
       this.category = res;
-      console.log(this.category)
       
     })
     this.courseUpdateForm = new FormGroup({
@@ -62,7 +62,6 @@ export class CoursepageComponent implements OnInit {
     this.updateId = upId;
     this.as.getCourseBYId(this.updateId).subscribe(res => {
       this.courseBYId = res;
-      console.log("-----------------",this.courseBYId);
       this.courseUpdateForm = new FormGroup({
         courseName: new FormControl(res.courseName, [Validators.required,Validators.minLength(3), Validators.maxLength(50)]),
         courseLogo: new FormControl('', [Validators.required]),
@@ -76,35 +75,30 @@ export class CoursepageComponent implements OnInit {
       })
 
     })
-    console.log(this.updateId)
   }
   deleteCourse(id: number) {
 
     this.selectedCourse=this.courseList.find((c: any) => c.courseId == id)
-    console.log(",,,,,,,,",this.selectedCourse)
     if(this.selectedCourse.enrollment.length == 0){
       //confirmation
-      this.confirmation.nativeElement.click()
+      this._snackBar.open("Course deleted","Dismiss", {
+        duration: 7000,
+        verticalPosition: 'top'
+      });
     }
     else{
       //can not delete course
-      console.log("enrollment size ",this.selectedCourse.enrollment.length)
       this.enroll = this.selectedCourse.enrollment.length
       this.categorynotnull.nativeElement.click()
     }
 
     
-    // window.location.reload();
-    // alert('Course Deleted Sucessfully!!')
   }
   updateCourse(id: number) {
-    console.log(this.courseUpdateForm)
     this.path = this.courseUpdateForm.value.courseLogo
     if(this.path==""){
       this.courseUpdateForm.value.courseLogo=this.courseBYId.courseLogo
     }else{
-      console.log("path",this.courseUpdateForm.value.courseLogo)
-      console.log(this.path)
       this.courseUpdateForm.value.courseLogo = this.path.replace(/^.*\\/, "../../../assets/")
       
     }
@@ -119,8 +113,6 @@ export class CoursepageComponent implements OnInit {
   }
   getCategoryId(cId: any) {
     this.cId = cId;
-    console.log("Course List",this.cId);
-    console.log(cId)
     if(cId=='null'){
       this.course=this.as.getCourseList()
     }else{
@@ -132,7 +124,6 @@ export class CoursepageComponent implements OnInit {
     let ob = this.as.deleteCourse(this.selectedCourse.courseId)
     ob.subscribe({
       next: () => {
-        console.log('delete');  
         this.notification.nativeElement.click()
         this.course = this.as.getCourseList()
       }

@@ -1,3 +1,7 @@
+<div class="container-fluid text-center"> 
+  <h1>Courses</h1>
+  <hr class="hrstyle" />
+</div>
 <div class="container">
   <div class="row">
     <label for="category">Category List</label>
@@ -24,12 +28,12 @@
           </div>
         </h3>
         <div class="card-body">
-          <img class="img-fluid" [src]="c.courseLogo" class="card-img-top" />
-          <h3>Course Description:</h3>
-          <p class="card-text">{{ c.courseDesc }}</p>
-          <h3>Course Price:</h3>
-          <p class="text">{{ c.coursePrice | currency: "INR" }}</p>
-          <h3>Number of Videos: {{ c.noOfVideo }}</h3>
+          <img class="img-fluid" [src]="c.courseLogo" class="card-img-top" alt="Media not supported"/>
+         
+          <h3 class="card-text  mt-3"><span class="font-weight-bold">Course Description:</span> {{ c.courseDesc |slice :0 :100}}...</h3>
+          <h3><span class="font-weight-bold">Course Price:</span> {{ c.coursePrice | currency: "INR" }}</h3>
+          <h3> <span class="font-weight-bold">Number of Videos:</span> {{ c.noOfVideo }}</h3>
+          <h3> <span class="font-weight-bold">Author Name: </span>{{ c.authorName}}</h3>
         </div>
         <div class="card-footer text-muted">
           <button
@@ -102,7 +106,7 @@
                     name="courseLogo"
                     formControlName="courseLogo"
                   />
-                  <img [src]="courseBYId.courseLogo" />
+                  <img [src]="courseBYId.courseLogo" alt="Media not supported"/>
                 </div>
                 <div>
                   <label for="coursePrice">Course Price </label>

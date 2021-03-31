@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 
-// import {AdminService } from 'src/app/Admin.service';
 @Component({
   selector: 'app-addcategory',
   templateUrl: './addcategory.component.html',
@@ -15,14 +14,11 @@ categoryForm!: FormGroup
   path!: string;
   category: any;
 
-  // @ViewChild('okbutton')
-  // okbutton!:ElementRef
 
    constructor(private as:AdminService,private router:Router,private _snackBar: MatSnackBar) {}
  ngOnInit(){
   this.as.getCategoryList().subscribe(res=>{
     this.category=res;
-    console.log(this.category)
   })
    this.categoryForm = new FormGroup({
     categoryName: new FormControl('', [Validators.required,Validators.minLength(3),Validators.maxLength(50)]),
@@ -40,16 +36,13 @@ categoryForm!: FormGroup
     this.categoryForm.value.categoryLogo = this.path.replace(/^.*\\/, "../../../assets/")
     this.as.addCategory(this.categoryForm.value)
     .subscribe((data)=>{
-      console.log("added")
       this._snackBar.open("Category added","Dismiss", {
         duration: 7000,
         verticalPosition: 'top'
       });
       this.router.navigate([{outlets: {admin: 'category-list'}}])
-      //  this.router.navigate(["category-list"])
     },
     (err)=>{
-      console.log("error", err)
     },
     )
   

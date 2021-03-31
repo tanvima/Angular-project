@@ -14,6 +14,7 @@ data:any=null;
 category:any;
 courseForm!: FormGroup
   path!: string;
+  categoryForm!: FormGroup;
    constructor(private as:AdminService,private route:ActivatedRoute,
      private router:Router,private _snackBar: MatSnackBar) {
    }
@@ -23,7 +24,6 @@ courseForm!: FormGroup
    
   this.as.getCategoryList().subscribe(res=>{
           this.category=res;
-          console.log(this.category)
         })
         //render through html 
    this.courseForm = new FormGroup({
@@ -33,23 +33,25 @@ courseForm!: FormGroup
         Validators.required, 
         Validators.minLength(10), 
         Validators.maxLength(3000)]),
-        coursePrice: new FormControl('', [Validators.required,Validators.max(1000000)]),
+        coursePrice: new FormControl('', [Validators.required,Validators.max(100000),Validators.maxLength(5)] 
+        ),
         authorName: new FormControl('',[Validators.required])
      
     })
    
+    this.categoryForm = new FormGroup({
+      categoryName : new FormControl('null',[Validators.required])
+    })
+
   }
   getCategoryId(cId:any){
     this.cId=cId;
-    console.log(this.cId);
   }
   addCourse()
   {  
     this.path = this.courseForm.value.courseLogo
     this.courseForm.value.courseLogo = this.path.replace(/^.*\\/, "../../../assets/")
    this.data=this.courseForm.value;
-   console.log(this.data)
-   console.log(this.cId)
     this.as.addCourse(this.cId,this.data)
     .subscribe({next:() => 
     {  this._snackBar.open("Course added","Dismiss", {

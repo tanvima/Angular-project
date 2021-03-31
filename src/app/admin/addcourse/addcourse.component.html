@@ -57,12 +57,15 @@
 </div> -->
 
 <div class="card">
+  <h1 class="m-3  text-center  ">Add Course</h1>
     <div class="container">
-      <label for="category">Category:</label>
-      <select #cId (change)="getCategoryId(cId.value)" class="form-control">
-        <option>Select a Category</option>
+      <form  [formGroup]="categoryForm">
+      <label for="category">Category </label>
+      <select #cId (change)="getCategoryId(cId.value)" class="form-control" formControlName="categoryName" >
+        <option selected value="null">Select a Category</option>
         <option *ngFor="let c of category" value={{c.categoryId}}>{{c.categoryName}}</option>
       </select>
+    </form>
     </div>
     <form [formGroup]="courseForm" (ngSubmit)="addCourse()">
       <div class="form-group">
@@ -89,7 +92,7 @@
         <label for="coursePrice">Course Price </label>
         <input type="number" name="coursePrice" class="form-control" formControlName="coursePrice">
         <div *ngIf="courseForm.controls.coursePrice?.invalid && courseForm.controls.coursePrice?.touched"
-          [ngStyle]="{'color':'red'}">Please value below 99999</div>
+          [ngStyle]="{'color':'red'}">Please enter value below 99999</div>
       </div>
 
       <div class="form-group">
@@ -100,8 +103,8 @@
         <label for="courseLogo">Course Logo </label>
         <input type="file" name="courseLogo" class="form-control" formControlName="courseLogo">
       </div>
-      <div class="form-group">
-        <button [disabled]="!courseForm.valid" type="submit" class="btn" >Add course</button>
+      <div class="form-group text-center">
+        <button [disabled]="(!courseForm.valid || categoryForm.value.categoryName=='null')" type="submit" class="btn p-2" >Add course</button>
       </div>
     </form>
   

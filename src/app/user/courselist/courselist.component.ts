@@ -13,19 +13,14 @@ export class CourselistComponent implements OnInit {
   course!: Course[];
   categoryid:any
   categoryname:any
-  //errMessage =error.message
   constructor(private activatedRoute : ActivatedRoute, private us:UserService) {}
 
   ngOnInit(): void {
-      // this.course = null
       this.activatedRoute.queryParams.subscribe((p)=>{
       this.categoryid=atob(p['categoryId'])
       this.categoryname=atob(p['categoryName'])
-      console.log("in couresList", this.categoryid);
-      console.log("id",this.categoryid)
       this.us.getCourseByCat(this.categoryid).subscribe((data)=>{
         this.course=data
-        console.log(this.course);
         
       },
       (err)=>{

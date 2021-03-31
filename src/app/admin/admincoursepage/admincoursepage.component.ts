@@ -31,7 +31,6 @@ export class AdmincoursepageComponent implements OnInit {
     private router: Router,private _snackBar: MatSnackBar) {
     this.as.getCategoryList().subscribe(res => {
       this.category = res;
-      console.log(this.category)
     })
   }
 
@@ -46,9 +45,9 @@ export class AdmincoursepageComponent implements OnInit {
   })
 
   ngOnInit() {
+  
     this.as.getCategoryList().subscribe(res => {
       this.category = res;
-      console.log(this.category)
     })
   }
   updateCategoryId(upId: any) {
@@ -64,64 +63,44 @@ export class AdmincoursepageComponent implements OnInit {
           Validators.maxLength(3000)
         ])
       })
-      console.log(this.categoryById);
     })
-    console.log(this.updateId)
   }
   deleteCategory(id: number) {
     this.cId=id
     this.selectedCategory=this.category.find((c: any) => c.categoryId == id)
-    console.log(this.category)
-    console.log(this.cId)
-    console.log(this.selectedCategory)
     if(this.selectedCategory.courses.length== 0){
       //confirmation model
-      console.log("DEle")
       this.confirmation.nativeElement.click()
       //code for delete category
   
   }else{
-    //courses present in category so you cannot delete category
     this.categorynotnull.nativeElement.click()
   }
-    // window.location.reload();
-    // alert('Category deleted Sucessfully!!')
   }
   updateCategory(id: number) {
-    // this.path = this.categoryUpdateForm.value.categoryLogo
-    // this.categoryUpdateForm.value.categoryLogo = this.path.replace(/^.*\\/, "../../../assets/")
-    // console.log(this.updateId);
-    // console.log(this.categoryUpdateForm.value);
-
-    // this.as.updateCategory(this.updateId, this.categoryUpdateForm.value)
-    //   .subscribe({
-    //     next: () => {
-    //       console.log('update');
-    //     }
-    //   })
-    // window.location.reload();
-    // alert('Category Updated Sucessfully!!')
-
-    console.log(this.categoryUpdateForm.value.categoryLogo)
+ 
+    
     this.path = this.categoryUpdateForm.value.categoryLogo
     if(this.path==''){
-      console.log(this.categoryUpdateForm.value.categoryLogo)   
-    this.categoryUpdateForm.value.categoryLogo=this.categoryById.categoryLogo;     
+     
+     this.categoryUpdateForm.value.categoryLogo=this.categoryById.categoryLogo;
+   
+      
+    
     }
    else{
     this.categoryUpdateForm.value.categoryLogo = this.path.replace(/^.*\\/, "../../../assets/")
+    
    }
     this.as.updateCategory(this.updateId, this.categoryUpdateForm.value)
       .subscribe({
         next: () => {
-          console.log('update');
           this._snackBar.open("Category updated","Dismiss", {
             duration: 7000,
             verticalPosition: 'top'
           });
           this.as.getCategoryList().subscribe(res => {
             this.category = res;
-            console.log(this.category)
           })
         }
       })
@@ -132,8 +111,10 @@ export class AdmincoursepageComponent implements OnInit {
     let ob = this.as.deleteCategory(this.cId);
     ob.subscribe({
       next: () => {
-        console.log('delete')
-        this.notification.nativeElement.click()
+        this._snackBar.open("Category deleted","Dismiss", {
+          duration: 7000,
+          verticalPosition: 'top'
+        });
          this.ngOnInit()
       }
     })

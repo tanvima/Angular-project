@@ -10,7 +10,6 @@ export class AdminService {
 
  constructor(private http:HttpClient) { }
   addCategory(category:any):Observable<any>{
-    console.log(category)
     return  this.http.post('http://localhost:8080/elearning/category',category,{responseType:"text"})
   }
   getCategoryList():Observable<any>{
@@ -38,8 +37,6 @@ export class AdminService {
      return  this.http.get('http://localhost:8080/elearning/course')
   }
   addCourse(id:any,course:any):Observable<any>{
-     console.log(id)
-     console.log(course)
     return  this.http.post('http://localhost:8080/elearning/course/'+id,course,{responseType:"text"})
   }
   deleteCourse(id:number):Observable<any>{
@@ -55,8 +52,6 @@ export class AdminService {
     return  this.http.get('http://localhost:8080/elearning/video')
  }
   addVideo(id:any,video:any):Observable<any>{
-    console.log(id)
-    console.log("VIDEO=="+video)
    return  this.http.post('http://localhost:8080/elearning/video/'+id,video,{responseType:"text"})
  }
  deleteVideo(id:number):Observable<any>{
@@ -74,7 +69,6 @@ getCourseByCatId(cId:any):Observable<any>{
 }
 
 getVideoByCourseId(cId:any):Observable<any>{
-  console.log(cId)
   return  this.http.get('http://localhost:8080/elearning/videolist/'+cId);
 }
 
@@ -85,7 +79,6 @@ getPopularCourse(){
   return this.http.get('http://localhost:8080/elearning/blockuser');
 }
 unblockUser(id:any):Observable<any>{
-  console.log(id)
   return this.http.get('http://localhost:8080/elearning/blockuser/'+id);
 }
 

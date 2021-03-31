@@ -27,10 +27,8 @@ export class HomeComponent implements OnInit {
 
     this.us.getAllCategory().subscribe((data)=>{
       this.categories=data;
-      console.log(this.categories);
     },(err)=>{
       throw Error("Cannot fetch Category")
-      console.log(err);
       
     });
 
@@ -67,7 +65,6 @@ export class HomeComponent implements OnInit {
 
 
   setSlide(myWidth: number) {
-    console.log();
     if (myWidth <= 768) {
       this.columnlength = 'col-12';
       this.slides = this.chunk(this.popularcourse, 1);

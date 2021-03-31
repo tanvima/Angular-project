@@ -17,19 +17,15 @@ export class AddvideoComponent implements OnInit {
   course:any;
  videoForm!: FormGroup
   path!: string;
+  categorycourseForm!: FormGroup;
   constructor(private as:AdminService,private route:ActivatedRoute,
     private router:Router,private _snackBar: MatSnackBar) {
-     // this.cId = this.route.snapshot.paramMap.get("v"); 
     }
 ngOnInit(){
   this.as.getCategoryList().subscribe(res=>{
     this.category=res;
-    console.log(this.category)
   }) 
-  // this.as.getCourseList().subscribe(res=>{
-  //   this.course=res;
-  //   console.log(this.course)
-  // }) 
+
   this.videoForm = new FormGroup({
   videoName: new FormControl('', [Validators.required,Validators.minLength(3),Validators.maxLength(50)]),
  
@@ -41,26 +37,25 @@ ngOnInit(){
      ]),
      videoPath: new FormControl('',[Validators.required])
    })
+
+   this.categorycourseForm=new FormGroup({
+    categoryName : new FormControl('null',[Validators.required]),
+    courseName : new FormControl('null',[Validators.required])
+   })
  }
  getCategoryId(catId:any){
   let c= this.category.find((cat:any)=>(cat.categoryId==catId))
-  console.log(c)  
   this.course = c.courses
-  console.log("ccourse ",c.courses)
   this.catId=catId;
-  console.log(this.catId);
 }
 getCourseId(cId:any){
   this.cId=cId;
-  console.log(this.cId);
 }
   onSubmit()
   { 
     this.path = this. videoForm.value.videoPath
     this. videoForm.value.videoPath = this.path.replace(/^.*\\/, "../../../assets/")
-    console.log("ADD VIDEO"+this.videoForm.value)
     this.data=this.videoForm.value;
-    console.log(this.data)
     this.as.addVideo(this.cId,this.data)
     .subscribe({next:() => 
     { this._snackBar.open("Video added","Dismiss", {
@@ -68,7 +63,6 @@ getCourseId(cId:any){
       verticalPosition: 'top'
     });
       this.router.navigate([{outlets: {admin: 'video-list'}}])
-      console.log('');
     }})
   }
 }

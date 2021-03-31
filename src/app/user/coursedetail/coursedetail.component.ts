@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginComponent } from 'src/app/shared/login/login.component';
 import { AuthenticationService } from 'src/app/utilities/authentication.service';
 import { UserService } from '../user.service';
-
 @Component({
   selector: 'app-coursedetail',
   templateUrl: './coursedetail.component.html',
@@ -18,10 +17,14 @@ export class CoursedetailComponent implements OnInit {
   noOfLike=0
   noOfComment=0
   src="../../../assets/"
+  duration: any[] = [];
   constructor(private activatedRoute: ActivatedRoute, private us: UserService,private authservice: AuthenticationService,public dialog: MatDialog,private router:Router) { 
     this.authservice.useridupdate.subscribe((data)=>{
       this.userid=data
     })
+
+ 
+
   }
 
   inCart=false
@@ -34,7 +37,6 @@ export class CoursedetailComponent implements OnInit {
      
       this.us.getCourseById(this.courseid).subscribe((data) => {
         this.course = data
-        console.log("course -----", this.course)
         if(this.authservice.isLoggedIn()){
           if(this.course.cart.find((cart: any) => cart.userId == this.userid)){
             this.inCart=true
@@ -42,7 +44,6 @@ export class CoursedetailComponent implements OnInit {
             this.isEnrolled=true
           }
         }
-        console.log("COURSE NAME ", this.course);
         this.course.like.forEach((likes:any) => {
           if(likes.status=='like'){
             this.noOfLike++
@@ -53,7 +54,7 @@ export class CoursedetailComponent implements OnInit {
 
     })
 
-    
+   
 
   }
 
@@ -61,15 +62,12 @@ export class CoursedetailComponent implements OnInit {
 
     if(this.authservice.isLoggedIn()){
 
-      console.log(this.userid)
       this.us.addToCart(this.courseid, this.userid).subscribe((data)=>{
         this.authservice.updateCartSizeData()
-        console.log("item added")
         this.ngOnInit()
       })
     }else{
       const dialogRef = this.dialog.open(LoginComponent, {
-        // width: '650px',
       })
     }
 
@@ -78,6 +76,12 @@ export class CoursedetailComponent implements OnInit {
   
     gotoMyCourse(){
       this.router.navigate(['/mycourse'])
+    }
+
+    onMetadata(e:any, video:any) {
+      this.duration[this.duration.length]=video.duration
+      console.log(this.duration)
+     // this.duration = video.duration
     }
 
   Dummylist = [

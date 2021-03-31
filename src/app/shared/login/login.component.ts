@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
   constructor(private authservice: AuthenticationService, private router: Router, private us: UserService,
     public dialogRef: MatDialogRef<LoginComponent>) { }
 
-  // loginForm!: FormGroup;
   loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -77,7 +76,6 @@ export class LoginComponent implements OnInit {
   positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
   position = new FormControl(this.positionOptions[2]);
   ngOnInit(): void {
-    console.log("INIT")
     this.noOfAttempts=0
     this.us.getAllUser().subscribe(
       (data: any) => {
@@ -87,43 +85,36 @@ export class LoginComponent implements OnInit {
   }
   loginUser() {
     this.user=this.allUser.find((user: any) => user.username == this.loginForm.value.username)
-    console.log(this.user)
     if (this.user!=null) {
       if(this.user.status == 'unblock' && (this.user.noOfAttempts<=3 && this.noOfAttempts<3)) {
-        console.log("helllo ",this.noOfAttempts)
         this.authservice.authneticate(this.loginForm.value.username, this.loginForm.value.password)
                 .subscribe(
                   (data: any) => {
                     this.dialogRef.close();
                     this.us.clearNoOfAttempts(this.loginForm.value.username).subscribe((data) => {
-                      console.log(data);
                     })
 
                     this.authservice.updateUserRole(data.roles[0])
-                    this.authservice.updateCartSizeData()
-                    // this.router.navigate(['/app'])
-                    // if (data.roles[0] === 'ROLE_user') {
-                    //   this.router.navigate(['/home'])
-                    // }
+                  
                     if (data.roles[0] === 'ROLE_admin') {
-                      // alert("admin")
-                      console.log("adminq11232");
+                     
                       
                       this.router.navigate([{outlets: {admin: 'adminhome'}}])
                       
                     }
                     if (data.roles[0] === 'ROLE_user') {
-                      // alert("user")
+                     
+                      this.authservice.updateCartSizeData()
                       this.router.navigate(['/home'])
                     }
                   }, (err: any) => {
                     this.us.updateNoOfAttempts(this.loginForm.value.username).subscribe((data) => {
                       this.errMsgPassword="Invalid password"
                       this.noOfAttempts=data.msg
-                      console.log("Number of attempts " ,this.noOfAttempts)
-                     // this.loginForm.reset()
+                    
+                   
                       if(data.msg ==3){
-                        console.log("Block")
+                       
                         this.us.blockUser((this.loginForm.value.username)).subscribe((data)=>{
                           this.user.staus='block'
                         })
@@ -136,7 +127,7 @@ export class LoginComponent implements OnInit {
           }
     } else {
       this.errMsgLogin = "Username does not exist"
-      console.log(this.errMsgLogin)
+     
     }
   }
 
@@ -149,7 +140,7 @@ export class LoginComponent implements OnInit {
           this.isOTP = true
           this.us.sendOTP(this.registrationForm.value.email).subscribe((data) => {
             this.otpmsg = data.msg;
-            console.log(this.otpmsg);
+           
 
           })
         })
@@ -158,7 +149,6 @@ export class LoginComponent implements OnInit {
           this.isOTP = true
           this.us.sendOTP(this.registrationForm.value.email).subscribe((data) => {
             this.otpmsg = data.msg;
-            console.log(this.otpmsg);
           })
         })
       }
@@ -168,10 +158,9 @@ export class LoginComponent implements OnInit {
   verifyOTP() {
 
     if (this.otpForm.value.otp === this.otpmsg) {
-      console.log("Succesfull OTP")
-      console.log(this.username)
+      
       this.us.activateAccount(this.username).subscribe((data) => {
-        console.log("Congrats!!!")
+       
         this.ngOnInit()
       })
       this.registrationForm.reset()
@@ -182,7 +171,7 @@ export class LoginComponent implements OnInit {
       this.currentIndex = 0
     } else {
       this.errMsg = "Wrong OTP"
-      console.log("wrong otp")
+    
     }
 
   }
@@ -198,7 +187,8 @@ export class LoginComponent implements OnInit {
     this.us.sendOTP(this.getEmailForm.value.email).subscribe((data) => {
       this.otpmsg = data.msg;
       this.email = this.getEmailForm.value.email
-      console.log(this.otpmsg);
+      
+      
       this.getEmailForm.reset()
 
     })
@@ -206,7 +196,7 @@ export class LoginComponent implements OnInit {
 
   verifyForgotOTP() {
     if (this.forgotOTPForm.value.otp === this.otpmsg) {
-      console.log("Succesfull OTP")
+    
       this.resetPass = !this.resetPass
       this.getOTP = !this.getOTP
       this.forgotOTPForm.reset()
@@ -214,12 +204,11 @@ export class LoginComponent implements OnInit {
       this.currentIndex = 0
     } else {
       this.errMsg = "Wrong OTP"
-      console.log(this.errMsg)
+     
     }
   }
 
   resetPassword() {
-    console.log(this.resetPassForm.value);
     //Call api to change password
     this.us.resetPassword(this.email, (this.resetPassForm.value)).subscribe(
       (data: any) => {
@@ -237,11 +226,9 @@ export class LoginComponent implements OnInit {
   checkUsername() {
     if (this.allUser.find((user: any) => user.username == this.registrationForm.value.username)) {
       this.errMsgLoginReg = "Username exists"
-      console.log(this.errMsgLoginReg)
     }
     else {
       this.errMsgLoginReg = ''
-      console.log(this.errMsgLoginReg)
     }
   }
 
@@ -249,17 +236,14 @@ export class LoginComponent implements OnInit {
     if (this.allUser.find((user: any) => user.email == this.registrationForm.value.email)) {
 
       this.errMsgEmail = "Email Exists"
-      console.log(this.errMsgEmail)
     }
     else {
       this.errMsgEmail = ""
-      console.log(this.errMsgEmail)
     }
   }
 
   requestAdminfun(){
    this.us.requestAdmin(this.user.username).subscribe((data)=>{
-     console.log("Admin request sent")
      this.dialogRef.close();
    })
     

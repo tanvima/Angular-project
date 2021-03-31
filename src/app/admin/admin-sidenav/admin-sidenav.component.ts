@@ -13,7 +13,6 @@ export class AdminSidenavComponent implements OnInit {
   constructor(private authservice:AuthenticationService, private router: Router) { }
 
 
-// @ViewChild(RouterOutlet) outlet!:RouterOutlet;
 
 
   ngOnInit(): void {
@@ -23,13 +22,9 @@ export class AdminSidenavComponent implements OnInit {
    }
 
    logout(){
-     alert("sdhgjskdh")
-    //  this.outlet.deactivate();
      this.authservice.logout()
 
-    //  this.authservice.updateUserRole(null)
     
-    //this.router.navigate(['/app'])
 
 
    }

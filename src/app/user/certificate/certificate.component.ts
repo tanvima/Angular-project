@@ -34,14 +34,12 @@ export class CertificateComponent implements OnInit {
       })
 
       this.us.getCourseById(this.courseid).subscribe((data)=>{
-        console.log(this.username+data.courseName)
         this.coursename=data.courseName
         this.pdfSrc="http://127.0.0.1:8887/"+this.username+data.courseName+".pdf"
       })
   }
 
   sendMail(){
-    console.log(this.coursename)
     this.us.sendCertificateMail(this.userid,this.coursename).subscribe((data)=>{
       
       this._snackBar.open("Mail sent","Dismiss", {

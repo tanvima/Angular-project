@@ -16,6 +16,7 @@ export class VideolistComponent implements OnInit {
   course!: Course; 
   videostatus:any
   userid!:Observable<any>
+  duration: any[] = [];
   constructor(private us: UserService, private router: Router, private activatedRoute : ActivatedRoute, private authservice:AuthenticationService) {  
     this.authservice.useridupdate.subscribe((data)=>{
     this.userid=data
@@ -26,13 +27,11 @@ export class VideolistComponent implements OnInit {
 
     this.activatedRoute.queryParams.subscribe((p) => {
       this.courseid =Number( atob(p['courseId']))
-      console.log("course Id ", this.courseid)
     }) 
 
     this.us.getCourseById(this.courseid).subscribe(
       (data)=>{
             this.course=data
-            console.log(this.course)
       }
     )
 
@@ -45,9 +44,12 @@ export class VideolistComponent implements OnInit {
   }
 
   gotoVideoPlayer(videoId:any,courseId:any){
-    console.log("--------",this.course.courseName)
     this.router.navigate(['/videoplayer'],{ queryParams: { courseId: btoa(courseId),videoId:btoa(videoId),courseName:btoa(this.course.courseName)}});
   }
 
-  
+  onMetadata(e:any, video:any) {
+    this.duration[this.duration.length]=video.duration
+    console.log(this.duration)
+   // this.duration = video.duration
+  }
 }

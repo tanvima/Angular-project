@@ -30,12 +30,9 @@ export class UserService {
     return this.http.get(environment.baseUserUrl+'/courseid/'+id)
   }
   getVideoList(courseid:number): Observable<any>{
-    return this.http.get(environment.baseUserUrl+'/videolist/'+courseid)
+    return this.http.get(environment.baseUserUrl+'/user/videolist/'+courseid)
   }
 
-  getString():Observable<any>{
-    return this.http.get(environment.baseUserUrl+'/getstring');
-  }
   updateVideoStatus(courseid:any,userid:any,videoid:any): Observable<any>{
     return this.http.post(environment.baseUserUrl+'/user/nextvideo',null,{params:{courseid:courseid,userid:userid,videoid:videoid}})
   }
@@ -64,8 +61,7 @@ export class UserService {
      return this.http.get(environment.baseUserUrl+"/user/mycourses/"+userid)
   }
   addComment(courseid:any, userid:any,comments:any): Observable<any>{
-    console.log("COMMNET ",comments)
-    console.log("URL ",environment.baseUserUrl+'/user/addcomment/'+courseid+'/'+userid)
+   
     return this.http.post<any>(environment.baseUserUrl+'/user/addcomment/'+courseid+'/'+userid,comments)
   }
 
@@ -88,8 +84,7 @@ sendOTP(email:any):Observable<any>{
   return this.http.get(environment.baseUserUrl+"/user/sendOTP/"+email)
 }
 activateAccount(username:any):Observable<any>{
-  console.log("here is the username",username)
-  console.log(environment.baseUserUrl+'/user/activateaccount/'+username)
+ 
   return this.http.get(environment.baseUserUrl+'/user/activateaccount/'+username)
 }
 
@@ -123,9 +118,7 @@ updateProfile(user:any):Observable<any>{
   return this.http.put(environment.baseUserUrl+'/user/updateUser',user)
 }
 
-// generateCertificate(userid:any,courseid:any):Observable<any>{
-//   return this.http.get(environment.baseUserUrl+"/user/certificate/"+userid+"/"+courseid)
-// }
+
 
 sendCertificateMail(userid:any,courseid:any):Observable<any>{
   return this.http.get(environment.baseUserUrl+'/user/mailcerti/'+userid+'/'+courseid)

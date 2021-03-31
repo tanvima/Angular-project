@@ -1,3 +1,5 @@
+
+
 <div class="container-fluid">
   <div class="row">
     <div class="jumbotron jumbotron-responsive">
@@ -44,6 +46,7 @@
           class="img-fluid rounded float-right"
           width="700"
           height="700"
+          alt="Media not supported"
         />
       </div>
     </div>
@@ -117,9 +120,9 @@
           <div class="card mb-3">
             <div class="row no-gutters">
               <div class="col-md-3 p-2">
-                <!-- <img src="{{ c.imgSrc }}" class="card-img" alt="..." /> -->
                 
-                <video [src]=c.videoPath  class="card-img"></video>
+                <video [src]=c.videoPath  class="card-img" #video1 (loadedmetadata)="onMetadata($event, video1)"></video>
+               
               </div>
               <div class="col-md-8">
                 <div class="card-body">
@@ -133,7 +136,7 @@
                         class="fa fa-clock-o fa-2x icon-wrap"
                         aria-hidden="true"
                       ></i
-                      ><span style="margin: 0px">15 minutes long</span></small
+                      ><span style="margin: 0px">{{duration[index] |number:'2.0-2'}} s</span></small
                     >
                   </p>
                 </div>

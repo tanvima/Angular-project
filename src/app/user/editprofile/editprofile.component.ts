@@ -13,7 +13,6 @@ import { UserService } from '../user.service';
 export class EditprofileComponent implements OnInit {
   user!: any
   currentIndex=0
-  // editForm!:FormGroup
   editForm = new FormGroup({
     name: new FormControl(''),
     address: new FormControl(''),
@@ -34,10 +33,8 @@ export class EditprofileComponent implements OnInit {
    
     this.us.getUserById(this.data.userid).subscribe((data) => {
       this.user = data
-      console.log("User data", this.user.name)
      
       if (this.user.profile != null) {
-        console.log("If")
         this.editForm = new FormGroup({
           name: new FormControl(this.user.name),
           mobileNo: new FormControl(this.user.mobileNo),
@@ -47,7 +44,6 @@ export class EditprofileComponent implements OnInit {
 
         })
       }else{
-        console.log("Else")
         this.editForm = new FormGroup({
           name: new FormControl(this.user.name),
           mobileNo: new FormControl(this.user.mobileNo),
@@ -71,7 +67,6 @@ export class EditprofileComponent implements OnInit {
       this.profile.profileid=this.user.profile.profileid
     }
     this.user.profile = this.profile
-    console.log(this.user.profile)
     this.user.name = this.editForm.value.name;
     this.user.mobileNo = this.editForm.value.mobileNo;
   

@@ -18,7 +18,6 @@ export class UnblockuserComponent implements OnInit {
   ngOnInit(): void {
     this.as.getAllBlockUser().subscribe(res => {
       this.blockedUsers = res;
-      console.log(this.blockedUsers)
       if(this.blockedUsers==null){
         throw Error("No users found")
       }
@@ -36,12 +35,10 @@ export class UnblockuserComponent implements OnInit {
 
   onUnblock(id:number)
   {
-    console.log(id);
    
     this.as.unblockUser(id)
     .subscribe({
       next: () => {
-        console.log('update');
         this.blockedUsers=this.no_of_attempts     
        
       }

@@ -57,8 +57,6 @@ export class ChartsComponent implements OnInit {
 
     })
 
-    console.log("Enroll",this.likes)
-    console.log("Coursename",this.coursename)
   }
 //Course per category
   doughnutChartLabels: Label[] = this.categoryname;

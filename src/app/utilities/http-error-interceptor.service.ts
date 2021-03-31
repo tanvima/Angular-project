@@ -15,7 +15,6 @@ export class HttpErrorInterceptorService {
       retry(1),
       catchError(err => {
       const error = err.error.message || err.statusText;
-      // alert(error)
       return throwError(error);
     }))
   }

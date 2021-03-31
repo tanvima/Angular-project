@@ -14,12 +14,12 @@ export class GlobalErrorHandlerService implements ErrorHandler {
   
 
     this.ngZone.run(() => {
-      // if(error!=null && error.name!="TypeError" &&(error.message!=''||error.message!=null)){
-      //   this.dialog.open(ErrorMessageComponent, {
-      //     width: '550px',
-      //     data: { errorMessage: error }
-      //   })
-      // }
+      if(error!=null && error.name!="TypeError" && error.name!='InvalidStateError' &&(error.message!=''||error.message!=null)){
+        this.dialog.open(ErrorMessageComponent, {
+          width: '550px',
+          data: { errorMessage: error }
+        })
+      }
     })
   }
 }

@@ -48,12 +48,10 @@ export class VideoplayerComponent implements OnInit {
     this.us.getVideoList(this.courseid).subscribe(
       (data) => {
         this.videolist = data
-        console.log("Video",this.videolist)
         this.videolist.forEach((video, index) => {
 
           if ((video.videoId) == this.videoid) {
             this.src = video.videoPath
-            console.log("SRc "+ this.src)
             this.videotitle = video.videoName
             this.videodesc = video.videoDesc
 
@@ -68,41 +66,28 @@ export class VideoplayerComponent implements OnInit {
 
   }
 
-  // @ViewChild('videoplayer') private videoplayer: any;
-  // toggleVideo() {
-  //     this.videoplayer.nativeElement.play();
-  //     // this.videoplayer.nativeElement.pause();
-  //   }
+  
   onNext(vid: number) {
 
     this.us.updateVideoStatus(this.courseid, this.userid, vid).subscribe(
       (data) => {
         this.status = data.msg
-        console.log("STATUS", this.status)
-        console.log(typeof (this.status))
 
         this.videolist.forEach((video, index) => {
 
 
-          //api call
-          //complete---videolist
-          //just complete----certificarte
-          //incomplete
-          //if---last video--->  videolist
-          //else ---> next video
+         
 
 
           if ((video.videoId) == vid) {
 
-            //api call [next vadi]
-            //if status complete----certificate
-            //else      
+            
 
             if (this.status == "complete") {
               this.nextButton = "Back to Video List";
               this.flagfornext = false
 
-              this.router.navigate(['/videolist'], { queryParams: { courseId: this.courseid } });
+              this.router.navigate(['/videolist'], { queryParams: { courseId: btoa(this.courseid) } });
 
             }
             else if (this.status == "certificate") {
@@ -124,31 +109,23 @@ export class VideoplayerComponent implements OnInit {
             else if (this.status == "incomplete") {
 
 
-              console.log("in incomplete")
               if (index + 1 == this.videolist.length) {
                 //LAST VIDEO REDIRECT TO VIDEOLIST
                 this.nextButton = "Back to Video List"
                 this.flagfornext = false
-                alert("last video...videolist")
-                this.router.navigate(['/videolist'],{ queryParams: { courseId: this.courseid}});
+                this.router.navigate(['/videolist'],{ queryParams: { courseId: btoa(this.courseid)}});
 
-                console.log("last video")
               }
 
-              console.log("Video id: ", this.videolist[index + 1].videoId)
               this.nextButton = "Next Video"
               this.flagfornext = true
              
               this.src = (this.videolist[index + 1].videoPath);
               this.videotitle = video.videoName
               this.videoid = this.videolist[index + 1].videoId
-              console.log("Next path " + this.src)
 
             }
-            else {
-              console.log("here2");
-           
-            }
+        
           }
         })
 

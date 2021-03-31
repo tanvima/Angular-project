@@ -30,11 +30,9 @@ export class MycourseComponent implements OnInit {
   ngOnInit(): void {
     this.us.getEnrollCourse(this.userid).subscribe((data)=>{
       this.course=data
-      console.log(this.course)
    
        this.us.getLikeStatus(this.userid).subscribe((data1)=>{
          this.status=data1
-        console.log(this.status);
       
         
       });
@@ -59,10 +57,8 @@ export class MycourseComponent implements OnInit {
   }
 
   addComment(courseid:any){
-    console.log(courseid)
     this.us.addComment(courseid,this.userid,this.form.value).subscribe(
       (data)=>{
-        console.log("comment added")
         this.commentFlags()
         this.form.setValue({comment:""})
         this.ngOnInit()
@@ -73,7 +69,6 @@ export class MycourseComponent implements OnInit {
  Like(courseid:any){
  this.us.addLike(courseid,this.userid).subscribe((data)=>{
    this.status = data
-   console.log(",,,,,,,,,,,,",this.status)
    this.status=null
    this.ngOnInit()
  })
@@ -86,7 +81,7 @@ export class MycourseComponent implements OnInit {
 
   delComment(id:any){
     this.us.deleteComment(id).subscribe((data)=>{
-      console.log("comment deleted")
+      
       this.ngOnInit()
     })
   }

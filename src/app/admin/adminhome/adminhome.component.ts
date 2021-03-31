@@ -66,7 +66,6 @@ export class AdminhomeComponent implements OnInit {
 
     this.as.getPopularCourse().subscribe((data)=>{
       this.popularCourse=data
-      console.log(data)
       this.popularCourse.forEach((element:any)=> {
         this.popularCourseName.push(element.courseName);
         this.popularCourseRating.push(element.rating)
@@ -91,12 +90,7 @@ export class AdminhomeComponent implements OnInit {
   coursePerCatOptions:ChartOptions={
     responsive:true
   };
-  // coursePerCatLabels:Label[]=this.coursename;
-  // coursePerCat:ChartType="doughnut";
-  // coursePerCatLegend=true;
-  // coursePerCatPlugins=[];
-  
-  // coursePerCatData:ChartDataSets[]=[{data:this.coursePerCategory,label:'Courses per Category'}];
+
   
   doughnutChartLabels: Label[] =this.coursename;
   doughnutChartData: MultiDataSet = [

@@ -28,7 +28,6 @@ export class VideopageComponent implements OnInit {
 
   constructor(private as: AdminService,private router: Router, private _snackBar: MatSnackBar) {
     this.video = this.as.getVideoList()
-    console.log(this.video)
 
   }
   
@@ -45,7 +44,6 @@ export class VideopageComponent implements OnInit {
   ngOnInit() {
     this.as.getCourseList().subscribe(res => {
       this.course = res;
-      console.log(this.course)
     })
 
   }
@@ -62,9 +60,7 @@ export class VideopageComponent implements OnInit {
           Validators.maxLength(3000)
         ])
       })
-      console.log(this.videoById);
     })
-    console.log(this.updateId)
   }
   deleteVideos(id: number) {
     this.deleteId=id
@@ -94,10 +90,7 @@ export class VideopageComponent implements OnInit {
   }
   getCourseId(cId: any) {
     this.cId = cId;
-    console.log(this.cId);
-    console.log(cId)
     if(cId=="null"||cId==null||cId=="undefined"){
-      console.log("helllo")
       this.video = this.as.getVideoList()
     }else{
       this.video=this.as.getVideoByCourseId(this.cId);
@@ -108,8 +101,11 @@ export class VideopageComponent implements OnInit {
   confirmDelete(){
     let ob = this.as.deleteVideo(this.deleteId);
     ob.subscribe({
-      next: () => { console.log('delete') 
-      this.notification.nativeElement.click()
+      next: () => {
+      this._snackBar.open("Video deleted","Dismiss", {
+        duration: 7000,
+        verticalPosition: 'top'
+      });
       this.video=this.as.getVideoList();
     }
     })
