@@ -1,6 +1,5 @@
-
-.context-dark, .bg-gray-dark, .bg-primary {
-  color:black;
+.contact-list a{
+  color: white;
 }
 
 .section  {
@@ -11,13 +10,13 @@
   background-color: #6c757d;
   color: rgb(223, 219, 219);
 }
-.a-href{
+.aHref{
   color: white;
 }
 
-.footer-classic a, .footer-classic a:focus, .footer-classic a:active {
-  color: black;
-}
+// .footer-classic a, .footer-classic a:focus, .footer-classic a:active {
+//   color: black;
+// }
 .nav-list li {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -41,7 +40,7 @@ ul, ol {
       width:30px;
   }
   .insta-bg{
-    
+    color: #F2370E;
       border-radius: 15px;
       height:30px;
       width:30px;

@@ -9,7 +9,7 @@
 <ng-container *ngIf="course">
 
           <h1>{{course.courseName}}</h1>
-          <p class="course-desc">
+          <p class="course-desc text-justify">
            {{course.courseDesc}} </p>
           <h4>
             <span class="icon-person fa-1x"
@@ -57,7 +57,7 @@
   <div class="row">
     <div class="col-lg-9 col-sm-12">
       <div class="take-course-section">
-        <h4>Take Course</h4>
+        <h3><b>Take Course</b></h3>
         <p >
           A Course Specialization is a series of topics that helps you master a
           skill. To begin, enroll in the Specialization directly, or review its
@@ -68,7 +68,7 @@
           time. Visit your learner dashboard to track your course enrollments
           and your progress.
         </p>
-        <h4>Earn a Certificate</h4>
+        <h3><b>Earn a Certificate</b></h3>
         <p >
           When you finish every course and complete the hands-on project, you'll
           earn a Certificate that you can share with prospective employers and
@@ -126,8 +126,8 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <div class="card-title">{{c.videoName}}</div>
-                  <p class="card-text">
+                  <div class="card-title"><b>{{c.videoName}}</b></div>
+                  <p class="card-text text-justify">
                     {{c.videoDesc}}
                   </p>
                   <p class="card-text">

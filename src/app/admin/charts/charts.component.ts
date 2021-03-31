@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartType, ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label, MultiDataSet } from 'ng2-charts';
+import { reduce } from 'rxjs/operators';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -64,7 +65,14 @@ export class ChartsComponent implements OnInit {
     this.coursePerCategory
   ];
   doughnutChartType: ChartType = 'doughnut';
-
+  doughnutChartColor:Color[]=[
+    {
+      // backgroundColor:'linear-gradient(124deg, rgba(239,240,242,1) 46%, rgba(93,66,147,1) 59%)',
+  
+      hoverBackgroundColor:'dark grey'
+      
+    }
+  ]
   //Student enrollment
   enrollBarOptions:ChartOptions={
     responsive:true
@@ -109,6 +117,7 @@ lineChartColors: Color[] = [
   {
     borderColor: 'grey',
     backgroundColor: '#f9e076',
+   
   },
 ];
 lineChartLegend = true;

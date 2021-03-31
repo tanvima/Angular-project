@@ -13,6 +13,7 @@ export class AdmincoursedetailComponent implements OnInit {
   course:any
   noOfLike=0
   noOfComment=0
+  duration: any[] = [];
   constructor(private activatedRoute: ActivatedRoute,  private us: UserService) { }
 
   ngOnInit(): void {
@@ -36,7 +37,11 @@ export class AdmincoursedetailComponent implements OnInit {
        
 
   }
-
+  onMetadata(e:any, video:any) {
+    this.duration[this.duration.length]=video.duration
+    console.log(this.duration)
+   // this.duration = video.duration
+  }
    
   DummyCommentList = [
     {

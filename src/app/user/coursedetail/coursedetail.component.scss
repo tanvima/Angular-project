@@ -17,6 +17,7 @@
   
   .course-desc {
     font-size: 1rem;
+    line-height: 1.75rem;
   }
   .course {
     display: flex;
@@ -119,7 +120,10 @@
   .card-text {
     font-size: 1rem;
   }
-  
+  .card-img{
+    height: 100%;
+    width: 100%;
+  }
   /* comments */
   .container-comments {
     padding-top: 100px;

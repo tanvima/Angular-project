@@ -1,5 +1,6 @@
 .card
 {
+  height: 600px;
   margin-top: 20px;
   width: 320x;
 }
@@ -14,6 +15,7 @@ img{
     border-radius: 5px;
     width: 75px;
     padding: 10px;
+    cursor: pointer;
   }
   .btn2{
     padding-left: 5px;
@@ -22,6 +24,7 @@ img{
     border-radius: 5px;
     width: 75px;   
     padding: 10px;
+    cursor: pointer;
   }
   .btn1:hover{
     background-color: rgb(236, 34, 12);

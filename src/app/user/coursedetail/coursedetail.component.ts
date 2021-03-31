@@ -84,28 +84,7 @@ export class CoursedetailComponent implements OnInit {
      // this.duration = video.duration
     }
 
-  Dummylist = [
-    {
-      id: 1,
-      imgSrc:
-        'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fGRhdGElMjBzY2llbmNlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    },
-    {
-      id: 2,
-      imgSrc:
-        'https://images.unsplash.com/photo-1606765962208-62a3c676bf38?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjN8fGRhdGElMjBzY2llbmNlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    },
-    {
-      id: 3,
-      imgSrc:
-        'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fGRhdGElMjBzY2llbmNlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    },
-    {
-      id: 4,
-      imgSrc:
-        'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fGRhdGElMjBzY2llbmNlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    },
-  ];
+ 
 
 
   

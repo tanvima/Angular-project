@@ -31,7 +31,7 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a
-              class="dropdown-item"
+              class="dropdown-item option"
               *ngFor="let c of categories"
               (click)="getCategory(c.categoryId, c.categoryName)"
             >
@@ -57,23 +57,14 @@
                   *ngFor="let option of filteredOptions | async"
                   [value]="option"
                   (click)="gotoCourse(option)"
+                 
                 >
                   {{ option }}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
     
-            <!-- <input
-              class="form-control mr-sm-2"
-              type="search"
-              aria-label="Search"
-              id="search-text"
-              aria-describedby="search-text"
-              [(ngModel)]="searchText"
-              placeholder="Enter text to search"
-              autofocus
-              (keyup)="dropmenutoggle()"
-            /> -->
+           
           </div>
         </div>
       </li>
